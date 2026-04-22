@@ -1,209 +1,184 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dan Kohler</title>
+// VERSION 7: Finalized homepage with visual identity hooks (using provided AI portrait style)
 
-<style>
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #05060f;
-  color: white;
-  overflow-x: hidden;
+import React, { useMemo, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { ArrowRight, ExternalLink, Mail, Sparkles, Briefcase, User, Building2, Cpu, Linkedin } from "lucide-react";
+
+// NOTE: Replace `heroSrc` with your hosted image URL when deploying (use the provided AI portrait)
+const heroSrc = "/images/dan-ai-portrait.jpg";
+
+const panels = {
+  machine: {
+    eyebrow: "Connected workflow",
+    title: "THE MACHINE™",
+    body: "A connected system that guides teams from brand strategy to copy, design, and video in one flow.",
+    cta: "Explore THE MACHINE™",
+    href: "https://xtrabold.agency/machine/",
+    icon: Cpu,
+  },
+  xtrabold: {
+    eyebrow: "Agency",
+    title: "XTRABOLD AI",
+    body: "A next generation creative partner built to make ideas visible before teams commit to them.",
+    cta: "Visit XTRABOLD AI",
+    href: "https://xtrabold.agency/",
+    icon: Building2,
+  },
+  linkedin: {
+    eyebrow: "Profile",
+    title: "LinkedIn",
+    body: "See career history, current thinking, and professional context on LinkedIn.",
+    cta: "Open LinkedIn",
+    href: "https://www.linkedin.com/in/kohlerdan/",
+    icon: Linkedin,
+  },
+  about: {
+    eyebrow: "About",
+    title: "Dan Kohler",
+    body: "Operator, builder, teacher, and founder helping companies connect strategy, creative, and AI systems into one practical flow.",
+    cta: "See background",
+    href: "#about",
+    icon: User,
+  },
+  contact: {
+    eyebrow: "Conversations",
+    title: "Contact",
+    body: "If you are thinking about AI strategy, workflow design, creative transformation, or a new venture, start here.",
+    cta: "Start a conversation",
+    href: "#contact",
+    icon: Mail,
+  },
+  work: {
+    eyebrow: "Engagements",
+    title: "Work With Me",
+    body: "Structured ways to work together across brand transformation, agency modernization, workshops, advisory, and ventures.",
+    cta: "See engagement paths",
+    href: "#work",
+    icon: Briefcase,
+  },
+};
+
+const hotspots = [
+  { id: "xtrabold", label: "Pinboard", className: "left-[7%] top-[7%] w-[26%] h-[24%]" },
+  { id: "machine", label: "Computer", className: "left-[41%] top-[24%] w-[18%] h-[28%]" },
+  { id: "about", label: "Portrait", className: "right-[7%] top-[8%] w-[18%] h-[24%]" },
+  { id: "linkedin", label: "Notebook", className: "left-[11%] bottom-[11%] w-[23%] h-[14%]" },
+  { id: "work", label: "Folder", className: "right-[18%] bottom-[20%] w-[20%] h-[14%]" },
+  { id: "contact", label: "Coffee", className: "right-[11%] bottom-[9%] w-[10%] h-[13%]" },
+];
+
+function ActivePanel({ active }) {
+  const item = panels[active];
+  const Icon = item.icon;
+
+  return (
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={active}
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -12 }}
+        transition={{ duration: 0.24 }}
+        className="rounded-[28px] border border-white/10 bg-white/[0.04] p-6 md:p-7 backdrop-blur-xl shadow-2xl"
+      >
+        <div className="flex items-center gap-3 text-sm text-white/55">
+          <div className="rounded-full border border-white/10 bg-white/5 p-2"><Icon className="h-4 w-4" /></div>
+          <span>{item.eyebrow}</span>
+        </div>
+        <h3 className="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">{item.title}</h3>
+        <p className="mt-4 max-w-2xl text-white/72 leading-7">{item.body}</p>
+        <a href={item.href} className="mt-6 inline-flex items-center gap-2 rounded-full bg-white text-black px-5 py-3 text-sm font-medium hover:opacity-90">
+          {item.cta}
+          <ArrowRight className="h-4 w-4" />
+        </a>
+      </motion.div>
+    </AnimatePresence>
+  );
 }
 
-.container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 60px 20px;
+export default function DKohlerV7() {
+  const [active, setActive] = useState("machine");
+  const activeHotspot = useMemo(() => hotspots.find(h => h.id === active), [active]);
+
+  return (
+    <div className="min-h-screen bg-[#050511] text-white">
+      <div className="mx-auto max-w-7xl px-5 py-6 md:px-6 md:py-8">
+
+        {/* HERO WITH REAL PORTRAIT */}
+        <section className="grid gap-10 lg:grid-cols-[1.05fr_.95fr] items-center">
+          <div>
+            <h1 className="text-5xl md:text-7xl font-semibold leading-[1.03]">
+              I help companies see better ideas before they commit to them.
+            </h1>
+            <p className="mt-6 text-lg text-white/70 max-w-2xl">
+              Strategy. Creative. AI systems. Connected into one flow that improves how work actually gets done.
+            </p>
+            <div className="mt-8 flex gap-3">
+              <a href="#work" className="bg-white text-black px-6 py-3 rounded-full text-sm">Work with me</a>
+              <a href="#workspace" className="border border-white/20 px-6 py-3 rounded-full text-sm">Enter my workspace</a>
+            </div>
+          </div>
+
+          <div className="relative">
+            <img
+              src={heroSrc}
+              alt="Dan Kohler"
+              className="rounded-[32px] border border-white/10 shadow-2xl"
+            />
+          </div>
+        </section>
+
+        {/* WORKSPACE */}
+        <section id="workspace" className="pt-20">
+          <h2 className="text-4xl font-semibold">Step into my workspace.</h2>
+
+          <div className="mt-8 relative rounded-[32px] border border-white/10 bg-black p-6">
+            <div className="relative aspect-[16/10]">
+              {hotspots.map((spot) => (
+                <button
+                  key={spot.id}
+                  onClick={() => setActive(spot.id)}
+                  className={`absolute ${spot.className} border rounded-xl ${active === spot.id ? "border-white" : "border-white/10"}`}
+                >
+                  <span className="text-xs">{spot.label}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-6">
+            <ActivePanel active={active} />
+          </div>
+        </section>
+
+        {/* WORK WITH ME */}
+        <section id="work" className="pt-20">
+          <h2 className="text-4xl font-semibold">Work with me</h2>
+          <div className="grid md:grid-cols-3 gap-6 mt-8">
+            <div className="p-6 border border-white/10 rounded-xl">
+              <div className="text-xl">For brands</div>
+              <p className="text-white/70 mt-2 text-sm">Connect strategy, creative, and execution.</p>
+            </div>
+            <div className="p-6 border border-white/10 rounded-xl">
+              <div className="text-xl">For agencies</div>
+              <p className="text-white/70 mt-2 text-sm">Standardize how great thinking happens.</p>
+            </div>
+            <div className="p-6 border border-white/10 rounded-xl">
+              <div className="text-xl">Partnerships</div>
+              <p className="text-white/70 mt-2 text-sm">Advisory, speaking, ventures.</p>
+            </div>
+          </div>
+        </section>
+
+        {/* CONTACT */}
+        <section id="contact" className="pt-20 pb-24 text-center">
+          <h2 className="text-3xl">Bring me the hard problem.</h2>
+          <a href="mailto:kohdan@gmail.com" className="mt-6 inline-block bg-white text-black px-6 py-3 rounded-full text-sm">
+            Start the conversation
+          </a>
+        </section>
+
+      </div>
+    </div>
+  );
 }
-
-/* HERO */
-
-.hero {
-  text-align: center;
-  margin-bottom: 80px;
-}
-
-.hero h1 {
-  font-size: 64px;
-  line-height: 1.05;
-  margin: 0 auto;
-  max-width: 900px;
-}
-
-.hero p {
-  margin-top: 20px;
-  color: rgba(255,255,255,0.7);
-}
-
-.cta {
-  margin-top: 30px;
-}
-
-.btn {
-  display: inline-block;
-  padding: 12px 20px;
-  margin: 0 8px;
-  border-radius: 999px;
-  text-decoration: none;
-}
-
-.primary {
-  background: white;
-  color: black;
-}
-
-.secondary {
-  border: 1px solid rgba(255,255,255,0.3);
-  color: white;
-}
-
-/* WORKSPACE */
-
-.workspace {
-  position: relative;
-  margin-top: 60px;
-  background: radial-gradient(circle at center, #0b0d1f, #05060f);
-  border-radius: 30px;
-  padding: 60px;
-  min-height: 500px;
-}
-
-/* CENTER IMAGE */
-
-.center-portrait {
-  position: absolute;
-  left: 50%;
-  top: 55%;
-  transform: translate(-50%, -50%);
-  width: 280px;
-  border-radius: 20px;
-  z-index: 2;
-}
-
-/* OBJECTS */
-
-.object {
-  position: absolute;
-  padding: 14px 18px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.2s ease;
-  backdrop-filter: blur(10px);
-}
-
-.object:hover {
-  transform: scale(1.05);
-  background: rgba(255,255,255,0.1);
-}
-
-/* POSITIONING */
-
-.computer { top: 10%; left: 50%; transform: translateX(-50%); }
-.pinboard { top: 40%; left: 10%; }
-.notebook { top: 70%; left: 20%; }
-.portrait { top: 20%; right: 10%; }
-.folder { bottom: 15%; right: 20%; }
-.coffee { bottom: 10%; left: 45%; }
-
-/* PANEL */
-
-.panel {
-  margin-top: 40px;
-  padding: 30px;
-  border-radius: 20px;
-  border: 1px solid rgba(255,255,255,0.1);
-  background: rgba(255,255,255,0.03);
-  min-height: 120px;
-}
-
-/* MOBILE */
-
-@media(max-width:900px){
-  .workspace {
-    padding: 40px 20px;
-    min-height: auto;
-  }
-
-  .object {
-    position: static;
-    display: block;
-    margin: 10px 0;
-  }
-
-  .center-portrait {
-    position: static;
-    transform: none;
-    display: block;
-    margin: 30px auto;
-  }
-}
-</style>
-</head>
-
-<body>
-
-<div class="container">
-
-<!-- HERO -->
-
-<div class="hero">
-  <h1>I help companies see better ideas before they commit to them.</h1>
-  <p>Strategy. Creative. AI systems. Connected into one flow that improves how work actually gets done.</p>
-
-  <div class="cta">
-    <a href="#workspace" class="btn primary">Enter my workspace</a>
-    <a href="#contact" class="btn secondary">Contact</a>
-  </div>
-</div>
-
-<!-- WORKSPACE -->
-
-<div id="workspace" class="workspace">
-
-  <img src="DK_AI.png" class="center-portrait" />
-
-  <div class="object computer" onclick="show('machine')">Computer → THE MACHINE™</div>
-  <div class="object pinboard" onclick="show('xtrabold')">Pinboard → XTRABOLD AI</div>
-  <div class="object notebook" onclick="show('linkedin')">Notebook → LinkedIn</div>
-  <div class="object portrait" onclick="show('about')">Portrait → About</div>
-  <div class="object folder" onclick="show('work')">Folder → Work with me</div>
-  <div class="object coffee" onclick="show('contact')">Coffee → Contact</div>
-
-</div>
-
-<div id="panel" class="panel">
-Click something in the workspace.
-</div>
-
-</div>
-
-<script>
-function show(type){
-  const panel = document.getElementById('panel');
-
-  const data = {
-    machine: "<h3>THE MACHINE™</h3><p>A connected system that turns strategy into finished creative across copy, design, and video.</p><p><a href='https://xtrabold.agency/machine/' target='_blank'>Explore →</a></p>",
-
-    xtrabold: "<h3>XTRABOLD AI</h3><p>We make ideas visible before companies commit to them.</p><p><a href='https://xtrabold.agency/' target='_blank'>Visit →</a></p>",
-
-    about: "<h3>About</h3><p>Founder. Operator. Creative strategist. Focused on helping companies think more clearly and move faster.</p>",
-
-    linkedin: "<h3>LinkedIn</h3><p><a href='https://www.linkedin.com/in/kohlerdan/' target='_blank'>View profile →</a></p>",
-
-    work: "<h3>Work with me</h3><p>Brands. Agencies. Partnerships.</p><p>Bring me the hard problem.</p>",
-
-    contact: "<h3>Contact</h3><p>Email: <a href='mailto:kohdan@gmail.com'>kohdan@gmail.com</a></p>"
-  };
-
-  panel.innerHTML = data[type];
-}
-</script>
-
-</body>
-</html>
