@@ -9,49 +9,44 @@
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #060714;
+  background: #05060f;
   color: white;
+  overflow-x: hidden;
 }
 
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 40px 20px;
+  padding: 60px 20px;
 }
 
-h1 {
-  font-size: 64px;
-  line-height: 1.05;
-  margin: 0;
-}
-
-p {
-  color: rgba(255,255,255,0.7);
-  font-size: 18px;
-  max-width: 600px;
-}
+/* HERO */
 
 .hero {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  align-items: center;
-  margin-top: 40px;
+  text-align: center;
+  margin-bottom: 80px;
 }
 
-.hero img {
-  width: 100%;
-  border-radius: 20px;
+.hero h1 {
+  font-size: 64px;
+  line-height: 1.05;
+  margin: 0 auto;
+  max-width: 900px;
 }
 
-.buttons {
-  margin-top: 25px;
+.hero p {
+  margin-top: 20px;
+  color: rgba(255,255,255,0.7);
+}
+
+.cta {
+  margin-top: 30px;
 }
 
 .btn {
   display: inline-block;
   padding: 12px 20px;
-  margin-right: 10px;
+  margin: 0 8px;
   border-radius: 999px;
   text-decoration: none;
 }
@@ -66,55 +61,86 @@ p {
   color: white;
 }
 
-.section {
-  margin-top: 100px;
-}
+/* WORKSPACE */
 
 .workspace {
-  margin-top: 30px;
-  padding: 30px;
-  border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 20px;
+  position: relative;
+  margin-top: 60px;
+  background: radial-gradient(circle at center, #0b0d1f, #05060f);
+  border-radius: 30px;
+  padding: 60px;
+  min-height: 500px;
 }
 
-.objects {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 20px;
-  margin-top: 20px;
+/* CENTER IMAGE */
+
+.center-portrait {
+  position: absolute;
+  left: 50%;
+  top: 55%;
+  transform: translate(-50%, -50%);
+  width: 280px;
+  border-radius: 20px;
+  z-index: 2;
 }
+
+/* OBJECTS */
 
 .object {
-  padding: 20px;
+  position: absolute;
+  padding: 14px 18px;
+  background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.1);
-  border-radius: 15px;
+  border-radius: 12px;
   cursor: pointer;
   transition: all 0.2s ease;
+  backdrop-filter: blur(10px);
 }
 
 .object:hover {
-  background: rgba(255,255,255,0.05);
+  transform: scale(1.05);
+  background: rgba(255,255,255,0.1);
 }
 
-.card {
+/* POSITIONING */
+
+.computer { top: 10%; left: 50%; transform: translateX(-50%); }
+.pinboard { top: 40%; left: 10%; }
+.notebook { top: 70%; left: 20%; }
+.portrait { top: 20%; right: 10%; }
+.folder { bottom: 15%; right: 20%; }
+.coffee { bottom: 10%; left: 45%; }
+
+/* PANEL */
+
+.panel {
+  margin-top: 40px;
+  padding: 30px;
+  border-radius: 20px;
   border: 1px solid rgba(255,255,255,0.1);
-  padding: 20px;
-  border-radius: 15px;
+  background: rgba(255,255,255,0.03);
+  min-height: 120px;
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 20px;
-  margin-top: 30px;
-}
+/* MOBILE */
 
 @media(max-width:900px){
-  .hero {
-    grid-template-columns: 1fr;
+  .workspace {
+    padding: 40px 20px;
+    min-height: auto;
   }
-  .grid, .objects {
-    grid-template-columns: 1fr;
+
+  .object {
+    position: static;
+    display: block;
+    margin: 10px 0;
+  }
+
+  .center-portrait {
+    position: static;
+    transform: none;
+    display: block;
+    margin: 30px auto;
   }
 }
 </style>
@@ -124,70 +150,35 @@ p {
 
 <div class="container">
 
+<!-- HERO -->
+
 <div class="hero">
-  <div>
-    <h1>I help companies see better ideas before they commit to them.</h1>
-    <p>
-      Strategy. Creative. AI systems. Connected into one flow that improves how work actually gets done.
-    </p>
+  <h1>I help companies see better ideas before they commit to them.</h1>
+  <p>Strategy. Creative. AI systems. Connected into one flow that improves how work actually gets done.</p>
 
-    <div class="buttons">
-      <a href="#work" class="btn primary">Work with me</a>
-      <a href="#contact" class="btn secondary">Contact</a>
-    </div>
-  </div>
-
-  <img src="DK_AI.png" alt="Dan Kohler">
-</div>
-
-<div class="section">
-  <h2>Step into my workspace</h2>
-  <p>Each object represents a real part of what I do.</p>
-
-  <div class="workspace">
-    <div class="objects">
-      <div class="object" onclick="show('xtrabold')">Pinboard → XTRABOLD AI</div>
-      <div class="object" onclick="show('machine')">Computer → THE MACHINE™</div>
-      <div class="object" onclick="show('about')">Portrait → About</div>
-      <div class="object" onclick="show('linkedin')">Notebook → LinkedIn</div>
-      <div class="object" onclick="show('work')">Folder → Work with me</div>
-      <div class="object" onclick="show('contact')">Coffee → Contact</div>
-    </div>
-
-    <div id="panel" style="margin-top:30px;">
-      Click something above.
-    </div>
+  <div class="cta">
+    <a href="#workspace" class="btn primary">Enter my workspace</a>
+    <a href="#contact" class="btn secondary">Contact</a>
   </div>
 </div>
 
-<div id="work" class="section">
-  <h2>Work with me</h2>
+<!-- WORKSPACE -->
 
-  <div class="grid">
-    <div class="card">
-      <h3>For brands</h3>
-      <p>Connect strategy, creative, and execution into one system.</p>
-    </div>
+<div id="workspace" class="workspace">
 
-    <div class="card">
-      <h3>For agencies</h3>
-      <p>Standardize how great thinking happens.</p>
-    </div>
+  <img src="DK_AI.png" class="center-portrait" />
 
-    <div class="card">
-      <h3>Partnerships</h3>
-      <p>Advisory, speaking, and ventures.</p>
-    </div>
-  </div>
+  <div class="object computer" onclick="show('machine')">Computer → THE MACHINE™</div>
+  <div class="object pinboard" onclick="show('xtrabold')">Pinboard → XTRABOLD AI</div>
+  <div class="object notebook" onclick="show('linkedin')">Notebook → LinkedIn</div>
+  <div class="object portrait" onclick="show('about')">Portrait → About</div>
+  <div class="object folder" onclick="show('work')">Folder → Work with me</div>
+  <div class="object coffee" onclick="show('contact')">Coffee → Contact</div>
+
 </div>
 
-<div id="contact" class="section">
-  <h2>Bring me the hard problem</h2>
-  <p>AI strategy, creative transformation, workflow design.</p>
-
-  <a href="mailto:kohdan@gmail.com" class="btn primary">
-    Start the conversation
-  </a>
+<div id="panel" class="panel">
+Click something in the workspace.
 </div>
 
 </div>
@@ -197,12 +188,17 @@ function show(type){
   const panel = document.getElementById('panel');
 
   const data = {
-    xtrabold: "Visit XTRABOLD AI → https://xtrabold.agency/",
-    machine: "Explore THE MACHINE™ → https://xtrabold.agency/machine/",
-    about: "Founder. Operator. Builder.",
-    linkedin: "https://www.linkedin.com/in/kohlerdan/",
-    work: "Scroll down to see engagement options.",
-    contact: "Email: kohdan@gmail.com"
+    machine: "<h3>THE MACHINE™</h3><p>A connected system that turns strategy into finished creative across copy, design, and video.</p><p><a href='https://xtrabold.agency/machine/' target='_blank'>Explore →</a></p>",
+
+    xtrabold: "<h3>XTRABOLD AI</h3><p>We make ideas visible before companies commit to them.</p><p><a href='https://xtrabold.agency/' target='_blank'>Visit →</a></p>",
+
+    about: "<h3>About</h3><p>Founder. Operator. Creative strategist. Focused on helping companies think more clearly and move faster.</p>",
+
+    linkedin: "<h3>LinkedIn</h3><p><a href='https://www.linkedin.com/in/kohlerdan/' target='_blank'>View profile →</a></p>",
+
+    work: "<h3>Work with me</h3><p>Brands. Agencies. Partnerships.</p><p>Bring me the hard problem.</p>",
+
+    contact: "<h3>Contact</h3><p>Email: <a href='mailto:kohdan@gmail.com'>kohdan@gmail.com</a></p>"
   };
 
   panel.innerHTML = data[type];
