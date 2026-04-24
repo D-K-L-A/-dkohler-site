@@ -5,1214 +5,664 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dan Kohler</title>
 <style>
-:root {
-  --bg: #060714;
-  --bg-deep: #04050d;
-  --panel: rgba(255,255,255,0.05);
-  --panel-border: rgba(255,255,255,0.12);
-  --text: #ffffff;
-  --muted: rgba(255,255,255,0.72);
-  --soft: rgba(255,255,255,0.48);
-  --cyan: #66d8ff;
-  --violet: #8f6fff;
-  --pink: #ff6adf;
-  --gold: #f5c52b;
-  --wood-a: #5a361d;
-  --wood-b: #26160c;
-  --shadow: 0 24px 60px rgba(0,0,0,0.35);
+:root{
+  --paper:#f4efe6;
+  --ink:#191817;
+  --muted:#6b6258;
+  --navy:#0b1020;
+  --blue:#144d8f;
+  --cyan:#4fc3ff;
+  --yellow:#ffc928;
+  --red:#e74b4b;
+  --green:#1f8b64;
+  --wood:#f2d991;
+  --line:#1d1b18;
+  --panel:#fff8ec;
 }
-
-* {
-  box-sizing: border-box;
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  font-family: ui rounded, ui sans serif, system ui, -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif;
+  background:var(--paper);
+  color:var(--ink);
 }
-
-html {
-  scroll-behavior: smooth;
+a{color:inherit;text-decoration:none}
+.wrap{
+  max-width:1180px;
+  margin:0 auto;
+  padding:34px 22px 60px;
 }
-
-body {
-  margin: 0;
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: var(--text);
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:18px;
+  margin-bottom:22px;
+}
+.brand small{
+  display:block;
+  letter-spacing:.18em;
+  text-transform:uppercase;
+  font-size:12px;
+  color:var(--muted);
+}
+.brand strong{
+  display:block;
+  margin-top:4px;
+  font-size:28px;
+  line-height:1;
+}
+.nav{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.nav a{
+  border:2px solid var(--line);
+  border-radius:999px;
+  padding:10px 16px;
+  background:#fffaf0;
+  box-shadow:3px 3px 0 var(--line);
+  font-size:14px;
+  font-weight:700;
+}
+.heroIntro{
+  text-align:center;
+  max-width:900px;
+  margin:24px auto 26px;
+}
+.kicker{
+  display:inline-block;
+  border:2px solid var(--line);
+  border-radius:999px;
+  padding:8px 14px;
+  background:#fffaf0;
+  box-shadow:3px 3px 0 var(--line);
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+}
+h1{
+  margin:20px 0 0;
+  font-size:clamp(44px,6.3vw,78px);
+  line-height:.98;
+  letter-spacing:-.045em;
+}
+.subhead{
+  margin:20px auto 0;
+  max-width:720px;
+  color:var(--muted);
+  font-size:21px;
+  line-height:1.55;
+}
+.ctaRow{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  margin-top:24px;
+}
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:2px solid var(--line);
+  border-radius:999px;
+  padding:13px 20px;
+  font-weight:800;
+  box-shadow:4px 4px 0 var(--line);
+}
+.btn.dark{
+  background:var(--navy);
+  color:white;
+}
+.btn.light{
+  background:#fffaf0;
+}
+.sceneWrap{
+  position:relative;
+  margin:36px auto 0;
+  max-width:1040px;
+}
+.scene{
+  position:relative;
+  min-height:600px;
+  background:#fff9ef;
+  border:3px solid var(--line);
+  border-radius:28px;
+  overflow:hidden;
+  box-shadow:8px 8px 0 var(--line);
+}
+.wall{
+  position:absolute;
+  inset:0 0 26%;
   background:
-    radial-gradient(circle at 18% 0%, rgba(255,106,223,0.10), transparent 24%),
-    radial-gradient(circle at 82% 12%, rgba(102,216,255,0.10), transparent 22%),
-    linear-gradient(180deg, #0a0c1b 0%, var(--bg) 100%);
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-img {
-  display: block;
-}
-
-.wrap {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 24px;
-}
-
-.topbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  padding: 18px 22px;
-  border: 1px solid var(--panel-border);
-  border-radius: 24px;
-  background: rgba(255,255,255,0.03);
-  backdrop-filter: blur(14px);
-}
-
-.brand-kicker {
-  font-size: 11px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--soft);
-}
-
-.brand-name {
-  margin-top: 4px;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-.topnav {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-
-.pill {
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: 1px solid var(--panel-border);
-  background: rgba(255,255,255,0.04);
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.hero {
-  display: grid;
-  grid-template-columns: 1.02fr 0.98fr;
-  gap: 48px;
-  align-items: center;
-  padding: 64px 0 26px;
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 14px;
-  border-radius: 999px;
-  border: 1px solid var(--panel-border);
-  background: rgba(255,255,255,0.04);
-  color: var(--muted);
-  font-size: 14px;
-}
-
-.spark {
-  width: 10px;
-  height: 10px;
-  border-radius: 999px;
-  background: linear-gradient(180deg, var(--pink), var(--cyan));
-  box-shadow: 0 0 18px rgba(255,106,223,0.45);
-}
-
-h1 {
-  margin: 18px 0 0;
-  font-size: clamp(48px, 7vw, 88px);
-  line-height: 0.98;
-  letter-spacing: -0.045em;
-}
-
-.hero-text {
-  margin-top: 22px;
-  max-width: 720px;
-  color: var(--muted);
-  font-size: 21px;
-  line-height: 1.66;
-}
-
-.cta-row {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 28px;
-}
-
-.btn-primary,
-.btn-secondary,
-.panel-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 20px;
-  border-radius: 999px;
-  transition: transform 180ms ease, opacity 180ms ease, background 180ms ease;
-}
-
-.btn-primary:hover,
-.btn-secondary:hover,
-.panel-cta:hover,
-.object-card:hover,
-.work-card:hover {
-  transform: translateY(-2px);
-}
-
-.btn-primary {
-  background: #ffffff;
-  color: #000000;
-  font-weight: 700;
-}
-
-.btn-secondary {
-  border: 1px solid var(--panel-border);
-  background: rgba(255,255,255,0.03);
-  color: var(--text);
-}
-
-.hero-card {
-  position: relative;
-  min-height: 560px;
-  border-radius: 34px;
-  overflow: hidden;
-  border: 1px solid var(--panel-border);
-  box-shadow: var(--shadow);
-  background:
-    radial-gradient(circle at 50% 0%, rgba(245,197,43,0.18), transparent 26%),
-    radial-gradient(circle at 80% 18%, rgba(255,106,223,0.10), transparent 18%),
-    linear-gradient(180deg, #14182c 0%, #080a14 100%);
-}
-
-.hero-card img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hero-tag {
-  position: absolute;
-  left: 18px;
-  bottom: 18px;
-  padding: 10px 14px;
-  border-radius: 999px;
-  background: rgba(0,0,0,0.45);
-  border: 1px solid rgba(255,255,255,0.14);
-  font-size: 14px;
-  backdrop-filter: blur(10px);
-}
-
-.section {
-  padding-top: 88px;
-}
-
-.section-kicker {
-  font-size: 12px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--soft);
-}
-
-h2 {
-  margin: 12px 0 0;
-  font-size: clamp(34px, 4.2vw, 58px);
-  line-height: 1.03;
-  letter-spacing: -0.03em;
-}
-
-.section-text {
-  margin-top: 18px;
-  max-width: 860px;
-  color: var(--muted);
-  font-size: 20px;
-  line-height: 1.72;
-}
-
-.workspace-shell {
-  margin-top: 28px;
-  border-radius: 34px;
-  border: 1px solid var(--panel-border);
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 50% 0%, rgba(255,106,223,0.10), transparent 26%),
-    radial-gradient(circle at 86% 16%, rgba(102,216,255,0.11), transparent 18%),
-    linear-gradient(180deg, #121426 0%, #06070f 100%);
-  box-shadow: var(--shadow);
-}
-
-.workspace-inner {
-  display: grid;
-  grid-template-columns: 1.14fr 0.86fr;
-  gap: 28px;
-  padding: 22px;
-}
-
-.desk-stage {
-  position: relative;
-  min-height: 780px;
-  border-radius: 28px;
-  overflow: hidden;
-  border: 1px solid var(--panel-border);
-  background:
-    radial-gradient(circle at 50% 10%, rgba(255,255,255,0.08), transparent 24%),
-    linear-gradient(180deg, #1a1d33 0%, #0b0d17 100%);
-}
-
-.desk-glow {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 16% 24%, rgba(255,106,223,0.06), transparent 18%),
-    radial-gradient(circle at 80% 18%, rgba(102,216,255,0.07), transparent 18%);
-  pointer-events: none;
-}
-
-.desk-top {
-  position: absolute;
-  left: 6%;
-  right: 6%;
-  bottom: 3%;
-  height: 12%;
-  border-radius: 28px;
-  background: linear-gradient(180deg, var(--wood-a), var(--wood-b));
-  box-shadow: inset 0 18px 30px rgba(255,255,255,0.04);
-}
-
-.object-card {
-  position: absolute;
-  border: 1px solid rgba(255,255,255,0.10);
-  border-radius: 22px;
-  background: rgba(255,255,255,0.04);
-  box-shadow: 0 18px 40px rgba(0,0,0,0.22);
-  cursor: pointer;
-  transition: all 180ms ease;
-  overflow: hidden;
-  color: white;
-}
-
-.object-card.active {
-  border-color: rgba(255,255,255,0.55);
-  box-shadow: 0 0 0 1px rgba(255,255,255,0.16), 0 18px 40px rgba(0,0,0,0.24), 0 0 28px rgba(255,255,255,0.08);
-}
-
-.object-label {
-  position: absolute;
-  left: 12px;
-  top: 12px;
-  padding: 7px 10px;
-  border-radius: 999px;
-  background: rgba(0,0,0,0.45);
-  color: rgba(255,255,255,0.85);
-  font-size: 10px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  backdrop-filter: blur(10px);
-}
-
-.object-title {
-  position: absolute;
-  left: 14px;
-  right: 14px;
-  bottom: 14px;
-  font-size: 16px;
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.pinboard {
-  left: 7%;
-  top: 7%;
-  width: 27%;
-  height: 24%;
-  background: linear-gradient(180deg, rgba(98,66,24,0.58), rgba(58,38,12,0.62));
-}
-
-.pinboard-inner {
-  position: absolute;
-  inset: 12px;
-  border: 1px dashed rgba(255,255,255,0.18);
-  border-radius: 18px;
-}
-
-.pin-dot {
-  position: absolute;
-  width: 12px;
-  height: 12px;
-  border-radius: 999px;
-}
-
-.pin-a { left: 12%; top: 16%; background: var(--pink); }
-.pin-b { left: 27%; top: 30%; background: var(--cyan); }
-.pin-c { right: 18%; top: 20%; background: #ffe15d; }
-
-.pin-note-a,
-.pin-note-b,
-.pin-note-c {
-  position: absolute;
-  border-radius: 14px;
-  background: rgba(255,255,255,0.08);
-}
-
-.pin-note-a { left: 14%; bottom: 20%; width: 28%; height: 28%; }
-.pin-note-b { right: 14%; bottom: 16%; width: 38%; height: 22%; background: rgba(255,255,255,0.05); }
-.pin-note-c { right: 18%; top: 40%; width: 24%; height: 16%; background: rgba(255,230,128,0.12); }
-
-.machine {
-  left: 40%;
-  top: 22%;
-  width: 20%;
-  height: 29%;
-  border-radius: 26px;
-  background: linear-gradient(180deg, rgba(17,38,74,0.98), rgba(8,12,28,0.98));
-  box-shadow: 0 0 60px rgba(102,216,255,0.18), 0 18px 40px rgba(0,0,0,0.22);
-}
-
-.machine-title {
-  position: absolute;
-  left: 14px;
-  top: 16px;
-  right: 14px;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: rgba(212,246,255,0.88);
-}
-
-.machine-grid {
-  position: absolute;
-  left: 14px;
-  right: 14px;
-  top: 52px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-}
-
-.machine-grid span {
-  border-radius: 999px;
-  background: rgba(255,255,255,0.10);
-  color: rgba(255,255,255,0.86);
-  font-size: 8px;
-  text-align: center;
-  padding: 8px 4px;
-}
-
-.machine-bar {
-  position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.05);
-  padding: 12px;
-}
-
-.machine-bar small {
-  display: block;
-  color: rgba(255,255,255,0.5);
-  font-size: 8px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
-
-.machine-track {
-  margin-top: 8px;
-  height: 6px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.10);
-  overflow: hidden;
-}
-
-.machine-fill {
-  width: 70%;
-  height: 100%;
-  background: var(--cyan);
-  border-radius: 999px;
-}
-
-.portrait-object {
-  right: 7%;
-  top: 8%;
-  width: 19%;
-  height: 24%;
-  background: linear-gradient(180deg, rgba(33,30,61,0.92), rgba(13,12,26,0.98));
-}
-
-.portrait-frame {
-  position: absolute;
-  inset: 16px;
-  border-radius: 18px;
-  border: 1px solid rgba(255,255,255,0.10);
-  overflow: hidden;
-  background: linear-gradient(180deg, rgba(28,30,56,0.84), rgba(16,16,31,0.90));
-}
-
-.portrait-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.notebook {
-  left: 11%;
-  bottom: 11%;
-  width: 24%;
-  height: 15%;
-  transform: rotate(-8deg);
-  background: linear-gradient(180deg, rgba(7,95,70,0.78), rgba(4,47,46,0.96));
-}
-
-.notebook-lines {
-  position: absolute;
-  left: 16px;
-  right: 16px;
-  top: 46px;
-  display: grid;
-  gap: 10px;
-}
-
-.notebook-lines span {
-  display: block;
-  height: 8px;
-  border-radius: 999px;
-  background: rgba(240,255,250,0.18);
-}
-
-.notebook-lines span:nth-child(2) {
-  width: 86%;
-  background: rgba(240,255,250,0.12);
-}
-
-.notebook-lines span:nth-child(3) {
-  width: 64%;
-  background: rgba(240,255,250,0.12);
-}
-
-.folder {
-  right: 18%;
-  bottom: 20%;
-  width: 21%;
-  height: 15%;
-  transform: rotate(4deg);
-  background: linear-gradient(180deg, rgba(98,100,111,0.28), rgba(29,31,38,0.74));
-}
-
-.folder-label {
-  position: absolute;
-  left: 14px;
-  top: 14px;
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: rgba(255,255,255,0.65);
-  text-transform: uppercase;
-}
-
-.folder-paper {
-  position: absolute;
-  left: 14px;
-  right: 14px;
-  top: 40px;
-  bottom: 14px;
-  border-radius: 14px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.05);
-  padding: 12px;
-}
-
-.folder-topline,
-.folder-midline {
-  height: 8px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.16);
-}
-
-.folder-midline {
-  margin-top: 8px;
-  width: 72%;
-  background: rgba(255,255,255,0.11);
-}
-
-.folder-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 8px;
-  margin-top: 12px;
-}
-
-.folder-grid span {
-  display: block;
-  height: 30px;
-  border-radius: 10px;
-  background: rgba(255,255,255,0.09);
-}
-
-.coffee {
-  right: 10%;
-  bottom: 9%;
-  width: 11%;
-  height: 13%;
-  border-radius: 999px;
-  background: linear-gradient(180deg, rgba(127,29,29,0.86), rgba(69,10,10,0.96));
-}
-
-.coffee::after {
-  content: "";
-  position: absolute;
-  left: 50%;
-  top: 18%;
-  width: 34%;
-  height: 28%;
-  transform: translateX(-50%);
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: rgba(255,255,255,0.06);
-}
-
-.dan-group {
-  position: absolute;
-  left: 50%;
-  top: 13%;
-  width: 38%;
-  height: 63%;
-  transform: translateX(-50%);
-  pointer-events: none;
-}
-
-.dan-glow {
-  position: absolute;
-  left: 50%;
-  top: 18%;
-  width: 52%;
-  height: 42%;
-  transform: translateX(-50%);
-  border-radius: 999px;
-  background: radial-gradient(circle at 50% 40%, rgba(245,197,43,0.20), transparent 58%);
-}
-
-.dan-head {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  width: 31%;
-  height: 23%;
-  transform: translateX(-50%);
-  border-radius: 999px;
-  overflow: hidden;
-  border: 1px solid rgba(255,255,255,0.12);
-  box-shadow: 0 14px 30px rgba(0,0,0,0.26);
-  background: #23263a;
-}
-
-.dan-head img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.dan-torso {
-  position: absolute;
-  left: 50%;
-  top: 18%;
-  width: 44%;
-  height: 35%;
-  transform: translateX(-50%);
-  border-radius: 36px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: linear-gradient(180deg, rgba(18,20,38,0.98), rgba(8,9,18,0.98));
-}
-
-.dan-arm-left,
-.dan-arm-right {
-  position: absolute;
-  top: 22%;
-  width: 21%;
-  height: 18%;
-  border-radius: 999px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: linear-gradient(180deg, rgba(19,21,38,0.98), rgba(8,9,18,0.98));
-}
-
-.dan-arm-left { left: 18%; transform: rotate(17deg); }
-.dan-arm-right { right: 18%; transform: rotate(-17deg); }
-
-.dan-leg-left,
-.dan-leg-right {
-  position: absolute;
-  top: 48%;
-  width: 13%;
-  height: 28%;
-  border-radius: 30px;
-  border: 1px solid rgba(255,255,255,0.10);
-  background: linear-gradient(180deg, rgba(18,20,38,0.98), rgba(8,9,18,0.98));
-}
-
-.dan-leg-left { left: 36%; }
-.dan-leg-right { right: 36%; }
-
-.dan-laptop-base {
-  position: absolute;
-  left: 50%;
-  bottom: 18%;
-  width: 40%;
-  height: 10%;
-  transform: translateX(-50%);
-  border-radius: 24px;
-  border: 1px solid rgba(255,255,255,0.12);
-  background: rgba(255,255,255,0.05);
-}
-
-.chip-row {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  margin-top: 16px;
-}
-
-.chip {
-  border: 1px solid var(--panel-border);
-  background: rgba(255,255,255,0.03);
-  border-radius: 18px;
-  padding: 14px 16px;
-  color: var(--muted);
-  cursor: pointer;
-  text-align: left;
-  transition: all 180ms ease;
-}
-
-.chip strong {
-  display: block;
-  color: #fff;
-  font-size: 14px;
-  margin-bottom: 4px;
-}
-
-.chip.active {
-  background: rgba(255,255,255,0.10);
-  color: #fff;
-  border-color: rgba(255,255,255,0.26);
-}
-
-.side-col {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.current-box,
-.panel-box,
-.about-box,
-.contact-box,
-.work-card {
-  border-radius: 28px;
-  border: 1px solid var(--panel-border);
-  background: rgba(255,255,255,0.04);
-  backdrop-filter: blur(16px);
-  box-shadow: var(--shadow);
-}
-
-.current-box {
-  padding: 22px;
-  background: linear-gradient(180deg, rgba(255,106,223,0.08), rgba(17,24,39,0.28));
-}
-
-.current-box small {
-  color: rgba(255,255,255,0.72);
-  font-size: 14px;
-}
-
-.current-box h3 {
-  margin: 8px 0 0;
-  font-size: 30px;
-}
-
-.current-box p {
-  margin: 12px 0 0;
-  color: var(--muted);
-  line-height: 1.65;
-  font-size: 15px;
-}
-
-.panel-box {
-  padding: 28px;
-  min-height: 360px;
-}
-
-.panel-meta {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  color: var(--soft);
-  font-size: 14px;
-}
-
-.panel-icon {
-  width: 34px;
-  height: 34px;
-  border-radius: 999px;
-  border: 1px solid var(--panel-border);
-  background: rgba(255,255,255,0.05);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 13px;
-  font-weight: 700;
-}
-
-.panel-box h3 {
-  margin: 18px 0 0;
-  font-size: 44px;
-  line-height: 1;
-  letter-spacing: -0.03em;
-}
-
-.panel-box p {
-  margin: 18px 0 0;
-  color: var(--muted);
-  font-size: 18px;
-  line-height: 1.72;
-  max-width: 520px;
-}
-
-.panel-cta {
-  margin-top: 22px;
-  background: #fff;
-  color: #000;
-  font-weight: 700;
-}
-
-.work-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-top: 28px;
-}
-
-.work-card {
-  padding: 24px;
-  transition: transform 180ms ease;
-}
-
-.work-card h3 {
-  margin: 0 0 12px;
-  font-size: 28px;
-  line-height: 1.05;
-}
-
-.work-card p {
-  margin: 0;
-  color: var(--muted);
-  font-size: 17px;
-  line-height: 1.72;
-}
-
-.about-box,
-.contact-box {
-  padding: 30px;
-  margin-top: 28px;
-}
-
-.about-box p,
-.contact-box p {
-  margin: 16px 0 0;
-  color: var(--muted);
-  font-size: 19px;
-  line-height: 1.76;
-  max-width: 900px;
-}
-
-.contact-box {
-  text-align: center;
-  padding: 40px 30px;
-  margin-bottom: 40px;
-  background: linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
-}
-
-@media (max-width: 1100px) {
-  .hero,
-  .workspace-inner,
-  .work-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-card {
-    min-height: 420px;
-  }
-
-  .desk-stage {
-    min-height: 700px;
-  }
-}
-
-@media (max-width: 760px) {
-  .wrap {
-    padding: 16px;
-  }
-
-  .topbar {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .hero {
-    gap: 24px;
-    padding-top: 42px;
-  }
-
-  .hero-text,
-  .section-text,
-  .about-box p,
-  .contact-box p,
-  .panel-box p,
-  .work-card p {
-    font-size: 17px;
-  }
-
-  .desk-stage {
-    min-height: 600px;
-  }
-
-  .chip-row,
-  .work-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .panel-box h3 {
-    font-size: 34px;
-  }
+    radial-gradient(circle at 18% 22%, rgba(255,201,40,.18), transparent 18%),
+    radial-gradient(circle at 82% 24%, rgba(79,195,255,.16), transparent 20%),
+    linear-gradient(180deg,#fffaf0 0%,#f6ead8 100%);
+}
+.desk{
+  position:absolute;
+  left:6%;
+  right:6%;
+  bottom:7%;
+  height:22%;
+  background:var(--wood);
+  border:3px solid var(--line);
+  border-radius:18px;
+  box-shadow:0 12px 0 rgba(29,27,24,.12);
+}
+.dan{
+  position:absolute;
+  left:50%;
+  top:27%;
+  width:210px;
+  height:265px;
+  transform:translateX(-50%);
+  z-index:7;
+}
+.head{
+  position:absolute;
+  left:50%;
+  top:0;
+  width:108px;
+  height:108px;
+  transform:translateX(-50%);
+  border:3px solid var(--line);
+  border-radius:50%;
+  overflow:hidden;
+  background:var(--yellow);
+  box-shadow:4px 4px 0 var(--line);
+}
+.head img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
+.body{
+  position:absolute;
+  left:50%;
+  top:92px;
+  width:150px;
+  height:130px;
+  transform:translateX(-50%);
+  background:linear-gradient(180deg,#193b63,#0b1020);
+  border:3px solid var(--line);
+  border-radius:34px 34px 20px 20px;
+}
+.armLeft,.armRight{
+  position:absolute;
+  top:120px;
+  width:70px;
+  height:28px;
+  background:#193b63;
+  border:3px solid var(--line);
+  border-radius:999px;
+}
+.armLeft{left:0;transform:rotate(16deg)}
+.armRight{right:0;transform:rotate(-16deg)}
+.laptop{
+  position:absolute;
+  left:50%;
+  top:160px;
+  width:160px;
+  height:100px;
+  transform:translateX(-50%);
+  background:#c8d2dd;
+  border:3px solid var(--line);
+  border-radius:10px;
+  z-index:8;
+  box-shadow:4px 4px 0 var(--line);
+}
+.laptop:before{
+  content:"THE MACHINE™";
+  position:absolute;
+  top:18px;
+  left:14px;
+  right:14px;
+  font-size:14px;
+  font-weight:900;
+  color:#0b1020;
+  letter-spacing:.03em;
+}
+.laptop:after{
+  content:"strategy  copy  design  video";
+  position:absolute;
+  left:14px;
+  bottom:18px;
+  right:14px;
+  font-size:10px;
+  color:#374151;
+}
+.object{
+  position:absolute;
+  cursor:pointer;
+  border:3px solid var(--line);
+  box-shadow:4px 4px 0 var(--line);
+  transition:transform .18s ease, filter .18s ease;
+  z-index:6;
+}
+.object:hover,
+.object.active{
+  transform:translateY(-4px) rotate(var(--tilt,0deg));
+  filter:saturate(1.08);
+}
+.object .label{
+  position:absolute;
+  left:12px;
+  top:10px;
+  font-size:12px;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  font-weight:900;
+}
+.object .title{
+  position:absolute;
+  left:14px;
+  right:14px;
+  bottom:14px;
+  font-size:18px;
+  line-height:1.05;
+  font-weight:900;
+}
+.pinboard{
+  left:7%;
+  top:10%;
+  width:260px;
+  height:190px;
+  background:#8c7953;
+  border-radius:8px;
+  --tilt:-1deg;
+}
+.pinboard:before{
+  content:"";
+  position:absolute;
+  inset:14px;
+  border:2px dashed rgba(255,255,255,.6);
+  border-radius:8px;
+}
+.note{position:absolute;border:2px solid var(--line);background:#fff;box-shadow:2px 2px 0 var(--line)}
+.note.one{left:28px;top:36px;width:70px;height:62px;background:#fff7a6}
+.note.two{left:120px;top:42px;width:76px;height:52px;background:#bdefff}
+.note.three{right:30px;bottom:46px;width:70px;height:64px;background:#ffd1ee}
+.pin{position:absolute;width:9px;height:9px;border-radius:50%;background:#e23b55;border:1px solid var(--line);z-index:2}
+.pin.a{left:64px;top:34px}.pin.b{left:150px;top:35px}.pin.c{right:65px;bottom:116px}
+.screen{
+  right:9%;
+  top:12%;
+  width:300px;
+  height:190px;
+  background:#b8e1ff;
+  border-radius:8px;
+  --tilt:1deg;
+}
+.screen:before{
+  content:"";
+  position:absolute;
+  left:28px;
+  right:28px;
+  bottom:34px;
+  height:44px;
+  background:#ffffff;
+  border:2px solid var(--line);
+  border-radius:22px;
+}
+.bridge{
+  position:absolute;
+  right:42px;
+  top:40px;
+  width:112px;
+  height:76px;
+  border:8px solid #e9562e;
+  border-bottom:0;
+  border-radius:8px 8px 0 0;
+}
+.screen .tower{
+  position:absolute;
+  left:52px;
+  bottom:50px;
+  width:0;
+  height:0;
+  border-left:28px solid transparent;
+  border-right:28px solid transparent;
+  border-bottom:96px solid #54677b;
+}
+.stack{
+  left:6%;
+  bottom:18%;
+  width:190px;
+  height:120px;
+  background:transparent;
+  border:0;
+  box-shadow:none;
+  --tilt:-3deg;
+}
+.book{position:absolute;left:0;width:170px;height:22px;border:3px solid var(--line);border-radius:6px;box-shadow:3px 3px 0 var(--line)}
+.book.a{top:0;background:#ffef67}.book.b{top:24px;background:#fff}.book.c{top:48px;background:#2ca25f}.book.d{top:72px;background:#df3f3f}.book.e{top:96px;background:#0f3b6d}
+.notebook{
+  left:28%;
+  bottom:17%;
+  width:120px;
+  height:88px;
+  background:#fffaf0;
+  border-radius:8px;
+  --tilt:-6deg;
+}
+.notebook:before{
+  content:"";
+  position:absolute;
+  left:18px;
+  top:24px;
+  right:18px;
+  height:3px;
+  background:var(--line);
+  box-shadow:0 16px 0 var(--line),0 32px 0 var(--line);
+  opacity:.25;
+}
+.coffee{
+  left:39%;
+  bottom:20%;
+  width:72px;
+  height:72px;
+  background:#4fc3ff;
+  border-radius:12px 12px 20px 20px;
+  --tilt:4deg;
+}
+.coffee:after{
+  content:"";
+  position:absolute;
+  right:-22px;
+  top:20px;
+  width:26px;
+  height:26px;
+  border:3px solid var(--line);
+  border-left:0;
+  border-radius:0 16px 16px 0;
+}
+.folder{
+  right:26%;
+  bottom:14%;
+  width:170px;
+  height:110px;
+  background:#f7d274;
+  border-radius:8px;
+  --tilt:5deg;
+}
+.folder:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:-18px;
+  width:82px;
+  height:24px;
+  background:#f7d274;
+  border:3px solid var(--line);
+  border-bottom:0;
+  border-radius:8px 8px 0 0;
+}
+.map{
+  right:7%;
+  bottom:14%;
+  width:185px;
+  height:110px;
+  background:#d8f5ff;
+  --tilt:8deg;
+  clip-path:polygon(0 12%,28% 0,54% 10%,82% 0,100% 16%,90% 100%,62% 88%,36% 100%,0 86%);
+}
+.map:before{
+  content:"";
+  position:absolute;
+  inset:22px;
+  border-top:4px solid #55a7d8;
+  border-bottom:4px solid #55a7d8;
+  transform:rotate(-12deg);
+}
+.panelRow{
+  display:grid;
+  grid-template-columns:1.1fr .9fr;
+  gap:24px;
+  margin-top:28px;
+}
+.panel{
+  border:3px solid var(--line);
+  border-radius:24px;
+  background:#fffaf0;
+  box-shadow:6px 6px 0 var(--line);
+  padding:26px;
+}
+.panel small{
+  display:block;
+  color:var(--muted);
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:.14em;
+  font-weight:900;
+}
+.panel h3{
+  margin:10px 0 0;
+  font-size:36px;
+  line-height:1;
+}
+.panel p{
+  margin:14px 0 0;
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.6;
+}
+.panel a{
+  display:inline-flex;
+  margin-top:20px;
+  border:2px solid var(--line);
+  border-radius:999px;
+  padding:12px 18px;
+  background:var(--navy);
+  color:#fff;
+  font-weight:900;
+  box-shadow:3px 3px 0 var(--line);
+}
+.bio{
+  margin:30px auto 0;
+  max-width:760px;
+  text-align:center;
+  color:var(--muted);
+  font-family:Georgia,serif;
+  font-size:24px;
+  line-height:1.42;
+}
+.signature{
+  margin-top:22px;
+  font-family:Brush Script MT, cursive;
+  font-size:46px;
+  color:#534b44;
+}
+.workGrid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:24px;
+}
+.workCard{
+  border:3px solid var(--line);
+  border-radius:22px;
+  background:#fffaf0;
+  box-shadow:5px 5px 0 var(--line);
+  padding:22px;
+}
+.workCard h3{margin:0;font-size:24px}
+.workCard p{margin:12px 0 0;color:var(--muted);font-size:17px;line-height:1.6}
+.contactBox{
+  text-align:center;
+  border:3px solid var(--line);
+  border-radius:26px;
+  background:#fffaf0;
+  box-shadow:6px 6px 0 var(--line);
+  padding:34px;
+  margin-bottom:30px;
+}
+.contactBox p{color:var(--muted);font-size:19px;line-height:1.6}
+@media(max-width:980px){
+  .scene{min-height:760px}
+  .dan{top:24%}
+  .pinboard{left:5%;top:8%;transform:scale(.85);transform-origin:left top}
+  .screen{right:5%;top:8%;transform:scale(.85);transform-origin:right top}
+  .stack{left:5%;bottom:20%;transform:scale(.82);transform-origin:left bottom}
+  .folder{right:22%;bottom:12%;transform:scale(.82) rotate(5deg)}
+  .map{right:5%;bottom:12%;transform:scale(.82) rotate(8deg)}
+  .panelRow,.workGrid{grid-template-columns:1fr}
+}
+@media(max-width:720px){
+  .topbar{align-items:flex-start;flex-direction:column}
+  .scene{min-height:980px}
+  .object{position:relative;display:block;left:auto!important;right:auto!important;top:auto!important;bottom:auto!important;margin:16px auto;transform:none!important}
+  .dan{position:relative;left:auto;top:auto;transform:none;margin:20px auto 0}
+  .desk{display:none}
+  .stack{width:190px;height:120px}
+  .screen,.pinboard{width:280px;height:180px}
+  .coffee{width:72px;height:72px}
+  .folder{width:170px;height:110px}
+  .map{width:185px;height:110px}
 }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="topbar">
-    <div>
-      <div class="brand-kicker">Dan Kohler</div>
-      <div class="brand-name">Workspace</div>
+  <header class="topbar">
+    <div class="brand">
+      <small>Dan Kohler</small>
+      <strong>Workspace</strong>
     </div>
-    <div class="topnav">
-      <a class="pill" href="#workspace">Workspace</a>
-      <a class="pill" href="#work">Work with me</a>
-      <a class="pill" href="#about">About</a>
-      <a class="pill" href="#contact">Contact</a>
-    </div>
-  </div>
+    <nav class="nav">
+      <a href="#workspace">Workspace</a>
+      <a href="#work">Work with me</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-  <section class="hero">
-    <div>
-      <div class="eyebrow"><span class="spark"></span>Strategy, creative, and AI systems</div>
-      <h1>I help companies see better ideas before they commit to them.</h1>
-      <div class="hero-text">
-        Strategy. Creative. AI systems. Connected into one flow that improves how work actually gets done.
-      </div>
-      <div class="cta-row">
-        <a class="btn-primary" href="#workspace">Enter my workspace</a>
-        <a class="btn-secondary" href="#contact">Contact</a>
-      </div>
-    </div>
-    <div class="hero-card">
-      <img src="DK_AI.png" alt="Dan Kohler portrait">
-      <div class="hero-tag">Dan Kohler</div>
+  <section class="heroIntro">
+    <div class="kicker">Strategy, creative, and AI systems</div>
+    <h1>I help companies see better ideas before they commit to them.</h1>
+    <p class="subhead">Strategy. Creative. AI systems. Connected into one flow that improves how work actually gets done.</p>
+    <div class="ctaRow">
+      <a class="btn dark" href="#workspace">Enter my workspace</a>
+      <a class="btn light" href="#contact">Contact</a>
     </div>
   </section>
 
-  <section class="section">
-    <div class="section-kicker">Positioning</div>
-    <h2>Most teams are experimenting with AI. Very few are actually operating differently.</h2>
-    <div class="section-text">
-      The gap is not tools. The gap is systems. I help companies move from scattered experimentation to structured workflows that improve thinking, speed, and output quality.
-    </div>
-  </section>
+  <main id="workspace" class="sceneWrap">
+    <section class="scene" aria-label="Dan Kohler workspace illustration">
+      <div class="wall"></div>
 
-  <section class="section" id="workspace">
-    <div class="section-kicker">Signature section</div>
-    <h2>Step into my workspace.</h2>
-    <div class="section-text">
-      Every object leads somewhere real. Not a gimmick. A simple way to understand how I work, what I have built, and where a conversation can start.
-    </div>
+      <button class="object pinboard active" data-key="xtrabold" aria-label="XTRABOLD AI">
+        <div class="label">Pinboard</div>
+        <div class="pin pin-a"></div><div class="pin pin-b"></div><div class="pin pin-c"></div>
+        <div class="note one"></div><div class="note two"></div><div class="note three"></div>
+        <div class="title">XTRABOLD AI</div>
+      </button>
 
-    <div class="workspace-shell">
-      <div class="workspace-inner">
-        <div>
-          <div class="desk-stage">
-            <div class="desk-glow"></div>
+      <button class="object screen" data-key="machine" aria-label="THE MACHINE™">
+        <div class="label">Computer</div>
+        <div class="tower"></div>
+        <div class="bridge"></div>
+        <div class="title">THE MACHINE™</div>
+      </button>
 
-            <button class="object-card pinboard active" data-key="xtrabold">
-              <div class="object-label">Pinboard</div>
-              <div class="pinboard-inner"></div>
-              <div class="pin-dot pin-a"></div>
-              <div class="pin-dot pin-b"></div>
-              <div class="pin-dot pin-c"></div>
-              <div class="pin-note-a"></div>
-              <div class="pin-note-b"></div>
-              <div class="pin-note-c"></div>
-              <div class="object-title">XTRABOLD AI</div>
-            </button>
+      <button class="object stack" data-key="work" aria-label="Work with me">
+        <div class="book a"></div><div class="book b"></div><div class="book c"></div><div class="book d"></div><div class="book e"></div>
+      </button>
 
-            <button class="object-card portrait-object" data-key="about">
-              <div class="object-label">Portrait</div>
-              <div class="portrait-frame">
-                <img src="DK_AI.png" alt="Dan Kohler portrait detail">
-              </div>
-            </button>
+      <button class="object notebook" data-key="linkedin" aria-label="LinkedIn">
+        <div class="label">Notebook</div>
+        <div class="title">LinkedIn</div>
+      </button>
 
-            <div class="dan-group">
-              <div class="dan-glow"></div>
-              <div class="dan-head"><img src="DK_AI.png" alt="Dan Kohler seated"></div>
-              <div class="dan-arm-left"></div>
-              <div class="dan-arm-right"></div>
-              <div class="dan-torso"></div>
-              <div class="dan-leg-left"></div>
-              <div class="dan-leg-right"></div>
-              <div class="dan-laptop-base"></div>
-            </div>
+      <button class="object coffee" data-key="contact" aria-label="Contact">
+        <div class="label">Coffee</div>
+      </button>
 
-            <button class="object-card machine" data-key="machine">
-              <div class="object-label">Computer</div>
-              <div class="machine-title">THE MACHINE™</div>
-              <div class="machine-grid">
-                <span>Strategy</span>
-                <span>Copy</span>
-                <span>Video</span>
-                <span>Design</span>
-                <span>Ops</span>
-                <span>Flow</span>
-              </div>
-              <div class="machine-bar">
-                <small>Connected workflow</small>
-                <div class="machine-track"><div class="machine-fill"></div></div>
-              </div>
-            </button>
+      <button class="object folder" data-key="work" aria-label="Work with me">
+        <div class="label">Folder</div>
+        <div class="title">Work with me</div>
+      </button>
 
-            <button class="object-card notebook" data-key="linkedin">
-              <div class="object-label">Notebook</div>
-              <div class="notebook-lines">
-                <span></span>
-                <span></span>
-                <span></span>
-              </div>
-              <div class="object-title">LinkedIn</div>
-            </button>
+      <button class="object map" data-key="about" aria-label="About"></button>
 
-            <button class="object-card folder" data-key="work">
-              <div class="object-label">Folder</div>
-              <div class="folder-label">DK / Engagements</div>
-              <div class="folder-paper">
-                <div class="folder-topline"></div>
-                <div class="folder-midline"></div>
-                <div class="folder-grid">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </div>
-              <div class="object-title">Work with me</div>
-            </button>
-
-            <button class="object-card coffee" data-key="contact">
-              <div class="object-label">Coffee</div>
-              <div class="object-title">Contact</div>
-            </button>
-
-            <div class="desk-top"></div>
-          </div>
-
-          <div class="chip-row">
-            <button class="chip active" data-key="xtrabold"><strong>Pinboard</strong>XTRABOLD AI</button>
-            <button class="chip" data-key="machine"><strong>Computer</strong>THE MACHINE™</button>
-            <button class="chip" data-key="about"><strong>Portrait</strong>About</button>
-            <button class="chip" data-key="linkedin"><strong>Notebook</strong>LinkedIn</button>
-            <button class="chip" data-key="work"><strong>Folder</strong>Work with me</button>
-            <button class="chip" data-key="contact"><strong>Coffee</strong>Contact</button>
-          </div>
-        </div>
-
-        <div class="side-col">
-          <div class="current-box">
-            <small>Current selection</small>
-            <h3 id="currentTitle">XTRABOLD AI</h3>
-            <p id="currentText">Use the desk or the chips below it. Every object leads to something real.</p>
-          </div>
-
-          <div class="panel-box">
-            <div class="panel-meta">
-              <div class="panel-icon" id="panelIcon">XB</div>
-              <div id="panelEyebrow">Agency</div>
-            </div>
-            <h3 id="panelTitle">XTRABOLD AI</h3>
-            <p id="panelBody">A next generation creative partner built to make ideas visible before teams commit to them.</p>
-            <a id="panelCta" class="panel-cta" href="https://xtrabold.agency/" target="_blank" rel="noopener noreferrer">Visit XTRABOLD AI</a>
-          </div>
-        </div>
+      <div class="dan">
+        <div class="head"><img src="DK_AI.png" alt="Dan Kohler"></div>
+        <div class="armLeft"></div><div class="armRight"></div>
+        <div class="body"></div>
+        <div class="laptop"></div>
       </div>
-    </div>
-  </section>
+
+      <div class="desk"></div>
+    </section>
+
+    <p class="bio" id="about">I’m Dan Kohler. I build sharper strategy, stronger creative systems, and practical AI workflows for companies that want to move faster without lowering their standards.</p>
+    <div class="signature">Dan Kohler</div>
+
+    <section class="panelRow">
+      <div class="panel" id="panel">
+        <small id="panelKicker">Agency</small>
+        <h3 id="panelTitle">XTRABOLD AI</h3>
+        <p id="panelBody">A next generation creative partner built to make ideas visible before teams commit to them.</p>
+        <a id="panelLink" href="https://xtrabold.agency/" target="_blank" rel="noopener noreferrer">Visit XTRABOLD AI</a>
+      </div>
+      <div class="panel">
+        <small>Why this site works</small>
+        <h3>Creative, but useful.</h3>
+        <p>The workspace is not decoration. It is a simple map of what I do, what I have built, and how to start a conversation.</p>
+      </div>
+    </section>
+  </main>
 
   <section class="section" id="work">
-    <div class="section-kicker">Work with me</div>
+    <div class="kicker">Work with me</div>
     <h2>Structured ways to work together.</h2>
-    <div class="section-text">
-      This is where strategy meets execution. Clear engagements. Practical systems. Real outcomes.
-    </div>
-    <div class="work-grid">
-      <div class="work-card">
-        <h3>For brands</h3>
-        <p>Connect strategy, creative, and execution into one flow. Ideal for teams trying to modernize how work actually gets done.</p>
-      </div>
-      <div class="work-card">
-        <h3>For agencies</h3>
-        <p>Standardize how great thinking happens without reducing the value of creativity. Built for modern agency leaders.</p>
-      </div>
-      <div class="work-card">
-        <h3>For partnerships</h3>
-        <p>Advisory, workshops, speaking, and new ventures for companies that want a sharper point of view on what comes next.</p>
-      </div>
-    </div>
-  </section>
-
-  <section class="section" id="about">
-    <div class="about-box">
-      <div class="section-kicker">About</div>
-      <h2>Operator. Builder. Teacher. Founder.</h2>
-      <p>
-        I have spent my career helping brands make better decisions through sharper strategy and stronger creative. From international marketing leadership at Subway to building XTRABOLD AI and THE MACHINE™, the through line has stayed the same. Make complex ideas clearer, faster, and more actionable.
-      </p>
+    <p class="sectionText">This is where strategy meets execution. Clear engagements. Practical systems. Real outcomes.</p>
+    <div class="workGrid">
+      <div class="workCard"><h3>For brands</h3><p>Connect strategy, creative, and execution into one flow. Ideal for teams trying to modernize how work actually gets done.</p></div>
+      <div class="workCard"><h3>For agencies</h3><p>Standardize how great thinking happens without reducing the value of creativity. Built for modern agency leaders.</p></div>
+      <div class="workCard"><h3>For partnerships</h3><p>Advisory, workshops, speaking, and new ventures for companies that want a sharper point of view on what comes next.</p></div>
     </div>
   </section>
 
   <section class="section" id="contact">
-    <div class="contact-box">
-      <div class="section-kicker">Contact</div>
+    <div class="contactBox">
+      <div class="kicker">Contact</div>
       <h2>Bring me the hard problem.</h2>
-      <p>
-        AI strategy. Creative transformation. Workflow design. Advisory. New ventures. If the problem matters, the conversation is worth having.
-      </p>
-      <a class="btn-primary" href="mailto:kohdan@gmail.com">Start the conversation</a>
+      <p>AI strategy. Creative transformation. Workflow design. Advisory. New ventures. If the problem matters, the conversation is worth having.</p>
+      <a class="btn dark" href="mailto:kohdan@gmail.com">Start the conversation</a>
     </div>
   </section>
 </div>
 
 <script>
-const panelData = {
-  xtrabold: {
-    currentTitle: "XTRABOLD AI",
-    currentText: "A next generation creative partner built to make ideas visible before teams commit to them.",
-    icon: "XB",
-    eyebrow: "Agency",
-    title: "XTRABOLD AI",
-    body: "A next generation creative partner built to make ideas visible before teams commit to them.",
-    cta: "Visit XTRABOLD AI",
-    href: "https://xtrabold.agency/",
-    external: true
-  },
-  machine: {
-    currentTitle: "THE MACHINE™",
-    currentText: "A connected system that guides teams from brand strategy to copy, design, and video in one flow.",
-    icon: "TM",
-    eyebrow: "Connected workflow",
-    title: "THE MACHINE™",
-    body: "A connected system that guides teams from brand strategy to copy, design, and video in one flow.",
-    cta: "Explore THE MACHINE™",
-    href: "https://xtrabold.agency/machine/",
-    external: true
-  },
-  about: {
-    currentTitle: "Dan Kohler",
-    currentText: "Operator, builder, teacher, and founder helping companies connect strategy, creative, and AI systems into one practical flow.",
-    icon: "DK",
-    eyebrow: "About",
-    title: "Dan Kohler",
-    body: "Operator, builder, teacher, and founder helping companies connect strategy, creative, and AI systems into one practical flow.",
-    cta: "Jump to About",
-    href: "#about",
-    external: false
-  },
-  linkedin: {
-    currentTitle: "LinkedIn",
-    currentText: "See career history, current thinking, and professional context on LinkedIn.",
-    icon: "IN",
-    eyebrow: "Profile",
-    title: "LinkedIn",
-    body: "See career history, current thinking, and professional context on LinkedIn.",
-    cta: "Open LinkedIn",
-    href: "https://www.linkedin.com/in/kohlerdan/",
-    external: true
-  },
-  work: {
-    currentTitle: "Work with me",
-    currentText: "Structured ways to work together across brand transformation, agency modernization, workshops, advisory, and ventures.",
-    icon: "WK",
-    eyebrow: "Engagements",
-    title: "Work with me",
-    body: "Structured ways to work together across brand transformation, agency modernization, workshops, advisory, and ventures.",
-    cta: "Jump to Work with me",
-    href: "#work",
-    external: false
-  },
-  contact: {
-    currentTitle: "Contact",
-    currentText: "If you are thinking about AI strategy, workflow design, creative transformation, or a new venture, start here.",
-    icon: "CT",
-    eyebrow: "Conversations",
-    title: "Contact",
-    body: "If you are thinking about AI strategy, workflow design, creative transformation, or a new venture, start here.",
-    cta: "Jump to Contact",
-    href: "#contact",
-    external: false
-  }
+const data={
+  xtrabold:{k:"Agency",t:"XTRABOLD AI",b:"A next generation creative partner built to make ideas visible before teams commit to them.",l:"Visit XTRABOLD AI",h:"https://xtrabold.agency/",e:true},
+  machine:{k:"Product",t:"THE MACHINE™",b:"A connected system that guides teams from brand strategy to copy, design, and video in one flow.",l:"Explore THE MACHINE™",h:"https://xtrabold.agency/machine/",e:true},
+  linkedin:{k:"Profile",t:"LinkedIn",b:"See career history, current thinking, and professional context on LinkedIn.",l:"Open LinkedIn",h:"https://www.linkedin.com/in/kohlerdan/",e:true},
+  about:{k:"About",t:"Dan Kohler",b:"Operator, builder, teacher, and founder helping companies connect strategy, creative, and AI systems into one practical flow.",l:"Read about Dan",h:"#about",e:false},
+  work:{k:"Engagements",t:"Work with me",b:"Structured ways to work together across brand transformation, agency modernization, workshops, advisory, and ventures.",l:"See engagement paths",h:"#work",e:false},
+  contact:{k:"Conversations",t:"Contact",b:"If you are thinking about AI strategy, workflow design, creative transformation, or a new venture, start here.",l:"Start the conversation",h:"#contact",e:false}
 };
-
-const currentTitle = document.getElementById("currentTitle");
-const currentText = document.getElementById("currentText");
-const panelIcon = document.getElementById("panelIcon");
-const panelEyebrow = document.getElementById("panelEyebrow");
-const panelTitle = document.getElementById("panelTitle");
-const panelBody = document.getElementById("panelBody");
-const panelCta = document.getElementById("panelCta");
-const objectCards = document.querySelectorAll(".object-card");
-const chips = document.querySelectorAll(".chip");
-
-function setActive(key) {
-  const data = panelData[key];
-  currentTitle.textContent = data.currentTitle;
-  currentText.textContent = data.currentText;
-  panelIcon.textContent = data.icon;
-  panelEyebrow.textContent = data.eyebrow;
-  panelTitle.textContent = data.title;
-  panelBody.textContent = data.body;
-  panelCta.textContent = data.cta;
-  panelCta.setAttribute("href", data.href);
-
-  if (data.external) {
-    panelCta.setAttribute("target", "_blank");
-    panelCta.setAttribute("rel", "noopener noreferrer");
-  } else {
-    panelCta.removeAttribute("target");
-    panelCta.removeAttribute("rel");
-  }
-
-  objectCards.forEach(card => {
-    card.classList.toggle("active", card.getAttribute("data-key") === key);
-  });
-
-  chips.forEach(chip => {
-    chip.classList.toggle("active", chip.getAttribute("data-key") === key);
-  });
+const objects=document.querySelectorAll(".object");
+const kicker=document.getElementById("panelKicker");
+const title=document.getElementById("panelTitle");
+const body=document.getElementById("panelBody");
+const link=document.getElementById("panelLink");
+function setActive(key){
+  const item=data[key];
+  kicker.textContent=item.k;
+  title.textContent=item.t;
+  body.textContent=item.b;
+  link.textContent=item.l;
+  link.href=item.h;
+  if(item.e){link.target="_blank";link.rel="noopener noreferrer";}else{link.removeAttribute("target");link.removeAttribute("rel");}
+  objects.forEach(o=>o.classList.toggle("active",o.getAttribute("data-key")===key));
 }
-
-objectCards.forEach(card => {
-  card.addEventListener("click", () => setActive(card.getAttribute("data-key")));
-});
-
-chips.forEach(chip => {
-  chip.addEventListener("click", () => setActive(chip.getAttribute("data-key")));
-});
-
+objects.forEach(o=>o.addEventListener("click",()=>setActive(o.getAttribute("data-key"))));
 setActive("xtrabold");
 </script>
 </body>
