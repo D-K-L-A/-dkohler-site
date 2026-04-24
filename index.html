@@ -7,18 +7,14 @@
 
 <style>
 :root {
-  --paper: #f7f1e8;
-  --ink: #151515;
-  --muted: #6f675f;
-  --cream: #fffaf0;
-  --line: #171717;
-  --yellow: #ffc928;
-  --blue: #174a8b;
-  --sky: #bfe9ff;
-  --red: #e9562e;
-  --green: #1f8b64;
-  --wood: #f1d991;
-  --shadow: 7px 7px 0 #171717;
+  --gray: #9D9D9D;
+  --dark: #2B2828;
+  --black: #000000;
+  --white: #FFFFFF;
+  --light: #E5E5E5;
+  --pink: #ff2f92;
+  --blue: #1b5cff;
+  --shadow: 8px 8px 0 #000000;
 }
 
 * {
@@ -31,12 +27,9 @@ html {
 
 body {
   margin: 0;
-  background:
-    radial-gradient(circle at 20% 10%, rgba(255,201,40,0.22), transparent 22%),
-    radial-gradient(circle at 82% 18%, rgba(96,190,255,0.18), transparent 24%),
-    var(--paper);
-  color: var(--ink);
-  font-family: ui-rounded, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background: var(--gray);
+  color: var(--dark);
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 a {
@@ -54,24 +47,23 @@ a {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 18px;
-  margin-bottom: 28px;
+  gap: 16px;
+  margin-bottom: 44px;
 }
 
 .brand small {
   display: block;
   font-size: 12px;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.24em;
   text-transform: uppercase;
-  color: var(--muted);
   font-weight: 900;
 }
 
 .brand strong {
   display: block;
-  margin-top: 4px;
-  font-size: 30px;
+  font-size: 34px;
   line-height: 1;
+  font-weight: 950;
 }
 
 .nav {
@@ -84,11 +76,11 @@ a {
 .kicker,
 .btn,
 .panel a {
-  border: 3px solid var(--line);
+  border: 3px solid var(--black);
   border-radius: 999px;
-  background: var(--cream);
-  box-shadow: 4px 4px 0 var(--line);
-  font-weight: 900;
+  background: var(--white);
+  box-shadow: 5px 5px 0 var(--black);
+  font-weight: 950;
 }
 
 .nav a {
@@ -98,30 +90,31 @@ a {
 
 .hero {
   text-align: center;
-  max-width: 960px;
-  margin: 18px auto 34px;
+  max-width: 980px;
+  margin: 0 auto 42px;
 }
 
 .kicker {
   display: inline-block;
-  padding: 9px 16px;
+  padding: 10px 17px;
   font-size: 13px;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
 }
 
 h1 {
-  margin: 24px 0 0;
-  font-size: clamp(48px, 7vw, 82px);
-  line-height: 0.98;
-  letter-spacing: -0.055em;
+  margin: 28px 0 0;
+  font-size: clamp(52px, 7vw, 92px);
+  line-height: 0.91;
+  letter-spacing: -0.07em;
+  font-weight: 950;
 }
 
 .subhead {
   max-width: 760px;
-  margin: 22px auto 0;
-  color: var(--muted);
-  font-size: 21px;
+  margin: 24px auto 0;
+  color: rgba(43,40,40,0.72);
+  font-size: 22px;
   line-height: 1.5;
 }
 
@@ -130,7 +123,7 @@ h1 {
   justify-content: center;
   flex-wrap: wrap;
   gap: 14px;
-  margin-top: 26px;
+  margin-top: 28px;
 }
 
 .btn {
@@ -141,168 +134,182 @@ h1 {
 }
 
 .btnDark {
-  color: #fff;
-  background: var(--ink);
+  background: var(--black);
+  color: var(--white);
 }
 
 .scene {
   position: relative;
-  min-height: 640px;
-  margin: 38px auto 0;
-  border: 4px solid var(--line);
-  border-radius: 30px;
+  min-height: 660px;
+  margin: 44px auto 0;
+  border: 4px solid var(--black);
+  border-radius: 28px;
   background:
-    linear-gradient(180deg, #fffaf0 0%, #f5ead8 74%, #f1d991 74%, #f1d991 100%);
+    linear-gradient(180deg, #ffffff 0%, #ffffff 68%, #dedede 68%, #dedede 100%);
   box-shadow: var(--shadow);
   overflow: hidden;
 }
 
+.gridTexture {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(0,0,0,0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,0,0,0.035) 1px, transparent 1px);
+  background-size: 34px 34px;
+  opacity: 0.35;
+}
+
+.desk {
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  bottom: 8%;
+  height: 18%;
+  background: var(--dark);
+  border: 4px solid var(--black);
+  border-radius: 22px;
+  box-shadow: 0 14px 0 rgba(0,0,0,0.18);
+}
+
 .object {
   position: absolute;
-  border: 3px solid var(--line);
-  background: var(--cream);
-  box-shadow: 5px 5px 0 var(--line);
+  border: 4px solid var(--black);
+  background: var(--white);
+  box-shadow: 6px 6px 0 var(--black);
   cursor: pointer;
   transition: transform 180ms ease, filter 180ms ease;
-  color: var(--ink);
+  color: var(--dark);
   padding: 0;
 }
 
 .object:hover,
 .object.active {
-  transform: translateY(-5px) rotate(var(--angle, 0deg));
-  filter: saturate(1.08);
+  transform: translateY(-6px) rotate(var(--angle, 0deg));
+  filter: saturate(1.15);
 }
 
 .label {
   position: absolute;
-  left: 12px;
-  top: 10px;
-  font-size: 12px;
-  letter-spacing: 0.15em;
+  left: 14px;
+  top: 12px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
   text-transform: uppercase;
   font-weight: 950;
-  color: rgba(0,0,0,0.72);
+  color: rgba(43,40,40,0.58);
 }
 
 .title {
   position: absolute;
-  left: 14px;
-  right: 14px;
-  bottom: 14px;
-  font-size: 18px;
+  left: 16px;
+  right: 16px;
+  bottom: 16px;
+  font-size: 20px;
   line-height: 1.05;
   font-weight: 950;
 }
 
 .pinboard {
-  left: 7%;
-  top: 10%;
-  width: 270px;
-  height: 195px;
-  background: #8e7a52;
-  border-radius: 8px;
+  left: 6%;
+  top: 11%;
+  width: 275px;
+  height: 205px;
+  border-radius: 12px;
+  background: var(--dark);
+  color: var(--white);
   --angle: -1deg;
 }
 
-.pinboard:before {
-  content: "";
+.pinboard .label {
+  color: rgba(255,255,255,0.64);
+}
+
+.xmark {
   position: absolute;
-  inset: 14px;
-  border: 2px dashed rgba(255,255,255,0.6);
-  border-radius: 8px;
+  left: 22px;
+  top: 50px;
+  width: 74px;
+  height: 74px;
+  background: var(--white);
+  clip-path: polygon(17% 0, 50% 33%, 83% 0, 100% 17%, 67% 50%, 100% 83%, 83% 100%, 50% 67%, 17% 100%, 0 83%, 33% 50%, 0 17%);
 }
 
-.note {
+.pinboard .pink {
   position: absolute;
-  border: 2px solid var(--line);
-  background: #fff;
-  box-shadow: 2px 2px 0 var(--line);
+  left: 23px;
+  top: 130px;
+  color: var(--pink);
+  font-size: 17px;
+  font-weight: 950;
+  letter-spacing: 0.04em;
 }
 
-.noteOne {
-  left: 28px;
-  top: 38px;
-  width: 70px;
-  height: 62px;
-  background: #fff7a6;
+.sticky {
+  position: absolute;
+  border: 3px solid var(--black);
+  background: var(--light);
+  box-shadow: 3px 3px 0 var(--black);
 }
 
-.noteTwo {
-  left: 124px;
-  top: 42px;
-  width: 76px;
-  height: 52px;
-  background: #bdefff;
+.sticky.one {
+  right: 28px;
+  top: 48px;
+  width: 74px;
+  height: 58px;
 }
 
-.noteThree {
-  right: 30px;
+.sticky.two {
+  right: 48px;
   bottom: 46px;
-  width: 70px;
-  height: 64px;
-  background: #ffd1ee;
+  width: 86px;
+  height: 48px;
 }
-
-.pin {
-  position: absolute;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: #e23b55;
-  border: 1px solid var(--line);
-  z-index: 2;
-}
-
-.pinA { left: 66px; top: 34px; }
-.pinB { left: 154px; top: 36px; }
-.pinC { right: 66px; bottom: 116px; }
 
 .screen {
-  right: 8%;
+  right: 7%;
   top: 12%;
-  width: 320px;
-  height: 205px;
-  background: var(--sky);
-  border-radius: 8px;
+  width: 330px;
+  height: 210px;
+  border-radius: 12px;
+  background: var(--white);
   --angle: 1deg;
 }
 
-.screenBase {
+.machineMark {
   position: absolute;
   left: 34px;
-  right: 34px;
-  bottom: 32px;
-  height: 46px;
-  border: 3px solid var(--line);
-  border-radius: 999px;
-  background: #fff;
+  top: 48px;
+  width: 102px;
+  height: 102px;
+  background: var(--black);
+  clip-path: polygon(0 100%, 31% 0, 50% 54%, 69% 0, 100% 100%, 64% 48%, 50% 94%, 36% 48%);
 }
 
-.bridge {
+.machineWord {
   position: absolute;
-  right: 44px;
-  top: 42px;
-  width: 118px;
-  height: 78px;
-  border: 9px solid var(--red);
-  border-bottom: 0;
-  border-radius: 9px 9px 0 0;
+  left: 152px;
+  top: 62px;
+  right: 20px;
+  font-size: 23px;
+  font-weight: 950;
+  line-height: 0.95;
+  letter-spacing: 0.02em;
 }
 
-.tower {
+.machineTag {
   position: absolute;
-  left: 56px;
-  bottom: 54px;
-  width: 0;
-  height: 0;
-  border-left: 30px solid transparent;
-  border-right: 30px solid transparent;
-  border-bottom: 100px solid #54677b;
+  left: 154px;
+  top: 126px;
+  right: 20px;
+  font-size: 9px;
+  font-weight: 950;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
 }
 
 .stack {
-  left: 7%;
+  left: 6%;
   bottom: 17%;
   width: 190px;
   height: 126px;
@@ -317,24 +324,24 @@ h1 {
   left: 0;
   width: 176px;
   height: 23px;
-  border: 3px solid var(--line);
+  border: 3px solid var(--black);
   border-radius: 7px;
-  box-shadow: 3px 3px 0 var(--line);
+  box-shadow: 3px 3px 0 var(--black);
 }
 
-.bookA { top: 0; background: #ffef67; }
-.bookB { top: 25px; background: #fff; }
-.bookC { top: 50px; background: #2ca25f; }
-.bookD { top: 75px; background: #df3f3f; }
-.bookE { top: 100px; background: #0f3b6d; }
+.bookA { top: 0; background: var(--white); }
+.bookB { top: 25px; background: var(--light); }
+.bookC { top: 50px; background: var(--black); }
+.bookD { top: 75px; background: var(--white); }
+.bookE { top: 100px; background: var(--dark); }
 
 .notebook {
-  left: 28%;
+  left: 27%;
   bottom: 17%;
-  width: 130px;
-  height: 92px;
-  background: #fffaf0;
-  border-radius: 8px;
+  width: 140px;
+  height: 98px;
+  background: var(--white);
+  border-radius: 10px;
   --angle: -6deg;
 }
 
@@ -342,57 +349,57 @@ h1 {
   content: "";
   position: absolute;
   left: 20px;
-  top: 28px;
+  top: 32px;
   right: 20px;
   height: 3px;
-  background: var(--line);
-  box-shadow: 0 16px 0 var(--line), 0 32px 0 var(--line);
-  opacity: 0.25;
+  background: var(--black);
+  box-shadow: 0 16px 0 var(--black), 0 32px 0 var(--black);
+  opacity: 0.24;
 }
 
 .coffee {
   left: 40%;
   bottom: 18%;
-  width: 76px;
-  height: 76px;
-  background: #55c7ee;
-  border-radius: 12px 12px 22px 22px;
+  width: 78px;
+  height: 78px;
+  background: var(--pink);
+  border-radius: 14px 14px 24px 24px;
   --angle: 4deg;
 }
 
 .coffee:after {
   content: "";
   position: absolute;
-  right: -24px;
+  right: -25px;
   top: 20px;
-  width: 28px;
-  height: 28px;
-  border: 3px solid var(--line);
+  width: 30px;
+  height: 30px;
+  border: 4px solid var(--black);
   border-left: 0;
-  border-radius: 0 18px 18px 0;
+  border-radius: 0 20px 20px 0;
 }
 
 .folder {
   right: 26%;
   bottom: 13%;
-  width: 178px;
-  height: 114px;
-  background: #f7d274;
-  border-radius: 8px;
+  width: 190px;
+  height: 118px;
+  background: var(--light);
+  border-radius: 10px;
   --angle: 5deg;
 }
 
 .folder:before {
   content: "";
   position: absolute;
-  left: -3px;
-  top: -22px;
-  width: 90px;
-  height: 26px;
-  background: #f7d274;
-  border: 3px solid var(--line);
+  left: -4px;
+  top: -24px;
+  width: 94px;
+  height: 28px;
+  background: var(--light);
+  border: 4px solid var(--black);
   border-bottom: 0;
-  border-radius: 8px 8px 0 0;
+  border-radius: 10px 10px 0 0;
 }
 
 .map {
@@ -400,7 +407,7 @@ h1 {
   bottom: 13%;
   width: 190px;
   height: 114px;
-  background: #d8f5ff;
+  background: var(--white);
   --angle: 8deg;
   clip-path: polygon(0 12%, 28% 0, 54% 10%, 82% 0, 100% 16%, 90% 100%, 62% 88%, 36% 100%, 0 86%);
 }
@@ -409,17 +416,17 @@ h1 {
   content: "";
   position: absolute;
   inset: 22px;
-  border-top: 4px solid #55a7d8;
-  border-bottom: 4px solid #55a7d8;
+  border-top: 5px solid var(--blue);
+  border-bottom: 5px solid var(--blue);
   transform: rotate(-12deg);
 }
 
 .dan {
   position: absolute;
   left: 50%;
-  top: 27%;
-  width: 230px;
-  height: 280px;
+  top: 28%;
+  width: 240px;
+  height: 285px;
   transform: translateX(-50%);
   z-index: 8;
 }
@@ -428,14 +435,14 @@ h1 {
   position: absolute;
   left: 50%;
   top: 0;
-  width: 112px;
-  height: 112px;
+  width: 118px;
+  height: 118px;
   transform: translateX(-50%);
-  border: 3px solid var(--line);
+  border: 4px solid var(--black);
   border-radius: 50%;
   overflow: hidden;
   background: var(--yellow);
-  box-shadow: 4px 4px 0 var(--line);
+  box-shadow: 5px 5px 0 var(--black);
   z-index: 3;
 }
 
@@ -448,24 +455,24 @@ h1 {
 .body {
   position: absolute;
   left: 50%;
-  top: 94px;
-  width: 160px;
-  height: 140px;
+  top: 98px;
+  width: 168px;
+  height: 142px;
   transform: translateX(-50%);
-  background: linear-gradient(180deg, #193b63, #0b1020);
-  border: 3px solid var(--line);
-  border-radius: 34px 34px 20px 20px;
+  background: var(--dark);
+  border: 4px solid var(--black);
+  border-radius: 36px 36px 20px 20px;
   z-index: 1;
 }
 
 .armLeft,
 .armRight {
   position: absolute;
-  top: 126px;
-  width: 76px;
-  height: 30px;
-  background: #193b63;
-  border: 3px solid var(--line);
+  top: 132px;
+  width: 78px;
+  height: 32px;
+  background: var(--dark);
+  border: 4px solid var(--black);
   border-radius: 999px;
   z-index: 0;
 }
@@ -483,15 +490,15 @@ h1 {
 .laptop {
   position: absolute;
   left: 50%;
-  top: 168px;
-  width: 168px;
-  height: 104px;
+  top: 172px;
+  width: 176px;
+  height: 108px;
   transform: translateX(-50%);
-  background: #c8d2dd;
-  border: 3px solid var(--line);
-  border-radius: 10px;
+  background: var(--light);
+  border: 4px solid var(--black);
+  border-radius: 12px;
   z-index: 4;
-  box-shadow: 4px 4px 0 var(--line);
+  box-shadow: 5px 5px 0 var(--black);
 }
 
 .laptop:before {
@@ -500,55 +507,57 @@ h1 {
   top: 18px;
   left: 14px;
   right: 14px;
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 950;
-  color: #0b1020;
-  letter-spacing: 0.03em;
+  color: var(--black);
+  letter-spacing: 0.02em;
 }
 
 .laptop:after {
-  content: "strategy  copy  design  video";
+  content: "CREATIVE INTELLIGENCE";
   position: absolute;
   left: 14px;
   bottom: 18px;
   right: 14px;
   font-size: 10px;
-  color: #374151;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  color: var(--dark);
 }
 
 .bio {
-  max-width: 780px;
-  margin: 34px auto 0;
+  max-width: 790px;
+  margin: 38px auto 0;
   text-align: center;
   color: var(--muted);
-  font-family: Georgia, serif;
   font-size: 25px;
   line-height: 1.45;
 }
 
 .signature {
-  margin: 20px auto 0;
+  margin: 22px auto 0;
   text-align: center;
-  font-family: "Brush Script MT", cursive;
-  font-size: 48px;
-  color: #51483f;
+  font-size: 34px;
+  font-weight: 950;
+  letter-spacing: -0.04em;
+  color: var(--dark);
 }
 
 .panelRow {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   gap: 24px;
-  margin-top: 32px;
+  margin-top: 34px;
 }
 
 .panel,
 .workCard,
 .contactBox {
-  border: 3px solid var(--line);
+  border: 4px solid var(--black);
   border-radius: 24px;
-  background: var(--cream);
-  box-shadow: 6px 6px 0 var(--line);
-  padding: 26px;
+  background: var(--white);
+  box-shadow: 7px 7px 0 var(--black);
+  padding: 28px;
 }
 
 .panel small {
@@ -556,14 +565,15 @@ h1 {
   color: var(--muted);
   font-size: 13px;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.16em;
   font-weight: 950;
 }
 
 .panel h3 {
   margin: 10px 0 0;
-  font-size: 38px;
+  font-size: 40px;
   line-height: 1;
+  font-weight: 950;
 }
 
 .panel p {
@@ -577,12 +587,12 @@ h1 {
   display: inline-flex;
   margin-top: 20px;
   padding: 12px 18px;
-  color: #fff;
-  background: var(--navy);
+  color: var(--white);
+  background: var(--black);
 }
 
 .section {
-  margin-top: 70px;
+  margin-top: 76px;
 }
 
 .sectionText {
@@ -593,26 +603,28 @@ h1 {
 }
 
 h2 {
-  margin: 14px 0 0;
-  font-size: clamp(34px, 4vw, 56px);
-  line-height: 1.02;
-  letter-spacing: -0.035em;
+  margin: 16px 0 0;
+  font-size: clamp(36px, 4.6vw, 64px);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+  font-weight: 950;
 }
 
 .workGrid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 18px;
-  margin-top: 24px;
+  margin-top: 26px;
 }
 
 .workCard h3 {
   margin: 0;
-  font-size: 26px;
+  font-size: 28px;
+  line-height: 1;
 }
 
 .workCard p {
-  margin: 12px 0 0;
+  margin: 14px 0 0;
   color: var(--muted);
   font-size: 17px;
   line-height: 1.6;
@@ -621,7 +633,7 @@ h2 {
 .contactBox {
   text-align: center;
   margin-bottom: 30px;
-  padding: 36px;
+  padding: 38px;
 }
 
 .contactBox p {
@@ -636,7 +648,7 @@ h2 {
   }
 
   .dan {
-    top: 24%;
+    top: 25%;
   }
 
   .pinboard {
@@ -684,10 +696,6 @@ h2 {
     flex-direction: column;
   }
 
-  .hero {
-    margin-top: 10px;
-  }
-
   .scene {
     min-height: 980px;
   }
@@ -718,8 +726,8 @@ h2 {
   }
 
   .folder {
-    width: 178px;
-    height: 114px;
+    width: 190px;
+    height: 118px;
   }
 
   .map {
@@ -732,135 +740,138 @@ h2 {
 
 <body>
 <div class="wrap">
-  <header class="topbar">
-    <div class="brand">
-      <small>Dan Kohler</small>
-      <strong>Workspace</strong>
-    </div>
 
-    <nav class="nav">
-      <a href="#workspace">Workspace</a>
-      <a href="#work">Work with me</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
-  </header>
+<header class="topbar">
+  <div class="brand">
+    <small>Dan Kohler</small>
+    <strong>Workspace</strong>
+  </div>
 
-  <section class="hero">
-    <div class="kicker">Strategy, creative, and AI systems</div>
-    <h1>I help companies see better ideas before they commit to them.</h1>
-    <p class="subhead">Strategy. Creative. AI systems. Connected into one flow that improves how work actually gets done.</p>
+  <nav class="nav">
+    <a href="#workspace">Workspace</a>
+    <a href="#work">Work with me</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
 
-    <div class="ctaRow">
-      <a class="btn btnDark" href="#workspace">Enter my workspace</a>
-      <a class="btn" href="#contact">Contact</a>
-    </div>
-  </section>
+<section class="hero">
+  <div class="kicker">Strategy, creative, and AI systems</div>
+  <h1>I help companies see better ideas before they commit to them.</h1>
+  <p class="subhead">Strategy. Creative. AI systems. Connected into one flow that improves how work actually gets done.</p>
 
-  <main id="workspace">
-    <section class="scene" aria-label="Dan Kohler workspace illustration">
-      <button class="object pinboard active" data-key="xtrabold" aria-label="XTRABOLD AI">
-        <div class="label">Pinboard</div>
-        <div class="pin pinA"></div>
-        <div class="pin pinB"></div>
-        <div class="pin pinC"></div>
-        <div class="note noteOne"></div>
-        <div class="note noteTwo"></div>
-        <div class="note noteThree"></div>
-        <div class="title">XTRABOLD AI</div>
-      </button>
+  <div class="ctaRow">
+    <a class="btn btnDark" href="#workspace">Enter my workspace</a>
+    <a class="btn" href="#contact">Contact</a>
+  </div>
+</section>
 
-      <button class="object screen" data-key="machine" aria-label="THE MACHINE™">
-        <div class="label">Computer</div>
-        <div class="tower"></div>
-        <div class="bridge"></div>
-        <div class="screenBase"></div>
-        <div class="title">THE MACHINE™</div>
-      </button>
+<main id="workspace">
+  <section class="scene" aria-label="Dan Kohler workspace illustration">
+    <div class="gridTexture"></div>
+    <div class="desk"></div>
 
-      <button class="object stack" data-key="work" aria-label="Work with me">
-        <div class="book bookA"></div>
-        <div class="book bookB"></div>
-        <div class="book bookC"></div>
-        <div class="book bookD"></div>
-        <div class="book bookE"></div>
-      </button>
+    <button class="object pinboard active" data-key="xtrabold" aria-label="XTRABOLD AI">
+      <div class="label">Pinboard</div>
+      <div class="xmark"></div>
+      <div class="pink">XTRA BOLD</div>
+      <div class="sticky one"></div>
+      <div class="sticky two"></div>
+      <div class="title">XTRABOLD AI</div>
+    </button>
 
-      <button class="object notebook" data-key="linkedin" aria-label="LinkedIn">
-        <div class="label">Notebook</div>
-        <div class="title">LinkedIn</div>
-      </button>
+    <button class="object screen" data-key="machine" aria-label="THE MACHINE™">
+      <div class="label">Computer</div>
+      <div class="machineMark"></div>
+      <div class="machineWord">THE MACHINE™</div>
+      <div class="machineTag">Creative intelligence</div>
+      <div class="title">THE MACHINE™</div>
+    </button>
 
-      <button class="object coffee" data-key="contact" aria-label="Contact">
-        <div class="label">Coffee</div>
-      </button>
+    <button class="object stack" data-key="work" aria-label="Work with me">
+      <div class="book bookA"></div>
+      <div class="book bookB"></div>
+      <div class="book bookC"></div>
+      <div class="book bookD"></div>
+      <div class="book bookE"></div>
+    </button>
 
-      <button class="object folder" data-key="work" aria-label="Work with me">
-        <div class="label">Folder</div>
-        <div class="title">Work with me</div>
-      </button>
+    <button class="object notebook" data-key="linkedin" aria-label="LinkedIn">
+      <div class="label">Notebook</div>
+      <div class="title">LinkedIn</div>
+    </button>
 
-      <button class="object map" data-key="about" aria-label="About"></button>
+    <button class="object coffee" data-key="contact" aria-label="Contact">
+      <div class="label">Coffee</div>
+    </button>
 
-      <div class="dan">
-        <div class="head"><img src="DK_AI.png" alt="Dan Kohler"></div>
-        <div class="armLeft"></div>
-        <div class="armRight"></div>
-        <div class="body"></div>
-        <div class="laptop"></div>
-      </div>
-    </section>
+    <button class="object folder" data-key="work" aria-label="Work with me">
+      <div class="label">Folder</div>
+      <div class="title">Work with me</div>
+    </button>
 
-    <p class="bio" id="about">I’m Dan Kohler. I build sharper strategy, stronger creative systems, and practical AI workflows for companies that want to move faster without lowering their standards.</p>
-    <div class="signature">Dan Kohler</div>
+    <button class="object map" data-key="about" aria-label="About"></button>
 
-    <section class="panelRow">
-      <div class="panel" id="panel">
-        <small id="panelKicker">Agency</small>
-        <h3 id="panelTitle">XTRABOLD AI</h3>
-        <p id="panelBody">A next generation creative partner built to make ideas visible before teams commit to them.</p>
-        <a id="panelLink" href="https://xtrabold.agency/" target="_blank" rel="noopener noreferrer">Visit XTRABOLD AI</a>
-      </div>
-
-      <div class="panel">
-        <small>Why this site works</small>
-        <h3>Creative, but useful.</h3>
-        <p>The workspace is not decoration. It is a simple map of what I do, what I have built, and how to start a conversation.</p>
-      </div>
-    </section>
-  </main>
-
-  <section class="section" id="work">
-    <div class="kicker">Work with me</div>
-    <h2>Structured ways to work together.</h2>
-    <p class="sectionText">This is where strategy meets execution. Clear engagements. Practical systems. Real outcomes.</p>
-
-    <div class="workGrid">
-      <div class="workCard">
-        <h3>For brands</h3>
-        <p>Connect strategy, creative, and execution into one flow. Ideal for teams trying to modernize how work actually gets done.</p>
-      </div>
-
-      <div class="workCard">
-        <h3>For agencies</h3>
-        <p>Standardize how great thinking happens without reducing the value of creativity. Built for modern agency leaders.</p>
-      </div>
-
-      <div class="workCard">
-        <h3>For partnerships</h3>
-        <p>Advisory, workshops, speaking, and new ventures for companies that want a sharper point of view on what comes next.</p>
-      </div>
+    <div class="dan">
+      <div class="head"><img src="DK_AI.png" alt="Dan Kohler"></div>
+      <div class="armLeft"></div>
+      <div class="armRight"></div>
+      <div class="body"></div>
+      <div class="laptop"></div>
     </div>
   </section>
 
-  <section class="section" id="contact">
-    <div class="contactBox">
-      <div class="kicker">Contact</div>
-      <h2>Bring me the hard problem.</h2>
-      <p>AI strategy. Creative transformation. Workflow design. Advisory. New ventures. If the problem matters, the conversation is worth having.</p>
-      <a class="btn btnDark" href="mailto:kohdan@gmail.com">Start the conversation</a>
+  <p class="bio" id="about">I’m Dan Kohler. I build sharper strategy, stronger creative systems, and practical AI workflows for companies that want to move faster without lowering their standards.</p>
+  <div class="signature">Dan Kohler</div>
+
+  <section class="panelRow">
+    <div class="panel" id="panel">
+      <small id="panelKicker">Agency</small>
+      <h3 id="panelTitle">XTRABOLD AI</h3>
+      <p id="panelBody">A next generation creative partner built to make ideas visible before teams commit to them.</p>
+      <a id="panelLink" href="https://xtrabold.agency/" target="_blank" rel="noopener noreferrer">Visit XTRABOLD AI</a>
+    </div>
+
+    <div class="panel">
+      <small>Why this site works</small>
+      <h3>Creative, but useful.</h3>
+      <p>The workspace is not decoration. It is a simple map of what I do, what I have built, and how to start a conversation.</p>
     </div>
   </section>
+</main>
+
+<section class="section" id="work">
+  <div class="kicker">Work with me</div>
+  <h2>Structured ways to work together.</h2>
+  <p class="sectionText">This is where strategy meets execution. Clear engagements. Practical systems. Real outcomes.</p>
+
+  <div class="workGrid">
+    <div class="workCard">
+      <h3>For brands</h3>
+      <p>Connect strategy, creative, and execution into one flow. Ideal for teams trying to modernize how work actually gets done.</p>
+    </div>
+
+    <div class="workCard">
+      <h3>For agencies</h3>
+      <p>Standardize how great thinking happens without reducing the value of creativity. Built for modern agency leaders.</p>
+    </div>
+
+    <div class="workCard">
+      <h3>For partnerships</h3>
+      <p>Advisory, workshops, speaking, and new ventures for companies that want a sharper point of view on what comes next.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="contactBox">
+    <div class="kicker">Contact</div>
+    <h2>Bring me the hard problem.</h2>
+    <p>AI strategy. Creative transformation. Workflow design. Advisory. New ventures. If the problem matters, the conversation is worth having.</p>
+    <a class="btn btnDark" href="mailto:kohdan@gmail.com">Start the conversation</a>
+  </div>
+</section>
+
 </div>
 
 <script>
