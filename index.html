@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Dan Kohler</title>
 
 <style>
 :root {
-  --black: #050505;
-  --charcoal: #171717;
-  --gray: #9D9D9D;
-  --light: #E5E5E5;
-  --white: #FFFFFF;
+  --bg: #0d0d0d;
+  --panel: #151515;
+  --white: #ffffff;
+  --gray: rgba(255,255,255,0.68);
+  --line: rgba(255,255,255,0.14);
   --pink: #ff2f92;
 }
 
@@ -25,7 +25,7 @@ html {
 
 body {
   margin: 0;
-  background: #0d0d0d;
+  background: var(--bg);
   color: var(--white);
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -38,29 +38,29 @@ a {
 .wrap {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 34px 22px 72px;
+  padding: 34px 22px 80px;
 }
 
 .topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 18px;
-  margin-bottom: 54px;
+  margin-bottom: 52px;
+  gap: 20px;
 }
 
 .brand small {
   display: block;
-  color: var(--gray);
   font-size: 12px;
-  letter-spacing: 0.24em;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
   font-weight: 900;
 }
 
 .brand strong {
   display: block;
-  margin-top: 5px;
+  margin-top: 6px;
   font-size: 34px;
   line-height: 1;
   font-weight: 950;
@@ -68,61 +68,60 @@ a {
 
 .nav {
   display: flex;
-  flex-wrap: wrap;
   gap: 10px;
+  flex-wrap: wrap;
 }
 
 .nav a {
-  border: 2px solid rgba(255,255,255,0.22);
+  border: 1px solid rgba(255,255,255,0.18);
   border-radius: 999px;
   padding: 11px 16px;
-  color: rgba(255,255,255,0.82);
-  font-weight: 800;
   font-size: 14px;
+  font-weight: 800;
   background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.84);
 }
 
 .hero {
-  max-width: 1060px;
-  margin: 0 auto 44px;
   text-align: center;
+  max-width: 1080px;
+  margin: 0 auto 44px;
 }
 
 .kicker {
   display: inline-block;
-  border: 2px solid rgba(255,255,255,0.22);
   border-radius: 999px;
-  padding: 10px 17px;
-  color: rgba(255,255,255,0.78);
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 10px 16px;
   font-size: 13px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  font-weight: 950;
-  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.74);
+  font-weight: 900;
 }
 
 h1 {
-  margin: 28px 0 0;
-  font-size: clamp(52px, 7vw, 94px);
-  line-height: 0.91;
+  margin: 26px 0 0;
+  font-size: clamp(54px, 7vw, 94px);
+  line-height: 0.92;
   letter-spacing: -0.07em;
   font-weight: 950;
 }
 
 .subhead {
-  max-width: 780px;
+  max-width: 760px;
   margin: 24px auto 0;
-  color: rgba(255,255,255,0.68);
   font-size: 22px;
-  line-height: 1.5;
+  line-height: 1.55;
+  color: var(--gray);
 }
 
 .ctaRow {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
   gap: 14px;
   margin-top: 30px;
+  flex-wrap: wrap;
 }
 
 .btn {
@@ -130,32 +129,31 @@ h1 {
   align-items: center;
   justify-content: center;
   border-radius: 999px;
-  padding: 14px 20px;
+  padding: 14px 22px;
   font-weight: 900;
   background: var(--white);
-  color: var(--black);
+  color: #000;
 }
 
 .btnSecondary {
   background: rgba(255,255,255,0.06);
   color: var(--white);
-  border: 1px solid rgba(255,255,255,0.22);
+  border: 1px solid rgba(255,255,255,0.16);
 }
 
 .sceneShell {
-  margin-top: 52px;
-  border: 1px solid rgba(255,255,255,0.16);
+  margin-top: 54px;
   border-radius: 28px;
   overflow: hidden;
+  border: 1px solid var(--line);
   background: #111;
-  box-shadow: 0 40px 120px rgba(0,0,0,0.55);
+  box-shadow: 0 40px 120px rgba(0,0,0,0.5);
 }
 
 .sceneWrap {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
-  background: #000;
 }
 
 .sceneImage {
@@ -167,22 +165,23 @@ h1 {
 
 .hotspot {
   position: absolute;
-  border: 2px solid transparent;
   border-radius: 20px;
+  border: 2px solid transparent;
   background: rgba(255,255,255,0);
   cursor: pointer;
+  transition: 0.2s ease;
 }
 
 .hotspot:hover {
-  border-color: rgba(255,255,255,0.7);
-  background: rgba(255,255,255,0.08);
-  box-shadow: 0 0 40px rgba(255,255,255,0.18);
+  border-color: rgba(255,255,255,0.65);
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 0 40px rgba(255,255,255,0.16);
 }
 
 .hotspot.active {
   border-color: rgba(255,47,146,0.95);
   background: rgba(255,47,146,0.10);
-  box-shadow: 0 0 50px rgba(255,47,146,0.25);
+  box-shadow: 0 0 50px rgba(255,47,146,0.24);
 }
 
 .pinboardZone {
@@ -221,10 +220,10 @@ h1 {
 }
 
 .contactZone {
-  left: 39%;
-  top: 77%;
-  width: 12%;
-  height: 13%;
+  left: 36%;
+  top: 81%;
+  width: 11%;
+  height: 12%;
 }
 
 .processZone {
@@ -246,115 +245,102 @@ h1 {
   grid-template-columns: 1.1fr 0.9fr;
   gap: 22px;
   padding: 22px;
-  background: linear-gradient(180deg, #121212, #0b0b0b);
+  background: linear-gradient(180deg,#111,#0c0c0c);
 }
 
 .panel {
-  border: 1px solid rgba(255,255,255,0.16);
+  border: 1px solid var(--line);
   border-radius: 24px;
   padding: 28px;
-  background: rgba(255,255,255,0.045);
+  background: rgba(255,255,255,0.04);
 }
 
 .panel small {
   display: block;
-  color: rgba(255,255,255,0.55);
   font-size: 13px;
-  text-transform: uppercase;
   letter-spacing: 0.16em;
-  font-weight: 950;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.54);
+  font-weight: 900;
 }
 
 .panel h2 {
   margin: 12px 0 0;
-  font-size: clamp(34px, 4vw, 58px);
+  font-size: clamp(34px,4vw,58px);
   line-height: 0.98;
-  letter-spacing: -0.055em;
+  letter-spacing: -0.05em;
 }
 
 .panel p {
   margin: 16px 0 0;
-  color: rgba(255,255,255,0.68);
   font-size: 19px;
-  line-height: 1.62;
+  line-height: 1.6;
+  color: var(--gray);
 }
 
 .note {
-  color: rgba(255,255,255,0.58);
-  font-size: 17px;
-  line-height: 1.6;
+  font-size: 18px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.6);
 }
 
 .section {
-  margin-top: 86px;
+  margin-top: 90px;
 }
 
 .section h2 {
-  margin: 14px 0 0;
-  font-size: clamp(38px, 5vw, 70px);
-  line-height: 0.96;
+  margin: 16px 0 0;
+  font-size: clamp(40px,5vw,70px);
+  line-height: 0.95;
   letter-spacing: -0.06em;
 }
 
 .sectionText {
-  max-width: 880px;
-  color: rgba(255,255,255,0.68);
+  max-width: 860px;
   font-size: 21px;
   line-height: 1.62;
+  color: var(--gray);
 }
 
 .workGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3,1fr);
   gap: 18px;
-  margin-top: 28px;
+  margin-top: 30px;
 }
 
 .card {
-  border: 1px solid rgba(255,255,255,0.16);
   border-radius: 24px;
+  border: 1px solid var(--line);
   padding: 26px;
-  background: rgba(255,255,255,0.045);
+  background: rgba(255,255,255,0.04);
 }
 
 .card h3 {
   margin: 0;
   font-size: 28px;
-  line-height: 1;
 }
 
 .card p {
-  margin: 14px 0 0;
-  color: rgba(255,255,255,0.66);
-  font-size: 18px;
+  margin-top: 14px;
+  color: var(--gray);
   line-height: 1.6;
-}
-
-.dogBox {
-  display: none;
-  margin-top: 20px;
-  border: 1px solid rgba(255,255,255,0.16);
-  border-radius: 24px;
-  padding: 26px;
-  background: rgba(255,255,255,0.045);
-}
-
-.dogBox.show {
-  display: block;
+  font-size: 18px;
 }
 
 .contactBox {
-  text-align: center;
-  border: 1px solid rgba(255,255,255,0.16);
   border-radius: 28px;
-  padding: 42px 26px;
-  background: rgba(255,255,255,0.045);
+  border: 1px solid var(--line);
+  padding: 44px 28px;
+  background: rgba(255,255,255,0.04);
+  text-align: center;
 }
 
-@media(max-width: 900px) {
+@media(max-width:900px) {
+
   .topbar {
-    align-items: flex-start;
     flex-direction: column;
+    align-items: flex-start;
   }
 
   .panelGrid,
@@ -370,6 +356,7 @@ h1 {
 <div class="wrap">
 
 <header class="topbar">
+
   <div class="brand">
     <small>Dan Kohler</small>
     <strong>Workspace</strong>
@@ -381,10 +368,14 @@ h1 {
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </nav>
+
 </header>
 
 <section class="hero">
-  <div class="kicker">Strategy, creative, and AI systems</div>
+
+  <div class="kicker">
+    Strategy, creative, and AI systems
+  </div>
 
   <h1>
     I help companies see better ideas before they commit to them.
@@ -398,6 +389,7 @@ h1 {
     <a class="btn" href="#workspace">Enter my workspace</a>
     <a class="btn btnSecondary" href="#contact">Contact</a>
   </div>
+
 </section>
 
 <main id="workspace" class="sceneShell">
@@ -424,6 +416,7 @@ h1 {
   <section class="panelGrid">
 
     <div class="panel">
+
       <small>Agency</small>
 
       <h2>XTRABOLD AI</h2>
@@ -431,14 +424,17 @@ h1 {
       <p>
         A next generation creative partner built to make ideas visible before teams commit to them.
       </p>
+
     </div>
 
     <div class="panel">
+
       <small>How to use the workspace</small>
 
       <p class="note">
         Click the objects in the image. The pinboard opens XTRABOLD AI. The computer opens THE MACHINE™. The keys explain the process. The pen tray opens contact.
       </p>
+
     </div>
 
   </section>
@@ -470,6 +466,31 @@ h1 {
   <p class="sectionText">
     Strategy meets execution. Clear engagements. Practical systems. Real outcomes.
   </p>
+
+  <div class="workGrid">
+
+    <div class="card">
+      <h3>For brands</h3>
+      <p>
+        Connect strategy, creative, and execution into one flow.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>For agencies</h3>
+      <p>
+        Standardize how great thinking happens without reducing creativity.
+      </p>
+    </div>
+
+    <div class="card">
+      <h3>For partnerships</h3>
+      <p>
+        Advisory, workshops, speaking, and new ventures.
+      </p>
+    </div>
+
+  </div>
 
 </section>
 
