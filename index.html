@@ -222,10 +222,10 @@ h1 {
 }
 
 .contactZone {
-  left: 48%;
-  top: 78%;
-  width: 10%;
-  height: 12%;
+  left: 43%;
+  top: 77%;
+  width: 17%;
+  height: 16%;
 }
 
 .processZone {
@@ -428,14 +428,14 @@ h1 {
   <div class="sceneWrap">
     <img class="sceneImage" src="workspace.jpg" alt="Dan Kohler creative workspace">
 
-    <button class="hotspot pinboardZone active" dataKey="xtrabold" aria-label="XTRABOLD AI"></button>
-    <button class="hotspot machineZone" dataKey="machine" aria-label="THE MACHINE™"></button>
-    <button class="hotspot aboutZone" dataKey="about" aria-label="About Dan Kohler"></button>
-    <button class="hotspot dogsZone" dataKey="dogs" aria-label="Dolly and Belle"></button>
-    <button class="hotspot workZone" dataKey="work" aria-label="Work with me"></button>
-    <button class="hotspot contactZone" dataKey="contact" aria-label="Contact"></button>
-    <button class="hotspot processZone" dataKey="process" aria-label="How I work"></button>
-    <button class="hotspot linkedinZone" dataKey="linkedin" aria-label="LinkedIn"></button>
+    <button class="hotspot pinboardZone active" dataKey="xtrabold"></button>
+    <button class="hotspot machineZone" dataKey="machine"></button>
+    <button class="hotspot aboutZone" dataKey="about"></button>
+    <button class="hotspot dogsZone" dataKey="dogs"></button>
+    <button class="hotspot workZone" dataKey="work"></button>
+    <button class="hotspot contactZone" dataKey="contact"></button>
+    <button class="hotspot processZone" dataKey="process"></button>
+    <button class="hotspot linkedinZone" dataKey="linkedin"></button>
   </div>
 
   <section class="panelGrid">
@@ -443,12 +443,12 @@ h1 {
       <small id="panelKicker">Agency</small>
       <h2 id="panelTitle">XTRABOLD AI</h2>
       <p id="panelBody">A next generation creative partner built to make ideas visible before teams commit to them.</p>
-      <a id="panelLink" class="btn" href="https://xtrabold.agency/" target="_blank" rel="noopener noreferrer">Visit XTRABOLD AI</a>
+      <a id="panelLink" class="btn" href="https://xtrabold.agency/" target="_blank">Visit XTRABOLD AI</a>
     </div>
 
     <div class="panel">
       <small>How to use the workspace</small>
-      <p class="note">Click the objects in the image. The pinboard opens XTRABOLD AI. The computer opens THE MACHINE™. The keys explain the process. The dog leads to Dolly and Belle.</p>
+      <p class="note">Click the objects in the image. The pinboard opens XTRABOLD AI. The computer opens THE MACHINE™. The keys explain the process. The pen tray opens contact.</p>
     </div>
   </section>
 </main>
@@ -461,7 +461,7 @@ h1 {
   <div id="dogBox" class="dogBox">
     <div class="kicker">Dolly and Belle</div>
     <h2>Meet the real bosses.</h2>
-    <p class="sectionText">A hidden corner of the site for Dolly and Belle. We’ll add the puppy gallery here once the photos are ready.</p>
+    <p class="sectionText">A hidden personal corner for Dolly and Belle. We’ll add the puppy gallery here once the photos are ready.</p>
   </div>
 </section>
 
@@ -473,17 +473,17 @@ h1 {
   <div class="workGrid">
     <div class="card">
       <h3>For brands</h3>
-      <p>Connect strategy, creative, and execution into one flow. Ideal for teams trying to modernize how work actually gets done.</p>
+      <p>Connect strategy, creative, and execution into one flow.</p>
     </div>
 
     <div class="card">
       <h3>For agencies</h3>
-      <p>Standardize how great thinking happens without reducing the value of creativity. Built for modern agency leaders.</p>
+      <p>Standardize how great thinking happens without reducing creativity.</p>
     </div>
 
     <div class="card">
       <h3>For partnerships</h3>
-      <p>Advisory, workshops, speaking, and new ventures for companies that want a sharper point of view on what comes next.</p>
+      <p>Advisory, workshops, speaking, and new ventures.</p>
     </div>
   </div>
 </section>
@@ -492,7 +492,7 @@ h1 {
   <div class="contactBox">
     <div class="kicker">Contact</div>
     <h2>Bring me the hard problem.</h2>
-    <p class="sectionText" style="margin-left:auto;margin-right:auto;">AI strategy. Creative transformation. Workflow design. Advisory. New ventures. If the problem matters, the conversation is worth having.</p>
+    <p class="sectionText" style="margin-left:auto;margin-right:auto;">AI strategy. Creative transformation. Workflow design. Advisory. New ventures.</p>
     <a class="btn" href="mailto:kohdan@gmail.com">Start the conversation</a>
   </div>
 </section>
@@ -506,68 +506,68 @@ const data = {
     title: "XTRABOLD AI",
     body: "A next generation creative partner built to make ideas visible before teams commit to them.",
     linkText: "Visit XTRABOLD AI",
-    href: "https://xtrabold.agency/",
-    external: true
+    href: "https://xtrabold.agency/"
   },
+
   machine: {
     kicker: "Product",
     title: "THE MACHINE™",
     body: "A connected system that guides teams from brand strategy to copy, design, and video in one flow.",
     linkText: "Explore THE MACHINE™",
-    href: "https://xtrabold.agency/machine/",
-    external: true
+    href: "https://xtrabold.agency/machine/"
   },
+
   about: {
     kicker: "About",
     title: "Dan Kohler",
-    body: "Operator, builder, teacher, and founder helping companies connect strategy, creative, and AI systems into one practical flow.",
+    body: "Operator, builder, teacher, and founder helping companies connect strategy, creative, and AI systems.",
     linkText: "Jump to About",
-    href: "#about",
-    external: false
+    href: "#about"
   },
+
   dogs: {
     kicker: "Dolly and Belle",
     title: "Meet the real bosses.",
-    body: "A hidden personal corner for Dolly and Belle. Strategy improves when the dogs approve.",
-    linkText: "Open dog gallery",
-    href: "#about",
-    external: false
+    body: "A hidden personal corner for Dolly and Belle.",
+    linkText: "Open dog section",
+    href: "#about"
   },
+
   work: {
     kicker: "Engagements",
     title: "Work with me",
-    body: "Structured ways to work together across brand transformation, agency modernization, workshops, advisory, and ventures.",
-    linkText: "See engagement paths",
-    href: "#work",
-    external: false
+    body: "Structured ways to work together across brand transformation and AI adoption.",
+    linkText: "See work options",
+    href: "#work"
   },
+
   contact: {
     kicker: "Conversations",
     title: "Contact",
-    body: "If you are thinking about AI strategy, workflow design, creative transformation, or a new venture, start here.",
+    body: "If the problem matters, the conversation is worth having.",
     linkText: "Start the conversation",
-    href: "#contact",
-    external: false
+    href: "#contact"
   },
+
   process: {
     kicker: "Method",
     title: "Problem. Insight. Execution.",
-    body: "The work usually starts with three keys. Define the real problem. Find the human insight. Build the path to execution.",
+    body: "Define the real problem. Find the insight. Build the execution path.",
     linkText: "See how I work",
-    href: "#work",
-    external: false
+    href: "#work"
   },
+
   linkedin: {
     kicker: "Profile",
     title: "LinkedIn",
     body: "Career history, current thinking, and professional context.",
     linkText: "Open LinkedIn",
-    href: "https://www.linkedin.com/in/kohlerdan/",
-    external: true
+    href: "https://www.linkedin.com/in/kohlerdan/"
   }
 };
 
 const hotspots = document.querySelectorAll(".hotspot");
+
 const panelKicker = document.getElementById("panelKicker");
 const panelTitle = document.getElementById("panelTitle");
 const panelBody = document.getElementById("panelBody");
@@ -575,24 +575,21 @@ const panelLink = document.getElementById("panelLink");
 const dogBox = document.getElementById("dogBox");
 
 function setActive(key) {
+
   const item = data[key];
 
   panelKicker.textContent = item.kicker;
   panelTitle.textContent = item.title;
   panelBody.textContent = item.body;
+
   panelLink.textContent = item.linkText;
   panelLink.href = item.href;
 
-  if (item.external) {
-    panelLink.target = "_blank";
-    panelLink.rel = "noopener noreferrer";
-  } else {
-    panelLink.removeAttribute("target");
-    panelLink.removeAttribute("rel");
-  }
-
   hotspots.forEach(function(hotspot) {
-    hotspot.classList.toggle("active", hotspot.getAttribute("dataKey") === key);
+    hotspot.classList.toggle(
+      "active",
+      hotspot.getAttribute("dataKey") === key
+    );
   });
 
   if (key === "dogs") {
