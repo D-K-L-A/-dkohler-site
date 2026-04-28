@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>About | Dan Kohler</title>
+
+<style>
+:root {
+  --bg: #0d0d0d;
+  --panel: #151515;
+  --white: #ffffff;
+  --gray: rgba(255,255,255,0.72);
+  --line: rgba(255,255,255,0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 40px 100px;
+}
+
+.back {
+  margin-bottom: 50px;
+}
+
+.back a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.back a:hover {
+  color: var(--white);
+}
+
+.hero {
+  margin-bottom: 70px;
+}
+
+.kicker {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  font-weight: 800;
+}
+
+h1 {
+  font-size: clamp(58px, 8vw, 110px);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+  margin: 18px 0 30px;
+}
+
+.intro {
+  max-width: 760px;
+  font-size: 26px;
+  line-height: 1.5;
+  color: var(--gray);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-top: 70px;
+}
+
+.card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 34px;
+}
+
+.card h2 {
+  margin-top: 0;
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.card p {
+  color: var(--gray);
+  font-size: 19px;
+  line-height: 1.7;
+}
+
+.quote {
+  margin-top: 90px;
+  padding-top: 50px;
+  border-top: 1px solid var(--line);
+  max-width: 900px;
+}
+
+.quote p {
+  font-size: clamp(32px,4vw,52px);
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  margin: 0;
+}
+
+.footer {
+  margin-top: 80px;
+}
+
+.footer a {
+  display: inline-block;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: white;
+  color: black;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+
+  .page {
+    padding: 40px 24px 80px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .intro {
+    font-size: 22px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <div class="back">
+    <a href="index.html">← Back to Workspace</a>
+  </div>
+
+  <section class="hero">
+
+    <div class="kicker">
+      About
+    </div>
+
+    <h1>
+      Bring me the hard problem.
+    </h1>
+
+    <div class="intro">
+      I’ve spent my career helping brands find clarity before momentum takes over.
+    </div>
+
+  </section>
+
+  <section class="grid">
+
+    <div class="card">
+      <h2>Strategy</h2>
+
+      <p>
+        My background spans global marketing leadership, agency strategy, brand development, and creative systems thinking. I focus on helping teams simplify complexity so stronger ideas can emerge faster.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>AI + Creativity</h2>
+
+      <p>
+        I co founded XTRABOLD AI and THE MACHINE™ to help companies modernize how strategy, copy, design, video, and execution work together in one intelligent flow.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Teaching</h2>
+
+      <p>
+        I teach graduate level courses in storytelling, copywriting, strategy, and modern creative systems at the Academy of Art University in San Francisco.
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Philosophy</h2>
+
+      <p>
+        The tools changed. The need for great thinking did not. AI should accelerate clarity, originality, and execution. Not replace judgment.
+      </p>
+    </div>
+
+  </section>
+
+  <section class="quote">
+
+    <p>
+      The future belongs to teams that can think clearly and move decisively.
+    </p>
+
+  </section>
+
+  <div class="footer">
+    <a href="contact.html">
+      Start the conversation
+    </a>
+  </div>
+
+</div>
+
+</body>
+</html>
