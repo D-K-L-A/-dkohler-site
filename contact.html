@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Contact | Dan Kohler</title>
+
+<style>
+:root {
+  --bg: #0d0d0d;
+  --white: #ffffff;
+  --gray: rgba(255,255,255,0.72);
+  --line: rgba(255,255,255,0.12);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 60px 40px 100px;
+}
+
+.back {
+  margin-bottom: 50px;
+}
+
+.back a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.back a:hover {
+  color: var(--white);
+}
+
+.kicker {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  font-weight: 800;
+}
+
+h1 {
+  font-size: clamp(58px, 8vw, 110px);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+  margin: 18px 0 30px;
+}
+
+.intro {
+  max-width: 760px;
+  font-size: 26px;
+  line-height: 1.5;
+  color: var(--gray);
+}
+
+.card {
+  margin-top: 70px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  border-radius: 30px;
+  padding: 38px;
+}
+
+.card h2 {
+  margin: 0 0 20px;
+  font-size: 36px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.card p {
+  color: var(--gray);
+  font-size: 20px;
+  line-height: 1.6;
+  margin-bottom: 30px;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: white;
+  color: black;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.links a.secondary {
+  background: rgba(255,255,255,0.08);
+  color: white;
+  border: 1px solid var(--line);
+}
+
+.note {
+  margin-top: 70px;
+  padding-top: 40px;
+  border-top: 1px solid var(--line);
+  max-width: 760px;
+  color: var(--gray);
+  font-size: 21px;
+  line-height: 1.6;
+}
+
+@media (max-width: 800px) {
+
+  .page {
+    padding: 40px 24px 80px;
+  }
+
+  .intro {
+    font-size: 22px;
+  }
+
+  .card {
+    padding: 28px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <div class="back">
+    <a href="index.html">← Back to Workspace</a>
+  </div>
+
+  <section class="hero">
+
+    <div class="kicker">
+      Contact
+    </div>
+
+    <h1>
+      Start the conversation.
+    </h1>
+
+    <div class="intro">
+      I work with brands, agencies, founders, and leadership teams navigating strategy, creativity, and AI transformation.
+    </div>
+
+  </section>
+
+  <section class="card">
+
+    <h2>
+      Bring me the hard problem.
+    </h2>
+
+    <p>
+      If you are thinking about AI strategy, creative transformation, workflow design, advisory, workshops, or a new venture, send me a note.
+    </p>
+
+    <div class="links">
+      <a href="mailto:kohdan@gmail.com">
+        Email Dan
+      </a>
+
+      <a class="secondary" href="https://www.linkedin.com/in/kohlerdan/" target="_blank" rel="noopener noreferrer">
+        LinkedIn
+      </a>
+    </div>
+
+  </section>
+
+  <section class="note">
+    The best conversations usually start before the brief is fully formed.
+  </section>
+
+</div>
+
+</body>
+</html>
