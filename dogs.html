@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dolly & Belle</title>
+
+<style>
+:root {
+  --bg: #0d0d0d;
+  --white: #ffffff;
+  --gray: rgba(255,255,255,0.68);
+  --line: rgba(255,255,255,0.14);
+  --pink: #ff2f92;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 34px 22px 80px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 58px;
+  gap: 20px;
+}
+
+.brand small {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  font-weight: 900;
+}
+
+.brand strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 950;
+}
+
+.back {
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  padding: 11px 16px;
+  font-size: 14px;
+  font-weight: 800;
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.84);
+}
+
+.hero {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto 46px;
+}
+
+.kicker {
+  display: inline-block;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 10px 16px;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.74);
+  font-weight: 900;
+}
+
+h1 {
+  margin: 26px 0 0;
+  font-size: clamp(58px, 8vw, 104px);
+  line-height: 0.9;
+  letter-spacing: -0.075em;
+  font-weight: 950;
+}
+
+.subhead {
+  max-width: 720px;
+  margin: 24px auto 0;
+  font-size: 22px;
+  line-height: 1.55;
+  color: var(--gray);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 44px;
+}
+
+.photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: 26px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.04);
+  min-height: 320px;
+  box-shadow: 0 28px 80px rgba(0,0,0,0.35);
+}
+
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.35s ease;
+}
+
+.photo:hover img {
+  transform: scale(1.04);
+}
+
+.caption {
+  position: absolute;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  padding: 12px 14px;
+  border-radius: 999px;
+  background: rgba(0,0,0,0.48);
+  backdrop-filter: blur(12px);
+  font-weight: 900;
+  font-size: 14px;
+}
+
+.note {
+  margin: 46px auto 0;
+  max-width: 760px;
+  text-align: center;
+  color: var(--gray);
+  font-size: 20px;
+  line-height: 1.6;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 28px;
+  border-radius: 999px;
+  padding: 14px 22px;
+  font-weight: 900;
+  background: var(--white);
+  color: #000;
+}
+
+@media(max-width: 900px) {
+  .topbar {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media(max-width: 640px) {
+  .wrap {
+    padding: 22px 16px 54px;
+  }
+
+  .gallery {
+    grid-template-columns: 1fr;
+  }
+
+  .photo {
+    min-height: 360px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+<header class="topbar">
+  <div class="brand">
+    <small>Dolly & Belle</small>
+    <strong>The Real Bosses</strong>
+  </div>
+
+  <a class="back" href="index.html">Back to workspace</a>
+</header>
+
+<section class="hero">
+  <div class="kicker">Hidden page unlocked</div>
+
+  <h1>Meet the real bosses.</h1>
+
+  <p class="subhead">
+    Dolly and Belle oversee strategy, morale, and most major decisions. Their standards are high. Their nap schedule is non negotiable.
+  </p>
+</section>
+
+<section class="gallery">
+
+  <div class="photo">
+    <img src="IMG_7381.jpeg" alt="Dolly and Belle">
+    <div class="caption">Executive oversight</div>
+  </div>
+
+  <div class="photo">
+    <img src="IMG_2595.jpeg" alt="Dolly and Belle">
+    <div class="caption">Senior leadership</div>
+  </div>
+
+  <div class="photo">
+    <img src="IMG_2203.jpeg" alt="Dolly and Belle">
+    <div class="caption">Strategic pause</div>
+  </div>
+
+  <div class="photo">
+    <img src="IMG_1386.JPG" alt="Dolly and Belle">
+    <div class="caption">Board approval</div>
+  </div>
+
+  <div class="photo">
+    <img src="IMG_4013.jpeg" alt="Dolly and Belle">
+    <div class="caption">Creative review</div>
+  </div>
+
+  <div class="photo">
+    <img src="IMG_3611.jpeg" alt="Dolly and Belle">
+    <div class="caption">High standards</div>
+  </div>
+
+  <div class="photo">
+    <img src="puppy.JPEG" alt="Dolly and Belle">
+    <div class="caption">Early stage founder energy</div>
+  </div>
+
+  <div class="photo">
+    <img src="IMG_7366.jpeg" alt="Dolly and Belle">
+    <div class="caption">Quiet confidence</div>
+  </div>
+
+  <div class="photo">
+    <img src="IMG_1458.jpg" alt="Dolly and Belle">
+    <div class="caption">Final approval</div>
+  </div>
+
+  <div class="photo">
+    <img src="IMG_2379.jpeg" alt="Dolly and Belle">
+    <div class="caption">Office culture</div>
+  </div>
+
+</section>
+
+<p class="note">
+  Every good workspace needs a surprise. This one comes with two Havanese creative directors.
+</p>
+
+<div style="text-align:center;">
+  <a class="btn" href="index.html">Back to Dan’s workspace</a>
+</div>
+
+</div>
+
+</body>
+</html>
