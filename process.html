@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Process | Dan Kohler</title>
+
+<style>
+:root {
+  --bg: #0d0d0d;
+  --white: #ffffff;
+  --gray: rgba(255,255,255,0.72);
+  --line: rgba(255,255,255,0.12);
+  --pink: #ff2f92;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 60px 40px 100px;
+}
+
+.back {
+  margin-bottom: 50px;
+}
+
+.back a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.back a:hover {
+  color: var(--white);
+}
+
+.kicker {
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  font-weight: 800;
+}
+
+h1 {
+  font-size: clamp(58px, 8vw, 110px);
+  line-height: 0.9;
+  letter-spacing: -0.06em;
+  margin: 18px 0 30px;
+}
+
+.intro {
+  max-width: 820px;
+  font-size: 26px;
+  line-height: 1.5;
+  color: var(--gray);
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 70px;
+}
+
+.step {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 34px;
+  min-height: 360px;
+}
+
+.number {
+  width: 46px;
+  height: 46px;
+  border-radius: 999px;
+  background: var(--white);
+  color: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 900;
+  margin-bottom: 28px;
+}
+
+.step h2 {
+  margin: 0 0 18px;
+  font-size: 36px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.step p {
+  color: var(--gray);
+  font-size: 19px;
+  line-height: 1.7;
+}
+
+.framework {
+  margin-top: 90px;
+  padding-top: 50px;
+  border-top: 1px solid var(--line);
+  max-width: 900px;
+}
+
+.framework h2 {
+  font-size: clamp(38px,5vw,70px);
+  line-height: 0.95;
+  letter-spacing: -0.05em;
+  margin: 0 0 28px;
+}
+
+.framework p {
+  color: var(--gray);
+  font-size: 22px;
+  line-height: 1.6;
+}
+
+.footer {
+  margin-top: 70px;
+}
+
+.footer a {
+  display: inline-block;
+  padding: 14px 22px;
+  border-radius: 999px;
+  background: white;
+  color: black;
+  text-decoration: none;
+  font-weight: 700;
+}
+
+@media (max-width: 900px) {
+
+  .page {
+    padding: 40px 24px 80px;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+  }
+
+  .intro {
+    font-size: 22px;
+  }
+
+}
+</style>
+</head>
+
+<body>
+
+<div class="page">
+
+  <div class="back">
+    <a href="index.html">← Back to Workspace</a>
+  </div>
+
+  <section class="hero">
+
+    <div class="kicker">
+      How I Work
+    </div>
+
+    <h1>
+      Problem. Insight. Execution.
+    </h1>
+
+    <div class="intro">
+      Most teams move too quickly into execution. The better path is to understand the real problem, find the insight underneath it, and build work that can actually move.
+    </div>
+
+  </section>
+
+  <section class="steps">
+
+    <div class="step">
+      <div class="number">1</div>
+
+      <h2>Problem</h2>
+
+      <p>
+        What is actually happening beneath the surface? What friction, behavior, contradiction, or business tension is being ignored? Great work starts by naming the real problem.
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="number">2</div>
+
+      <h2>Insight</h2>
+
+      <p>
+        Insight is where strategy becomes emotionally true. It connects brand, audience, culture, and category into a simple idea people can feel.
+      </p>
+    </div>
+
+    <div class="step">
+      <div class="number">3</div>
+
+      <h2>Execution</h2>
+
+      <p>
+        Execution turns thinking into reality. Creative. Operational. Technical. The best ideas need systems strong enough to carry them into the world.
+      </p>
+    </div>
+
+  </section>
+
+  <section class="framework">
+
+    <h2>
+      AI should accelerate thinking. Not replace it.
+    </h2>
+
+    <p>
+      The strongest AI systems do not remove human judgment. They give better thinkers more leverage. They make research sharper, strategy clearer, creative development faster, and execution more connected.
+    </p>
+
+  </section>
+
+  <div class="footer">
+    <a href="work.html">
+      See ways to work together
+    </a>
+  </div>
+
+</div>
+
+</body>
+</html>
