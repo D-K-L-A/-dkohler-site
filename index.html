@@ -325,9 +325,26 @@ h1 {
 .contactBox {
   border-radius: 28px;
   border: 1px solid var(--line);
-  padding: 44px 28px;
+  padding: 54px 28px;
   background: rgba(255,255,255,0.04);
   text-align: center;
+}
+
+.contactBox h2 {
+  margin-top: 0;
+}
+
+.emailLine {
+  margin-top: 18px;
+  color: rgba(255,255,255,0.72);
+  font-size: 18px;
+}
+
+.emailLine a {
+  color: white;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 @media(max-width:900px) {
@@ -356,9 +373,9 @@ h1 {
 
   <nav class="nav">
     <a href="#workspace">Workspace</a>
-    <a href="#work">Work with me</a>
-    <a href="#about">About</a>
-    <a href="#contact">Contact</a>
+    <a href="work.html">Work with me</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
   </nav>
 </header>
 
@@ -373,7 +390,7 @@ h1 {
 
   <div class="ctaRow">
     <a class="btn" href="#workspace">Enter my workspace</a>
-    <a class="btn btnSecondary" href="#contact">Contact</a>
+    <a class="btn btnSecondary" href="mailto:kohdan@gmail.com?subject=Let%27s%20talk">Contact</a>
   </div>
 </section>
 
@@ -382,14 +399,14 @@ h1 {
 
     <img class="sceneImage" src="workspace.jpg" alt="Dan Kohler workspace">
 
-    <a class="hotspot pinboardZone" href="https://xtrabold.agency/" target="_blank" aria-label="XTRABOLD AI"></a>
-    <a class="hotspot machineZone" href="https://xtrabold.agency/machine/" target="_blank" aria-label="THE MACHINE™"></a>
-    <a class="hotspot aboutZone" href="#about" aria-label="About Dan"></a>
+    <a class="hotspot pinboardZone" href="https://xtrabold.agency/" target="_blank" rel="noopener noreferrer" aria-label="XTRABOLD AI"></a>
+    <a class="hotspot machineZone" href="https://xtrabold.agency/machine/" target="_blank" rel="noopener noreferrer" aria-label="THE MACHINE™"></a>
+    <a class="hotspot aboutZone" href="about.html" aria-label="About Dan"></a>
     <a class="hotspot dogsZone" href="dogs.html" aria-label="Dolly and Belle"></a>
-    <a class="hotspot workZone" href="#work" aria-label="Work with me"></a>
-    <a class="hotspot contactZone" href="#contact" aria-label="Contact"></a>
-    <a class="hotspot processZone" href="#work" aria-label="How I work"></a>
-    <a class="hotspot linkedinZone" href="https://www.linkedin.com/in/kohlerdan/" target="_blank" aria-label="LinkedIn"></a>
+    <a class="hotspot workZone" href="work.html" aria-label="Work with me"></a>
+    <a class="hotspot contactZone" href="mailto:kohdan@gmail.com?subject=Let%27s%20talk" aria-label="Contact"></a>
+    <a class="hotspot processZone" href="process.html" aria-label="How I work"></a>
+    <a class="hotspot linkedinZone" href="https://www.linkedin.com/in/kohlerdan/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"></a>
 
   </div>
 
@@ -403,21 +420,11 @@ h1 {
     <div class="panel">
       <small>How to use the workspace</small>
       <p class="note">
-        Click the objects in the image. The pinboard opens XTRABOLD AI. The computer opens THE MACHINE™. The keys explain the process. The pen tray opens contact. The dog unlocks Dolly and Belle.
+        Click the objects in the image. The pinboard opens XTRABOLD AI. The computer opens THE MACHINE™. The keys explain the process. The pen tray opens email. The dog unlocks Dolly and Belle.
       </p>
     </div>
   </section>
 </main>
-
-<section class="section" id="about">
-  <div class="kicker">About</div>
-
-  <h2>Operator. Builder. Teacher. Founder.</h2>
-
-  <p class="sectionText">
-    I’m Dan Kohler. I build sharper strategy, stronger creative systems, and practical AI workflows for companies that want to move faster without lowering their standards.
-  </p>
-</section>
 
 <section class="section" id="work">
   <div class="kicker">Work with me</div>
@@ -448,15 +455,17 @@ h1 {
 
 <section class="section" id="contact">
   <div class="contactBox">
-    <div class="kicker">Contact</div>
-
     <h2>Bring me the hard problem.</h2>
 
     <p class="sectionText" style="margin-left:auto;margin-right:auto;">
       AI strategy. Creative transformation. Workflow design. Advisory. New ventures.
     </p>
 
-    <a class="btn" href="mailto:kohdan@gmail.com">Start the conversation</a>
+    <a class="btn" href="mailto:kohdan@gmail.com?subject=Let%27s%20talk">Start the conversation</a>
+
+    <div class="emailLine">
+      Or email me directly at <a href="mailto:kohdan@gmail.com">kohdan@gmail.com</a>
+    </div>
   </div>
 </section>
 
