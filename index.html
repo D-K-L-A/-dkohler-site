@@ -8,7 +8,6 @@
 <style>
 :root {
   --bg: #0d0d0d;
-  --panel: #151515;
   --white: #ffffff;
   --gray: rgba(255,255,255,0.68);
   --line: rgba(255,255,255,0.14);
@@ -170,18 +169,13 @@ h1 {
   background: rgba(255,255,255,0);
   cursor: pointer;
   transition: 0.2s ease;
+  display: block;
 }
 
 .hotspot:hover {
   border-color: rgba(255,255,255,0.65);
   background: rgba(255,255,255,0.06);
   box-shadow: 0 0 40px rgba(255,255,255,0.16);
-}
-
-.hotspot.active {
-  border-color: rgba(255,47,146,0.95);
-  background: rgba(255,47,146,0.10);
-  box-shadow: 0 0 50px rgba(255,47,146,0.24);
 }
 
 .pinboardZone {
@@ -355,7 +349,6 @@ h1 {
 <div class="wrap">
 
 <header class="topbar">
-
   <div class="brand">
     <small>Dan Kohler</small>
     <strong>Workspace</strong>
@@ -367,18 +360,12 @@ h1 {
     <a href="#about">About</a>
     <a href="#contact">Contact</a>
   </nav>
-
 </header>
 
 <section class="hero">
+  <div class="kicker">Strategy, creative, and AI systems</div>
 
-  <div class="kicker">
-    Strategy, creative, and AI systems
-  </div>
-
-  <h1>
-    I help companies see better ideas before they commit to them.
-  </h1>
+  <h1>I help companies see better ideas before they commit to them.</h1>
 
   <p class="subhead">
     Strategy. Creative. AI systems. Connected into one flow that improves how work actually gets done.
@@ -388,131 +375,89 @@ h1 {
     <a class="btn" href="#workspace">Enter my workspace</a>
     <a class="btn btnSecondary" href="#contact">Contact</a>
   </div>
-
 </section>
 
 <main id="workspace" class="sceneShell">
-
   <div class="sceneWrap">
 
-    <img
-      class="sceneImage"
-      src="workspace.jpg"
-      alt="Dan Kohler workspace"
-    >
+    <img class="sceneImage" src="workspace.jpg" alt="Dan Kohler workspace">
 
-    <button class="hotspot pinboardZone active"></button>
-    <button class="hotspot machineZone"></button>
-    <button class="hotspot aboutZone"></button>
-    <button class="hotspot dogsZone"></button>
-    <button class="hotspot workZone"></button>
-    <button class="hotspot contactZone"></button>
-    <button class="hotspot processZone"></button>
-    <button class="hotspot linkedinZone"></button>
+    <a class="hotspot pinboardZone" href="https://xtrabold.agency/" target="_blank" aria-label="XTRABOLD AI"></a>
+    <a class="hotspot machineZone" href="https://xtrabold.agency/machine/" target="_blank" aria-label="THE MACHINE™"></a>
+    <a class="hotspot aboutZone" href="#about" aria-label="About Dan"></a>
+    <a class="hotspot dogsZone" href="dogs.html" aria-label="Dolly and Belle"></a>
+    <a class="hotspot workZone" href="#work" aria-label="Work with me"></a>
+    <a class="hotspot contactZone" href="#contact" aria-label="Contact"></a>
+    <a class="hotspot processZone" href="#work" aria-label="How I work"></a>
+    <a class="hotspot linkedinZone" href="https://www.linkedin.com/in/kohlerdan/" target="_blank" aria-label="LinkedIn"></a>
 
   </div>
 
   <section class="panelGrid">
-
     <div class="panel">
-
       <small>Agency</small>
-
       <h2>XTRABOLD AI</h2>
-
-      <p>
-        A next generation creative partner built to make ideas visible before teams commit to them.
-      </p>
-
+      <p>A next generation creative partner built to make ideas visible before teams commit to them.</p>
     </div>
 
     <div class="panel">
-
       <small>How to use the workspace</small>
-
       <p class="note">
-        Click the objects in the image. The pinboard opens XTRABOLD AI. The computer opens THE MACHINE™. The keys explain the process. The pen tray opens contact.
+        Click the objects in the image. The pinboard opens XTRABOLD AI. The computer opens THE MACHINE™. The keys explain the process. The pen tray opens contact. The dog unlocks Dolly and Belle.
       </p>
-
     </div>
-
   </section>
-
 </main>
 
 <section class="section" id="about">
-
   <div class="kicker">About</div>
 
-  <h2>
-    Operator. Builder. Teacher. Founder.
-  </h2>
+  <h2>Operator. Builder. Teacher. Founder.</h2>
 
   <p class="sectionText">
     I’m Dan Kohler. I build sharper strategy, stronger creative systems, and practical AI workflows for companies that want to move faster without lowering their standards.
   </p>
-
 </section>
 
 <section class="section" id="work">
-
   <div class="kicker">Work with me</div>
 
-  <h2>
-    Structured ways to work together.
-  </h2>
+  <h2>Structured ways to work together.</h2>
 
   <p class="sectionText">
     Strategy meets execution. Clear engagements. Practical systems. Real outcomes.
   </p>
 
   <div class="workGrid">
-
     <div class="card">
       <h3>For brands</h3>
-      <p>
-        Connect strategy, creative, and execution into one flow.
-      </p>
+      <p>Connect strategy, creative, and execution into one flow.</p>
     </div>
 
     <div class="card">
       <h3>For agencies</h3>
-      <p>
-        Standardize how great thinking happens without reducing creativity.
-      </p>
+      <p>Standardize how great thinking happens without reducing creativity.</p>
     </div>
 
     <div class="card">
       <h3>For partnerships</h3>
-      <p>
-        Advisory, workshops, speaking, and new ventures.
-      </p>
+      <p>Advisory, workshops, speaking, and new ventures.</p>
     </div>
-
   </div>
-
 </section>
 
 <section class="section" id="contact">
-
   <div class="contactBox">
-
     <div class="kicker">Contact</div>
 
-    <h2>
-      Bring me the hard problem.
-    </h2>
+    <h2>Bring me the hard problem.</h2>
 
     <p class="sectionText" style="margin-left:auto;margin-right:auto;">
       AI strategy. Creative transformation. Workflow design. Advisory. New ventures.
     </p>
 
-    <a class="btn" href="mailto:kohdan@gmail.com">
-      Start the conversation
-    </a>
-
+    <a class="btn" href="mailto:kohdan@gmail.com">Start the conversation</a>
   </div>
-
 </section>
 
 </div>
