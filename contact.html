@@ -22,7 +22,7 @@ body {
   margin: 0;
   background: var(--bg);
   color: var(--white);
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 .page {
@@ -91,10 +91,58 @@ h1 {
   margin-bottom: 30px;
 }
 
+form {
+  display: grid;
+  gap: 16px;
+  margin-top: 28px;
+}
+
+label {
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  font-weight: 800;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255,255,255,0.06);
+  color: white;
+  padding: 16px;
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+button {
+  width: fit-content;
+  border: none;
+  border-radius: 999px;
+  padding: 15px 24px;
+  background: white;
+  color: black;
+  font-size: 16px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+button:hover {
+  transform: translateY(-1px);
+}
+
 .links {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
+  margin-top: 24px;
 }
 
 .links a {
@@ -103,15 +151,10 @@ h1 {
   justify-content: center;
   padding: 14px 22px;
   border-radius: 999px;
-  background: white;
-  color: black;
-  text-decoration: none;
-  font-weight: 800;
-}
-
-.links a.secondary {
   background: rgba(255,255,255,0.08);
   color: white;
+  text-decoration: none;
+  font-weight: 800;
   border: 1px solid var(--line);
 }
 
@@ -123,6 +166,12 @@ h1 {
   color: var(--gray);
   font-size: 21px;
   line-height: 1.6;
+}
+
+.emailText {
+  margin-top: 24px;
+  color: rgba(255,255,255,0.6);
+  font-size: 18px;
 }
 
 @media (max-width: 800px) {
@@ -148,7 +197,7 @@ h1 {
 <div class="page">
 
   <div class="back">
-    <a href="index.html">← Back to Workspace</a>
+    <a href="index.html">Back to Workspace</a>
   </div>
 
   <section class="hero">
@@ -174,17 +223,40 @@ h1 {
     </h2>
 
     <p>
-      If you are thinking about AI strategy, creative transformation, workflow design, advisory, workshops, or a new venture, send me a note.
+      Tell me what you are building, what is broken, or what everyone else is missing.
     </p>
 
-    <div class="links">
-      <a href="mailto:kohdan@gmail.com">
-        Email Dan
-      </a>
+    <form action="https://formspree.io/f/mbdqnknv" method="POST">
 
-      <a class="secondary" href="https://www.linkedin.com/in/kohlerdan/" target="_blank" rel="noopener noreferrer">
+      <div>
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" required>
+      </div>
+
+      <div>
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required>
+      </div>
+
+      <div>
+        <label for="message">What problem are you trying to solve?</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+
+      <button type="submit">
+        Send message
+      </button>
+
+    </form>
+
+    <div class="links">
+      <a href="https://www.linkedin.com/in/kohlerdan/" target="_blank" rel="noopener noreferrer">
         LinkedIn
       </a>
+    </div>
+
+    <div class="emailText">
+      Or email me directly at kohdan@gmail.com
     </div>
 
   </section>
