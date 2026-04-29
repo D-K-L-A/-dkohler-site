@@ -466,6 +466,74 @@ h1 {
   line-height: 1.5;
 }
 
+.siteFooter {
+  margin-top: 96px;
+  padding-top: 34px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 28px;
+  color: rgba(255,255,255,0.58);
+}
+
+.footerBrand small {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  font-weight: 900;
+}
+
+.footerBrand strong {
+  display: block;
+  margin-top: 8px;
+  color: white;
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.footerBrand p {
+  margin: 16px 0 0;
+  max-width: 520px;
+  color: rgba(255,255,255,0.58);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: flex-end;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footerLinks a {
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 999px;
+  padding: 10px 14px;
+  color: rgba(255,255,255,0.76);
+  background: rgba(255,255,255,0.035);
+  font-size: 14px;
+  font-weight: 800;
+  transition: 0.2s ease;
+}
+
+.footerLinks a:hover {
+  background: white;
+  color: black;
+  transform: translateY(-1px);
+}
+
+.footerBottom {
+  grid-column: 1 / -1;
+  color: rgba(255,255,255,0.38);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
 @media(max-width:900px) {
 
   .wrap {
@@ -497,7 +565,8 @@ h1 {
   }
 
   .panelGrid,
-  .workGrid {
+  .workGrid,
+  .siteFooter {
     grid-template-columns: 1fr;
   }
 
@@ -523,6 +592,10 @@ h1 {
 
   .mobileHint {
     display: block;
+  }
+
+  .footerLinks {
+    justify-content: flex-start;
   }
 }
 
@@ -590,6 +663,10 @@ h1 {
 
   .contactBox h2 {
     font-size: 38px;
+  }
+
+  .footerBrand strong {
+    font-size: 28px;
   }
 }
 
@@ -758,6 +835,33 @@ h1 {
   </div>
 
 </section>
+
+<footer class="siteFooter">
+
+  <div class="footerBrand">
+    <small>Dan Kohler</small>
+    <strong>Strategy. Creative Systems. AI Transformation.</strong>
+    <p>
+      Built around clarity, creative intelligence, practical AI adoption, and the belief that great thinking still matters.
+    </p>
+  </div>
+
+  <nav class="footerLinks" aria-label="Footer navigation">
+    <a href="about.html">About</a>
+    <a href="process.html">Process</a>
+    <a href="work.html">Work</a>
+    <a href="contact.html">Contact</a>
+    <a href="dogs.html">Dolly and Belle</a>
+    <a href="https://xtrabold.agency/" target="_blank" rel="noopener noreferrer">XTRABOLD AI</a>
+    <a href="https://xtrabold.agency/machine/" target="_blank" rel="noopener noreferrer">THE MACHINE™</a>
+    <a href="https://www.linkedin.com/in/kohlerdan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </nav>
+
+  <div class="footerBottom">
+    © 2026 Dan Kohler. Built as a personal creative workspace.
+  </div>
+
+</footer>
 
 </div>
 
