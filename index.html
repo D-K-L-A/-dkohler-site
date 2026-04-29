@@ -45,20 +45,24 @@ body {
     var(--bg);
   color: var(--white);
   font-family: Arial, Helvetica, sans-serif;
-  animation: pageFade 0.8s ease both;
   overflow-x: hidden;
 }
 
-@keyframes pageFade {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 20%), rgba(255,255,255,0.09), transparent 18%),
+    radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 20%), rgba(255,47,146,0.10), transparent 28%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+body.hasMouse::before {
+  opacity: 1;
 }
 
 a {
@@ -67,6 +71,8 @@ a {
 }
 
 .wrap {
+  position: relative;
+  z-index: 1;
   max-width: 1280px;
   margin: 0 auto;
   padding: 28px 20px 80px;
@@ -81,6 +87,18 @@ a {
 .reveal.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+.delayOne {
+  transition-delay: 0.12s;
+}
+
+.delayTwo {
+  transition-delay: 0.24s;
+}
+
+.delayThree {
+  transition-delay: 0.36s;
 }
 
 .topbar {
@@ -125,7 +143,8 @@ a {
   transition: 0.28s ease;
 }
 
-.nav a:hover {
+.nav a:hover,
+.nav a.active {
   background: white;
   color: black;
   transform: translateY(-2px);
@@ -225,11 +244,11 @@ h1 {
   height: 100%;
   object-fit: cover;
   display: block;
+  will-change: transform;
   transition: transform 1.2s ease, filter 1.2s ease;
 }
 
 .sceneWrap:hover .sceneImage {
-  transform: scale(1.012);
   filter: brightness(1.04) contrast(1.04);
 }
 
@@ -560,6 +579,10 @@ h1 {
 
 @media(max-width:900px) {
 
+  body::before {
+    display: none;
+  }
+
   .wrap {
     padding: 22px 16px 70px;
   }
@@ -715,14 +738,14 @@ h1 {
   </div>
 
   <nav class="nav">
-    <a href="#workspace">Workspace</a>
+    <a class="active" href="#workspace">Workspace</a>
     <a href="work.html">Work with me</a>
     <a href="about.html">About</a>
     <a href="contact.html">Contact</a>
   </nav>
 </header>
 
-<section class="hero reveal">
+<section class="hero reveal delayOne">
   <div class="kicker">Strategy, creative, and AI systems</div>
 
   <h1>I help companies see better ideas before they commit to them.</h1>
@@ -737,7 +760,7 @@ h1 {
   </div>
 </section>
 
-<main id="workspace" class="sceneShell reveal">
+<main id="workspace" class="sceneShell reveal delayTwo">
 
   <div class="sceneWrap">
 
@@ -905,6 +928,29 @@ const revealObserver = new IntersectionObserver((entries) => {
 revealItems.forEach((item) => {
   revealObserver.observe(item);
 });
+
+window.addEventListener("pointermove", (event) => {
+  document.body.classList.add("hasMouse");
+  document.body.style.setProperty("--mouse-x", event.clientX + "px");
+  document.body.style.setProperty("--mouse-y", event.clientY + "px");
+});
+
+const sceneImage = document.querySelector(".sceneImage");
+const sceneWrap = document.querySelector(".sceneWrap");
+
+if (sceneImage && sceneWrap) {
+  sceneWrap.addEventListener("pointermove", (event) => {
+    const rect = sceneWrap.getBoundingClientRect();
+    const x = (event.clientX - rect.left) / rect.width - 0.5;
+    const y = (event.clientY - rect.top) / rect.height - 0.5;
+
+    sceneImage.style.transform = `scale(1.018) translate(${x * 10}px, ${y * 8}px)`;
+  });
+
+  sceneWrap.addEventListener("pointerleave", () => {
+    sceneImage.style.transform = "scale(1)";
+  });
+}
 </script>
 
 </body>
