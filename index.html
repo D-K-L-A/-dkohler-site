@@ -46,6 +46,7 @@ body {
   color: var(--white);
   font-family: Arial, Helvetica, sans-serif;
   animation: pageFade 0.8s ease both;
+  overflow-x: hidden;
 }
 
 @keyframes pageFade {
@@ -68,14 +69,14 @@ a {
 .wrap {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 34px 22px 80px;
+  padding: 28px 20px 80px;
 }
 
 .topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 52px;
+  margin-bottom: 48px;
   gap: 20px;
 }
 
@@ -140,7 +141,7 @@ a {
 
 h1 {
   margin: 26px 0 0;
-  font-size: clamp(54px, 7vw, 94px);
+  font-size: clamp(52px, 7vw, 94px);
   line-height: 0.92;
   letter-spacing: -0.07em;
   font-weight: 950;
@@ -457,10 +458,42 @@ h1 {
   font-weight: 800;
 }
 
+.mobileHint {
+  display: none;
+  margin-top: 18px;
+  color: rgba(255,255,255,0.56);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
 @media(max-width:900px) {
+
+  .wrap {
+    padding: 22px 16px 70px;
+  }
+
   .topbar {
     flex-direction: column;
     align-items: flex-start;
+    margin-bottom: 34px;
+  }
+
+  .nav {
+    width: 100%;
+  }
+
+  .nav a {
+    flex: 1;
+    text-align: center;
+    min-width: 110px;
+  }
+
+  h1 {
+    font-size: 48px;
+  }
+
+  .subhead {
+    font-size: 20px;
   }
 
   .panelGrid,
@@ -468,8 +501,95 @@ h1 {
     grid-template-columns: 1fr;
   }
 
+  .sceneShell {
+    border-radius: 22px;
+  }
+
+  .panel {
+    min-height: auto;
+  }
+
+  .contactBox {
+    padding: 42px 20px;
+  }
+
+  .section {
+    margin-top: 72px;
+  }
+
   .hotspot::after {
     display: none;
+  }
+
+  .mobileHint {
+    display: block;
+  }
+}
+
+@media(max-width:640px) {
+
+  .hero {
+    margin-bottom: 28px;
+  }
+
+  .kicker {
+    font-size: 11px;
+    padding: 9px 13px;
+  }
+
+  h1 {
+    font-size: 42px;
+    line-height: 0.95;
+  }
+
+  .subhead {
+    font-size: 18px;
+  }
+
+  .ctaRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .sceneWrap {
+    aspect-ratio: 1 / 1.1;
+  }
+
+  .panelGrid {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .panel {
+    padding: 22px;
+  }
+
+  .panel h2 {
+    font-size: 36px;
+  }
+
+  .section h2 {
+    font-size: 42px;
+  }
+
+  .sectionText {
+    font-size: 18px;
+  }
+
+  .card h3 {
+    font-size: 24px;
+  }
+
+  .card p {
+    font-size: 17px;
+  }
+
+  .contactBox h2 {
+    font-size: 38px;
   }
 }
 
@@ -517,86 +637,126 @@ h1 {
 </section>
 
 <main id="workspace" class="sceneShell">
+
   <div class="sceneWrap">
 
     <img class="sceneImage" src="workspace.jpg" alt="Dan Kohler workspace">
 
     <a class="hotspot pinboardZone" href="https://xtrabold.agency/" target="_blank" rel="noopener noreferrer" aria-label="XTRABOLD AI" data-label="XTRABOLD AI"></a>
+
     <a class="hotspot machineZone" href="https://xtrabold.agency/machine/" target="_blank" rel="noopener noreferrer" aria-label="THE MACHINE™" data-label="THE MACHINE™"></a>
+
     <a class="hotspot aboutZone" href="about.html" aria-label="About Dan" data-label="About"></a>
+
     <a class="hotspot dogsZone" href="dogs.html" aria-label="Dolly and Belle" data-label="Dolly and Belle"></a>
+
     <a class="hotspot workZone" href="work.html" aria-label="Work with me" data-label="Work"></a>
+
     <a class="hotspot contactZone" href="contact.html" aria-label="Contact" data-label="Contact"></a>
+
     <a class="hotspot processZone" href="process.html" aria-label="How I work" data-label="Process"></a>
+
     <a class="hotspot linkedinZone" href="https://www.linkedin.com/in/kohlerdan/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-label="LinkedIn"></a>
 
   </div>
 
+  <div class="mobileHint">
+    On mobile, tap the objects inside the workspace image to explore different sections.
+  </div>
+
   <section class="panelGrid">
+
     <a class="panel panelLink" href="https://xtrabold.agency/" target="_blank" rel="noopener noreferrer">
       <small>Agency</small>
       <h2>XTRABOLD AI</h2>
-      <p>A next generation creative partner built to make ideas visible before teams commit to them.</p>
+      <p>
+        A next generation creative partner built to make ideas visible before teams commit to them.
+      </p>
       <span class="panelButton">Visit XTRABOLD AI</span>
     </a>
 
     <a class="panel panelLink" href="https://xtrabold.agency/machine/" target="_blank" rel="noopener noreferrer">
       <small>Platform</small>
       <h2>THE MACHINE™</h2>
-      <p>A connected AI workflow system for strategy, copy, design, video, and execution.</p>
+      <p>
+        A connected AI workflow system for strategy, copy, design, video, and execution.
+      </p>
       <span class="panelButton">Explore THE MACHINE™</span>
     </a>
 
     <div class="panel">
       <small>How to use the workspace</small>
+
       <p class="note">
         Click the objects in the image. The pinboard opens XTRABOLD AI. The computer opens THE MACHINE™. The keys explain the process. The pen tray opens contact. The dog unlocks Dolly and Belle.
       </p>
     </div>
+
   </section>
+
 </main>
 
 <section class="section" id="work">
+
   <div class="kicker">Work with me</div>
 
-  <h2>Structured ways to work together.</h2>
+  <h2>
+    Structured ways to work together.
+  </h2>
 
   <p class="sectionText">
     Strategy meets execution. Clear engagements. Practical systems. Real outcomes.
   </p>
 
   <div class="workGrid">
+
     <div class="card">
       <h3>For brands</h3>
-      <p>Connect strategy, creative, and execution into one flow.</p>
+      <p>
+        Connect strategy, creative, and execution into one flow.
+      </p>
     </div>
 
     <div class="card">
       <h3>For agencies</h3>
-      <p>Standardize how great thinking happens without reducing creativity.</p>
+      <p>
+        Standardize how great thinking happens without reducing creativity.
+      </p>
     </div>
 
     <div class="card">
       <h3>For partnerships</h3>
-      <p>Advisory, workshops, speaking, and new ventures.</p>
+      <p>
+        Advisory, workshops, speaking, and new ventures.
+      </p>
     </div>
+
   </div>
+
 </section>
 
 <section class="section" id="contact">
+
   <div class="contactBox">
-    <h2>Bring me the hard problem.</h2>
+
+    <h2>
+      Bring me the hard problem.
+    </h2>
 
     <p class="sectionText" style="margin-left:auto;margin-right:auto;">
       AI strategy. Creative transformation. Workflow design. Advisory. New ventures.
     </p>
 
-    <a class="btn" href="contact.html">Start the conversation</a>
+    <a class="btn" href="contact.html">
+      Start the conversation
+    </a>
 
     <div class="emailLine">
       Or email me directly at <span>kohdan@gmail.com</span>
     </div>
+
   </div>
+
 </section>
 
 </div>
