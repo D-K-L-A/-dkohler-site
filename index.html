@@ -24,9 +24,25 @@ html {
 
 body {
   margin: 0;
-  background: var(--bg);
+  background:
+    radial-gradient(circle at 20% 8%, rgba(255,47,146,0.12), transparent 32%),
+    radial-gradient(circle at 80% 12%, rgba(255,255,255,0.08), transparent 30%),
+    var(--bg);
   color: var(--white);
   font-family: Arial, Helvetica, sans-serif;
+  animation: pageFade 0.8s ease both;
+}
+
+@keyframes pageFade {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 a {
@@ -79,6 +95,13 @@ a {
   font-weight: 800;
   background: rgba(255,255,255,0.04);
   color: rgba(255,255,255,0.84);
+  transition: 0.22s ease;
+}
+
+.nav a:hover {
+  background: white;
+  color: black;
+  transform: translateY(-1px);
 }
 
 .hero {
@@ -132,6 +155,12 @@ h1 {
   font-weight: 900;
   background: var(--white);
   color: #000;
+  transition: 0.22s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 18px 40px rgba(255,255,255,0.14);
 }
 
 .btnSecondary {
@@ -153,6 +182,7 @@ h1 {
   position: relative;
   width: 100%;
   aspect-ratio: 16 / 9;
+  overflow: hidden;
 }
 
 .sceneImage {
@@ -160,6 +190,12 @@ h1 {
   height: 100%;
   object-fit: cover;
   display: block;
+  transition: transform 1.2s ease, filter 1.2s ease;
+}
+
+.sceneWrap:hover .sceneImage {
+  transform: scale(1.012);
+  filter: brightness(1.04) contrast(1.04);
 }
 
 .hotspot {
@@ -168,14 +204,41 @@ h1 {
   border: 2px solid transparent;
   background: rgba(255,255,255,0);
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: 0.22s ease;
   display: block;
 }
 
 .hotspot:hover {
-  border-color: rgba(255,255,255,0.65);
-  background: rgba(255,255,255,0.06);
-  box-shadow: 0 0 40px rgba(255,255,255,0.16);
+  border-color: rgba(255,255,255,0.72);
+  background: rgba(255,255,255,0.07);
+  box-shadow: 0 0 44px rgba(255,255,255,0.18), 0 0 48px rgba(255,47,146,0.18);
+}
+
+.hotspot::after {
+  content: attr(data-label);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 10px);
+  transform: translateX(-50%) translateY(6px);
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  border-radius: 999px;
+  padding: 9px 13px;
+  background: rgba(12,12,12,0.82);
+  border: 1px solid rgba(255,255,255,0.22);
+  color: white;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 900;
+  backdrop-filter: blur(12px);
+  transition: 0.22s ease;
+}
+
+.hotspot:hover::after {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
 }
 
 .pinboardZone {
@@ -247,6 +310,12 @@ h1 {
   border-radius: 24px;
   padding: 28px;
   background: rgba(255,255,255,0.04);
+  transition: 0.22s ease;
+}
+
+.panel:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255,255,255,0.25);
 }
 
 .panel small {
@@ -308,6 +377,12 @@ h1 {
   border: 1px solid var(--line);
   padding: 26px;
   background: rgba(255,255,255,0.04);
+  transition: 0.22s ease;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255,255,255,0.25);
 }
 
 .card h3 {
@@ -340,11 +415,9 @@ h1 {
   font-size: 18px;
 }
 
-.emailLine a {
+.emailLine span {
   color: white;
   font-weight: 800;
-  text-decoration: underline;
-  text-underline-offset: 4px;
 }
 
 @media(max-width:900px) {
@@ -356,6 +429,18 @@ h1 {
   .panelGrid,
   .workGrid {
     grid-template-columns: 1fr;
+  }
+
+  .hotspot::after {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+    scroll-behavior: auto !important;
   }
 }
 </style>
@@ -399,14 +484,14 @@ h1 {
 
     <img class="sceneImage" src="workspace.jpg" alt="Dan Kohler workspace">
 
-    <a class="hotspot pinboardZone" href="https://xtrabold.agency/" target="_blank" rel="noopener noreferrer" aria-label="XTRABOLD AI"></a>
-    <a class="hotspot machineZone" href="https://xtrabold.agency/machine/" target="_blank" rel="noopener noreferrer" aria-label="THE MACHINE™"></a>
-    <a class="hotspot aboutZone" href="about.html" aria-label="About Dan"></a>
-    <a class="hotspot dogsZone" href="dogs.html" aria-label="Dolly and Belle"></a>
-    <a class="hotspot workZone" href="work.html" aria-label="Work with me"></a>
-    <a class="hotspot contactZone" href="contact.html" aria-label="Contact"></a>
-    <a class="hotspot processZone" href="process.html" aria-label="How I work"></a>
-    <a class="hotspot linkedinZone" href="https://www.linkedin.com/in/kohlerdan/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"></a>
+    <a class="hotspot pinboardZone" href="https://xtrabold.agency/" target="_blank" rel="noopener noreferrer" aria-label="XTRABOLD AI" data-label="XTRABOLD AI"></a>
+    <a class="hotspot machineZone" href="https://xtrabold.agency/machine/" target="_blank" rel="noopener noreferrer" aria-label="THE MACHINE™" data-label="THE MACHINE™"></a>
+    <a class="hotspot aboutZone" href="about.html" aria-label="About Dan" data-label="About"></a>
+    <a class="hotspot dogsZone" href="dogs.html" aria-label="Dolly and Belle" data-label="Dolly and Belle"></a>
+    <a class="hotspot workZone" href="work.html" aria-label="Work with me" data-label="Work"></a>
+    <a class="hotspot contactZone" href="contact.html" aria-label="Contact" data-label="Contact"></a>
+    <a class="hotspot processZone" href="process.html" aria-label="How I work" data-label="Process"></a>
+    <a class="hotspot linkedinZone" href="https://www.linkedin.com/in/kohlerdan/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" data-label="LinkedIn"></a>
 
   </div>
 
@@ -464,7 +549,7 @@ h1 {
     <a class="btn" href="contact.html">Start the conversation</a>
 
     <div class="emailLine">
-      Or email me directly at <a href="mailto:kohdan@gmail.com">kohdan@gmail.com</a>
+      Or email me directly at <span>kohdan@gmail.com</span>
     </div>
   </div>
 </section>
