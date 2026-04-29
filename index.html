@@ -1,361 +1,475 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Dan Kohler</title>
 
-  <title>Dan Kohler</title>
+<style>
+:root {
+  --bg: #0d0d0d;
+  --white: #ffffff;
+  --gray: rgba(255,255,255,0.68);
+  --line: rgba(255,255,255,0.14);
+  --pink: #ff2f92;
+}
 
-  <style>
-    :root {
-      --bg: #0d0d0d;
-      --panel: #151515;
-      --white: #ffffff;
-      --gray: rgba(255,255,255,0.68);
-      --line: rgba(255,255,255,0.14);
-      --pink: #ff2f92;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    * {
-      box-sizing: border-box;
-    }
+html {
+  scroll-behavior: smooth;
+}
 
-    html {
-      scroll-behavior: smooth;
-    }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+}
 
-    body {
-      margin: 0;
-      background: var(--bg);
-      color: var(--white);
-      font-family: Inter, Helvetica, Arial, sans-serif;
-      overflow-x: hidden;
-    }
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-    a {
-      text-decoration: none;
-      color: inherit;
-    }
+.wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 34px 22px 80px;
+}
 
-    .container {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 32px;
-    }
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 52px;
+  gap: 20px;
+}
 
-    .hero {
-      position: relative;
-      border-radius: 32px;
-      overflow: hidden;
-      border: 1px solid var(--line);
-      background: #111;
-    }
+.brand small {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
+  font-weight: 900;
+}
 
-    .hero img {
-      width: 100%;
-      display: block;
-    }
+.brand strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 34px;
+  line-height: 1;
+  font-weight: 950;
+}
 
-    .hotspot {
-      position: absolute;
-      border: 2px solid rgba(255,255,255,0.45);
-      border-radius: 24px;
-      transition: all 0.2s ease;
-      cursor: pointer;
-    }
+.nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
 
-    .hotspot:hover {
-      border-color: var(--pink);
-      box-shadow: 0 0 24px rgba(255,47,146,0.35);
-    }
+.nav a {
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  padding: 11px 16px;
+  font-size: 14px;
+  font-weight: 800;
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.84);
+}
 
-    .pinboard {
-      top: 6%;
-      left: 3%;
-      width: 34%;
-      height: 48%;
-    }
+.hero {
+  text-align: center;
+  max-width: 1080px;
+  margin: 0 auto 44px;
+}
 
-    .machine {
-      top: 47%;
-      left: 20%;
-      width: 40%;
-      height: 27%;
-    }
+.kicker {
+  display: inline-block;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 10px 16px;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.74);
+  font-weight: 900;
+}
 
-    .keys {
-      top: 73%;
-      left: 4%;
-      width: 25%;
-      height: 16%;
-    }
+h1 {
+  margin: 26px 0 0;
+  font-size: clamp(54px, 7vw, 94px);
+  line-height: 0.92;
+  letter-spacing: -0.07em;
+  font-weight: 950;
+}
 
-    .pens {
-      top: 70%;
-      left: 18%;
-      width: 16%;
-      height: 14%;
-    }
+.subhead {
+  max-width: 760px;
+  margin: 24px auto 0;
+  font-size: 22px;
+  line-height: 1.55;
+  color: var(--gray);
+}
 
-    .dog {
-      top: 39%;
-      left: 72%;
-      width: 12%;
-      height: 34%;
-      border-radius: 32px;
-    }
+.ctaRow {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
 
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
-      gap: 24px;
-      margin-top: 24px;
-    }
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 999px;
+  padding: 14px 22px;
+  font-weight: 900;
+  background: var(--white);
+  color: #000;
+}
 
-    .card {
-      background: var(--panel);
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 32px;
-    }
+.btnSecondary {
+  background: rgba(255,255,255,0.06);
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.16);
+}
 
-    .eyebrow {
-      color: rgba(255,255,255,0.55);
-      font-size: 13px;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-      font-weight: 700;
-    }
+.sceneShell {
+  margin-top: 54px;
+  border-radius: 28px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  background: #111;
+  box-shadow: 0 40px 120px rgba(0,0,0,0.5);
+}
 
-    h1 {
-      margin: 0;
-      font-size: clamp(54px,9vw,120px);
-      line-height: 0.9;
-      letter-spacing: -0.05em;
-    }
+.sceneWrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+}
 
-    h2 {
-      margin: 0 0 18px 0;
-      font-size: 52px;
-      line-height: 0.95;
-      letter-spacing: -0.05em;
-    }
+.sceneImage {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
 
-    h3 {
-      margin: 0 0 12px 0;
-      font-size: 24px;
-      line-height: 1.1;
-      letter-spacing: -0.03em;
-    }
+.hotspot {
+  position: absolute;
+  border-radius: 20px;
+  border: 2px solid transparent;
+  background: rgba(255,255,255,0);
+  cursor: pointer;
+  transition: 0.2s ease;
+  display: block;
+}
 
-    p {
-      margin: 0;
-      color: var(--gray);
-      font-size: 18px;
-      line-height: 1.6;
-    }
+.hotspot:hover {
+  border-color: rgba(255,255,255,0.65);
+  background: rgba(255,255,255,0.06);
+  box-shadow: 0 0 40px rgba(255,255,255,0.16);
+}
 
-    .section {
-      padding: 90px 0;
-    }
+.pinboardZone {
+  left: 3%;
+  top: 6%;
+  width: 34%;
+  height: 45%;
+}
 
-    .section-header {
-      margin-bottom: 42px;
-    }
+.machineZone {
+  left: 24%;
+  top: 43%;
+  width: 38%;
+  height: 34%;
+}
 
-    .section-header p {
-      max-width: 780px;
-      margin-top: 16px;
-    }
+.aboutZone {
+  left: 71%;
+  top: 8%;
+  width: 20%;
+  height: 35%;
+}
 
-    .button {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      padding: 18px 28px;
-      border-radius: 999px;
-      background: var(--white);
-      color: var(--bg);
-      font-weight: 700;
-      margin-top: 28px;
-      transition: transform 0.2s ease;
-    }
+.dogsZone {
+  left: 72%;
+  top: 40%;
+  width: 13%;
+  height: 33%;
+}
 
-    .button:hover {
-      transform: translateY(-2px);
-    }
+.workZone {
+  left: 82%;
+  top: 58%;
+  width: 15%;
+  height: 27%;
+}
 
-    .footer-cta {
-      margin-top: 48px;
-      text-align: center;
-      padding: 72px 32px;
-      border-radius: 36px;
-      background: var(--panel);
-      border: 1px solid var(--line);
-    }
+.contactZone {
+  left: 35.4%;
+  top: 82.2%;
+  width: 11%;
+  height: 12%;
+}
 
-    .footer-cta p {
-      margin-top: 18px;
-      margin-bottom: 28px;
-    }
+.processZone {
+  left: 3%;
+  top: 73%;
+  width: 22%;
+  height: 20%;
+}
 
-    @media (max-width: 768px) {
+.linkedinZone {
+  left: 52%;
+  top: 71%;
+  width: 24%;
+  height: 24%;
+}
 
-      .container {
-        padding: 18px;
-      }
+.panelGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 22px;
+  padding: 22px;
+  background: linear-gradient(180deg,#111,#0c0c0c);
+}
 
-      .card {
-        padding: 24px;
-      }
+.panel {
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 28px;
+  background: rgba(255,255,255,0.04);
+}
 
-      h2 {
-        font-size: 40px;
-      }
+.panel small {
+  display: block;
+  font-size: 13px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.54);
+  font-weight: 900;
+}
 
-      p {
-        font-size: 16px;
-      }
+.panel h2 {
+  margin: 12px 0 0;
+  font-size: clamp(34px,4vw,58px);
+  line-height: 0.98;
+  letter-spacing: -0.05em;
+}
 
-      .hotspot {
-        border-radius: 16px;
-      }
-    }
-  </style>
+.panel p {
+  margin: 16px 0 0;
+  font-size: 19px;
+  line-height: 1.6;
+  color: var(--gray);
+}
+
+.note {
+  font-size: 18px;
+  line-height: 1.65;
+  color: rgba(255,255,255,0.6);
+}
+
+.section {
+  margin-top: 90px;
+}
+
+.section h2 {
+  margin: 16px 0 0;
+  font-size: clamp(40px,5vw,70px);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.sectionText {
+  max-width: 860px;
+  font-size: 21px;
+  line-height: 1.62;
+  color: var(--gray);
+}
+
+.workGrid {
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  gap: 18px;
+  margin-top: 30px;
+}
+
+.card {
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  padding: 26px;
+  background: rgba(255,255,255,0.04);
+}
+
+.card h3 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.card p {
+  margin-top: 14px;
+  color: var(--gray);
+  line-height: 1.6;
+  font-size: 18px;
+}
+
+.contactBox {
+  border-radius: 28px;
+  border: 1px solid var(--line);
+  padding: 54px 28px;
+  background: rgba(255,255,255,0.04);
+  text-align: center;
+}
+
+.contactBox h2 {
+  margin-top: 0;
+}
+
+.emailLine {
+  margin-top: 18px;
+  color: rgba(255,255,255,0.72);
+  font-size: 18px;
+}
+
+.emailLine a {
+  color: white;
+  font-weight: 800;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+@media(max-width:900px) {
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .panelGrid,
+  .workGrid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
+<div class="wrap">
 
-    <section class="hero">
+<header class="topbar">
+  <div class="brand">
+    <small>Dan Kohler</small>
+    <strong>Workspace</strong>
+  </div>
 
-      <img src="workspace.jpg" alt="Dan Kohler Workspace" />
+  <nav class="nav">
+    <a href="#workspace">Workspace</a>
+    <a href="work.html">Work with me</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
 
-      <a href="https://xtrabold.agency" target="_blank" class="hotspot pinboard"></a>
+<section class="hero">
+  <div class="kicker">Strategy, creative, and AI systems</div>
 
-      <a href="https://welcometothemachine.ai" target="_blank" class="hotspot machine"></a>
+  <h1>I help companies see better ideas before they commit to them.</h1>
 
-      <a href="process.html" class="hotspot keys"></a>
+  <p class="subhead">
+    Strategy. Creative. AI systems. Connected into one flow that improves how work actually gets done.
+  </p>
 
-      <a href="contact.html" class="hotspot pens"></a>
+  <div class="ctaRow">
+    <a class="btn" href="#workspace">Enter my workspace</a>
+    <a class="btn btnSecondary" href="contact.html">Contact</a>
+  </div>
+</section>
 
-      <a href="dogs.html" class="hotspot dog"></a>
+<main id="workspace" class="sceneShell">
+  <div class="sceneWrap">
 
-    </section>
+    <img class="sceneImage" src="workspace.jpg" alt="Dan Kohler workspace">
 
-    <div class="grid">
-
-      <div class="card">
-        <div class="eyebrow">Agency</div>
-        <h2>XTRABOLD AI</h2>
-        <p>
-          A next generation creative partner built to make ideas visible before teams commit to them.
-        </p>
-      </div>
-
-      <div class="card">
-        <div class="eyebrow">How to use the workspace</div>
-        <p>
-          Click the objects in the image. The pinboard opens XTRABOLD AI. The computer opens THE MACHINE™. The keys explain the process. The pen tray opens contact.
-        </p>
-      </div>
-
-    </div>
-
-    <section class="section">
-
-      <div class="section-header">
-        <div class="eyebrow">About</div>
-        <h2>Strategy. Systems. Creative intelligence.</h2>
-        <p>
-          I help brands, agencies, and leadership teams navigate AI transformation through strategy, workflow design, creative systems, and operational thinking.
-        </p>
-      </div>
-
-      <div class="grid">
-
-        <a href="about.html" class="card">
-          <h3>About Dan</h3>
-          <p>
-            Experience across advertising, global marketing, AI systems, education, and transformation.
-          </p>
-        </a>
-
-        <a href="work.html" class="card">
-          <h3>Selected work</h3>
-          <p>
-            Creative leadership, systems thinking, AI integration, workshops, and strategic initiatives.
-          </p>
-        </a>
-
-        <a href="process.html" class="card">
-          <h3>The process</h3>
-          <p>
-            Information into insight. Insight into systems. Systems into creative execution.
-          </p>
-        </a>
-
-      </div>
-
-    </section>
-
-    <section class="section">
-
-      <div class="section-header">
-        <div class="eyebrow">Engagements</div>
-        <h2>Structured ways to work together.</h2>
-        <p>
-          Strategy meets execution. Clear engagements. Practical systems. Real outcomes.
-        </p>
-      </div>
-
-      <div class="grid">
-
-        <div class="card">
-          <h3>For brands</h3>
-          <p>
-            Connect strategy, creative, and execution into one flow.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>For agencies</h3>
-          <p>
-            Standardize how great thinking happens without reducing creativity.
-          </p>
-        </div>
-
-        <div class="card">
-          <h3>For partnerships</h3>
-          <p>
-            Advisory, workshops, speaking, and new ventures.
-          </p>
-        </div>
-
-      </div>
-
-      <div class="footer-cta">
-
-        <div class="eyebrow">Contact</div>
-
-        <h2>Bring me the hard problem.</h2>
-
-        <p>
-          AI strategy. Creative transformation. Workflow design. Advisory. New ventures.
-        </p>
-
-        <a href="contact.html" class="button">
-          Start the conversation
-        </a>
-
-      </div>
-
-    </section>
+    <a class="hotspot pinboardZone" href="https://xtrabold.agency/" target="_blank" rel="noopener noreferrer" aria-label="XTRABOLD AI"></a>
+    <a class="hotspot machineZone" href="https://xtrabold.agency/machine/" target="_blank" rel="noopener noreferrer" aria-label="THE MACHINE™"></a>
+    <a class="hotspot aboutZone" href="about.html" aria-label="About Dan"></a>
+    <a class="hotspot dogsZone" href="dogs.html" aria-label="Dolly and Belle"></a>
+    <a class="hotspot workZone" href="work.html" aria-label="Work with me"></a>
+    <a class="hotspot contactZone" href="contact.html" aria-label="Contact"></a>
+    <a class="hotspot processZone" href="process.html" aria-label="How I work"></a>
+    <a class="hotspot linkedinZone" href="https://www.linkedin.com/in/kohlerdan/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"></a>
 
   </div>
+
+  <section class="panelGrid">
+    <div class="panel">
+      <small>Agency</small>
+      <h2>XTRABOLD AI</h2>
+      <p>A next generation creative partner built to make ideas visible before teams commit to them.</p>
+    </div>
+
+    <div class="panel">
+      <small>How to use the workspace</small>
+      <p class="note">
+        Click the objects in the image. The pinboard opens XTRABOLD AI. The computer opens THE MACHINE™. The keys explain the process. The pen tray opens contact. The dog unlocks Dolly and Belle.
+      </p>
+    </div>
+  </section>
+</main>
+
+<section class="section" id="work">
+  <div class="kicker">Work with me</div>
+
+  <h2>Structured ways to work together.</h2>
+
+  <p class="sectionText">
+    Strategy meets execution. Clear engagements. Practical systems. Real outcomes.
+  </p>
+
+  <div class="workGrid">
+    <div class="card">
+      <h3>For brands</h3>
+      <p>Connect strategy, creative, and execution into one flow.</p>
+    </div>
+
+    <div class="card">
+      <h3>For agencies</h3>
+      <p>Standardize how great thinking happens without reducing creativity.</p>
+    </div>
+
+    <div class="card">
+      <h3>For partnerships</h3>
+      <p>Advisory, workshops, speaking, and new ventures.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="contact">
+  <div class="contactBox">
+    <h2>Bring me the hard problem.</h2>
+
+    <p class="sectionText" style="margin-left:auto;margin-right:auto;">
+      AI strategy. Creative transformation. Workflow design. Advisory. New ventures.
+    </p>
+
+    <a class="btn" href="contact.html">Start the conversation</a>
+
+    <div class="emailLine">
+      Or email me directly at <a href="mailto:kohdan@gmail.com">kohdan@gmail.com</a>
+    </div>
+  </div>
+</section>
+
+</div>
 
 </body>
 </html>
