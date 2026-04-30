@@ -4,29 +4,33 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>Work With Me | Dan Kohler</title>
-<meta name="description" content="Work with Dan Kohler on strategy, creative systems, AI transformation, workshops, advisory, and modern workflow design." />
+<title>Work With Dan Kohler | Strategy, Creative Systems, AI Transformation</title>
+<meta name="description" content="Ways to work with Dan Kohler across brand strategy, creative systems, AI transformation, workshops, advisory, XTRABOLD AI, and THE MACHINE™." />
 
-<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.png" sizes="180x180">
+<link rel="mask-icon" href="/favicon.svg" color="#000000">
 
-<meta property="og:title" content="Work With Me | Dan Kohler" />
-<meta property="og:description" content="Strategy, AI transformation, creative systems, workshops, and advisory for brands, agencies, and founders." />
+<meta property="og:title" content="Work With Dan Kohler | Strategy, Creative Systems, AI Transformation" />
+<meta property="og:description" content="Strategy, creative systems, and AI transformation for brands, agencies, founders, and leadership teams." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://dkohler-site.vercel.app/work.html" />
-<meta property="og:image" content="https://dkohler-site.vercel.app/social_preview.jpg" />
+<meta property="og:url" content="https://dkohler.com/work.html" />
+<meta property="og:image" content="https://dkohler.com/social_preview.jpg" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Work With Me | Dan Kohler" />
-<meta name="twitter:description" content="Strategy, AI transformation, creative systems, workshops, and advisory." />
-<meta name="twitter:image" content="https://dkohler-site.vercel.app/social_preview.jpg" />
+<meta name="twitter:title" content="Work With Dan Kohler | Strategy, Creative Systems, AI Transformation" />
+<meta name="twitter:description" content="Strategy, creative systems, and AI transformation for brands, agencies, founders, and leadership teams." />
+<meta name="twitter:image" content="https://dkohler.com/social_preview.jpg" />
 
 <style>
 :root {
   --bg: #0d0d0d;
   --white: #ffffff;
-  --gray: rgba(255,255,255,0.72);
+  --gray: rgba(255,255,255,0.68);
   --soft: rgba(255,255,255,0.48);
-  --line: rgba(255,255,255,0.12);
+  --line: rgba(255,255,255,0.14);
+  --pink: #ff2f92;
 }
 
 * {
@@ -40,24 +44,42 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at 16% 8%, rgba(255,47,146,0.12), transparent 32%),
-    radial-gradient(circle at 84% 10%, rgba(255,255,255,0.07), transparent 30%),
+    radial-gradient(circle at 18% 8%, rgba(255,47,146,0.13), transparent 32%),
+    radial-gradient(circle at 82% 12%, rgba(255,255,255,0.07), transparent 30%),
     var(--bg);
   color: var(--white);
   font-family: Arial, Helvetica, sans-serif;
-  animation: pageFade 0.75s ease both;
+  overflow-x: hidden;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 420ms ease, transform 420ms ease;
 }
 
-@keyframes pageFade {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
+body.page-loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+body.page-exit {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 20%), rgba(255,255,255,0.08), transparent 18%),
+    radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 20%), rgba(255,47,146,0.09), transparent 28%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+body.hasMouse::before {
+  opacity: 1;
 }
 
 a {
@@ -66,214 +88,557 @@ a {
 }
 
 .page {
-  max-width: 1200px;
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 56px 40px 100px;
+  padding: 44px 40px 96px;
 }
 
-.back {
-  margin-bottom: 54px;
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 86px;
 }
 
-.back a {
-  color: rgba(255,255,255,0.62);
-  font-size: 14px;
-  letter-spacing: 0.12em;
+.brand small {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
   font-weight: 900;
-  transition: 0.2s ease;
 }
 
-.back a:hover {
-  color: white;
+.brand strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 950;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  padding: 11px 16px;
+  font-size: 14px;
+  font-weight: 800;
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.84);
+  transition: 0.28s ease;
+}
+
+.nav a:hover,
+.nav a.active {
+  background: white;
+  color: black;
+  transform: translateY(-2px);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delayOne {
+  transition-delay: 0.12s;
+}
+
+.delayTwo {
+  transition-delay: 0.24s;
 }
 
 .kicker {
   display: inline-block;
-  border: 1px solid var(--line);
   border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
   padding: 10px 16px;
-  color: rgba(255,255,255,0.65);
   font-size: 13px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+  color: rgba(255,255,255,0.74);
   font-weight: 900;
   background: rgba(255,255,255,0.04);
+}
+
+.hero {
+  max-width: 1080px;
 }
 
 h1 {
-  margin: 24px 0 0;
-  font-size: clamp(58px, 8vw, 112px);
+  margin: 28px 0 0;
+  font-size: clamp(56px, 8vw, 112px);
   line-height: 0.9;
   letter-spacing: -0.075em;
+  font-weight: 950;
 }
 
-.intro {
+.heroText {
+  max-width: 830px;
   margin-top: 30px;
-  max-width: 860px;
-  font-size: 27px;
-  line-height: 1.48;
+  font-size: 25px;
+  line-height: 1.52;
   color: var(--gray);
 }
 
-.grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  margin-top: 76px;
-}
-
-.card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--line);
-  border-radius: 30px;
-  padding: 34px;
-  min-height: 310px;
-  transition: 0.24s ease;
-}
-
-.card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255,255,255,0.26);
-  box-shadow: 0 22px 70px rgba(0,0,0,0.28);
-}
-
-.card small {
-  display: block;
-  color: var(--soft);
-  font-size: 12px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 900;
-  margin-bottom: 18px;
-}
-
-.card h2 {
-  margin: 0;
-  font-size: 40px;
-  line-height: 0.95;
-  letter-spacing: -0.05em;
-}
-
-.card p {
-  margin: 20px 0 0;
-  color: var(--gray);
-  font-size: 19px;
-  line-height: 1.72;
-}
-
-.feature {
-  margin-top: 96px;
-  padding: 42px;
-  border: 1px solid var(--line);
-  border-radius: 34px;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
-}
-
-.feature small {
-  display: block;
-  color: var(--soft);
-  font-size: 13px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 900;
-  margin-bottom: 18px;
-}
-
-.feature h2 {
-  margin: 0;
-  max-width: 920px;
-  font-size: clamp(38px, 5vw, 72px);
-  line-height: 0.95;
-  letter-spacing: -0.06em;
-}
-
-.feature p {
-  max-width: 880px;
-  margin: 26px 0 0;
-  color: var(--gray);
-  font-size: 22px;
-  line-height: 1.62;
-}
-
-.links {
+.ctaRow {
   display: flex;
-  flex-wrap: wrap;
   gap: 14px;
   margin-top: 34px;
+  flex-wrap: wrap;
 }
 
-.buttonPrimary,
-.buttonSecondary {
+.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 999px;
   padding: 14px 22px;
   font-weight: 900;
-  transition: 0.2s ease;
+  background: var(--white);
+  color: #000;
+  transition: 0.28s ease;
 }
 
-.buttonPrimary {
-  background: white;
-  color: black;
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(255,255,255,0.14);
 }
 
-.buttonSecondary {
-  background: rgba(255,255,255,0.07);
-  border: 1px solid var(--line);
-  color: white;
+.btnSecondary {
+  background: rgba(255,255,255,0.06);
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.16);
 }
 
-.buttonPrimary:hover,
-.buttonSecondary:hover {
-  transform: translateY(-2px);
+.section {
+  margin-top: 104px;
 }
 
-.signalGrid {
+.sectionHeader {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 18px;
-  margin-top: 42px;
+  grid-template-columns: 0.72fr 1.28fr;
+  gap: 34px;
+  align-items: end;
+  margin-bottom: 30px;
 }
 
-.signal {
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  padding: 24px;
-  background: rgba(255,255,255,0.035);
+.sectionHeader h2 {
+  margin: 16px 0 0;
+  font-size: clamp(42px, 5.4vw, 78px);
+  line-height: 0.92;
+  letter-spacing: -0.065em;
 }
 
-.signal h3 {
+.sectionHeader p {
   margin: 0;
-  font-size: 24px;
-  letter-spacing: -0.03em;
-}
-
-.signal p {
-  margin: 12px 0 0;
   color: var(--gray);
-  font-size: 18px;
+  font-size: 21px;
   line-height: 1.6;
 }
 
-@media (max-width: 900px) {
-  .page {
-    padding: 40px 24px 82px;
+.offerGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.offer {
+  position: relative;
+  overflow: hidden;
+  border-radius: 30px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.065), rgba(255,255,255,0.025));
+  padding: 34px;
+  min-height: 360px;
+  transition: 0.32s ease;
+}
+
+.offer:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255,255,255,0.26);
+  box-shadow: 0 30px 90px rgba(0,0,0,0.28);
+}
+
+.offer::after {
+  content: "";
+  position: absolute;
+  right: -80px;
+  top: -80px;
+  width: 210px;
+  height: 210px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.045);
+  pointer-events: none;
+}
+
+.offer small {
+  display: inline-flex;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.62);
+  font-weight: 900;
+}
+
+.offer h3 {
+  margin: 22px 0 0;
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.offer p {
+  margin: 18px 0 0;
+  color: var(--gray);
+  font-size: 19px;
+  line-height: 1.62;
+  max-width: 620px;
+}
+
+.list {
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.list li {
+  color: rgba(255,255,255,0.7);
+  font-size: 16px;
+  line-height: 1.5;
+  padding-left: 18px;
+  position: relative;
+}
+
+.list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.56);
+}
+
+.productBand {
+  border-radius: 34px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 12% 20%, rgba(255,47,146,0.12), transparent 30%),
+    linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025));
+  padding: 42px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 34px;
+  align-items: stretch;
+}
+
+.productPanel {
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 28px;
+  padding: 30px;
+  background: rgba(0,0,0,0.18);
+  transition: 0.28s ease;
+}
+
+.productPanel:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.25);
+}
+
+.productPanel small {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--soft);
+  font-weight: 900;
+}
+
+.productPanel h3 {
+  margin: 14px 0 0;
+  font-size: clamp(36px, 4vw, 58px);
+  line-height: 0.95;
+  letter-spacing: -0.06em;
+}
+
+.productPanel p {
+  margin: 18px 0 0;
+  color: var(--gray);
+  font-size: 19px;
+  line-height: 1.62;
+}
+
+.productPanel .btn {
+  margin-top: 26px;
+}
+
+.processStrip {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+}
+
+.step {
+  border-radius: 24px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.035);
+  padding: 26px;
+  min-height: 220px;
+  transition: 0.28s ease;
+}
+
+.step:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.24);
+}
+
+.step span {
+  color: var(--soft);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.step h3 {
+  margin: 18px 0 0;
+  font-size: 28px;
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+}
+
+.step p {
+  margin: 14px 0 0;
+  color: var(--gray);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.ctaBox {
+  border-radius: 34px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.1), transparent 38%),
+    rgba(255,255,255,0.04);
+  padding: 56px 34px;
+  text-align: center;
+}
+
+.ctaBox h2 {
+  margin: 0 auto;
+  max-width: 860px;
+  font-size: clamp(44px, 6vw, 86px);
+  line-height: 0.92;
+  letter-spacing: -0.07em;
+}
+
+.ctaBox p {
+  margin: 24px auto 0;
+  max-width: 720px;
+  color: var(--gray);
+  font-size: 21px;
+  line-height: 1.58;
+}
+
+.siteFooter {
+  margin-top: 96px;
+  padding-top: 34px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 28px;
+  color: rgba(255,255,255,0.58);
+}
+
+.footerBrand small {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  font-weight: 900;
+}
+
+.footerBrand strong {
+  display: block;
+  margin-top: 8px;
+  color: white;
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.footerBrand p {
+  margin: 16px 0 0;
+  max-width: 520px;
+  color: rgba(255,255,255,0.58);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: flex-end;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footerLinks a {
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 999px;
+  padding: 10px 14px;
+  color: rgba(255,255,255,0.76);
+  background: rgba(255,255,255,0.035);
+  font-size: 14px;
+  font-weight: 800;
+  transition: 0.2s ease;
+}
+
+.footerLinks a:hover {
+  background: white;
+  color: black;
+  transform: translateY(-1px);
+}
+
+.footerBottom {
+  grid-column: 1 / -1;
+  color: rgba(255,255,255,0.38);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media(max-width:960px) {
+
+  body::before {
+    display: none;
   }
 
-  .grid,
-  .signalGrid {
+  .page {
+    padding: 28px 18px 76px;
+  }
+
+  .topbar,
+  .sectionHeader,
+  .productBand,
+  .siteFooter {
     grid-template-columns: 1fr;
   }
 
-  .intro {
-    font-size: 22px;
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 56px;
   }
 
-  .feature {
-    padding: 30px;
+  .nav {
+    width: 100%;
+  }
+
+  .nav a {
+    flex: 1;
+    text-align: center;
+    min-width: 110px;
+  }
+
+  h1 {
+    font-size: 52px;
+  }
+
+  .heroText {
+    font-size: 21px;
+  }
+
+  .offerGrid,
+  .processStrip {
+    grid-template-columns: 1fr;
+  }
+
+  .offer {
+    min-height: auto;
+  }
+
+  .productBand {
+    padding: 24px;
+  }
+
+  .footerLinks {
+    justify-content: flex-start;
+  }
+}
+
+@media(max-width:640px) {
+
+  .kicker {
+    font-size: 11px;
+    padding: 9px 13px;
+  }
+
+  h1 {
+    font-size: 44px;
+    line-height: 0.95;
+  }
+
+  .heroText {
+    font-size: 18px;
+  }
+
+  .ctaRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    width: 100%;
+  }
+
+  .section {
+    margin-top: 76px;
+  }
+
+  .sectionHeader h2,
+  .ctaBox h2 {
+    font-size: 40px;
+  }
+
+  .sectionHeader p,
+  .ctaBox p {
+    font-size: 18px;
+  }
+
+  .offer,
+  .productPanel,
+  .step {
+    padding: 24px;
+  }
+
+  .offer h3,
+  .productPanel h3 {
+    font-size: 36px;
   }
 }
 
@@ -283,6 +648,11 @@ h1 {
     transition: none !important;
     scroll-behavior: auto !important;
   }
+
+  body {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 </style>
 </head>
@@ -291,118 +661,300 @@ h1 {
 
 <div class="page">
 
-  <div class="back">
-    <a href="index.html">Back to Workspace</a>
+<header class="topbar reveal">
+  <a class="brand" href="index.html" aria-label="Back to workspace">
+    <small>Dan Kohler</small>
+    <strong>Work with me</strong>
+  </a>
+
+  <nav class="nav">
+    <a href="index.html">Workspace</a>
+    <a class="active" href="work.html">Work with me</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero reveal delayOne">
+
+  <div class="kicker">Work with me</div>
+
+  <h1>
+    Strategy, creative systems, and AI transformation for teams that need momentum.
+  </h1>
+
+  <p class="heroText">
+    I help brands, agencies, founders, and leadership teams move from scattered ideas and fragmented tools to clearer strategy, sharper creative, and systems that make better work easier to produce.
+  </p>
+
+  <div class="ctaRow">
+    <a class="btn" href="contact.html">Start the conversation</a>
+    <a class="btn btnSecondary" href="#offers">Explore ways to work</a>
   </div>
 
-  <section class="hero">
+</section>
 
-    <div class="kicker">
-      Work With Me
+<section class="section reveal" id="offers">
+
+  <div class="sectionHeader">
+    <div>
+      <div class="kicker">Core offers</div>
+      <h2>Four ways I help.</h2>
     </div>
 
-    <h1>
-      Structured ways to work together.
-    </h1>
+    <p>
+      Every engagement is built around a practical outcome. Better positioning. Better creative decisions. Better AI adoption. Better operating systems for the work itself.
+    </p>
+  </div>
 
-    <div class="intro">
-      I work with brands, agencies, founders, and leadership teams navigating strategy, creativity, and AI transformation.
-    </div>
+  <div class="offerGrid">
 
-  </section>
-
-  <section class="grid">
-
-    <div class="card">
+    <article class="offer">
       <small>01</small>
-      <h2>Brand Strategy</h2>
+      <h3>Brand strategy</h3>
       <p>
-        Positioning, architecture, briefs, messaging, narrative development, and strategic clarity for teams that need sharper direction before they move.
+        Clear positioning, architecture, insight, and creative briefs that turn complexity into decisions.
       </p>
-    </div>
+      <ul class="list">
+        <li>Brand architecture and positioning</li>
+        <li>Category, culture, consumer, and brand analysis</li>
+        <li>Creative briefs and strategic narratives</li>
+        <li>Leadership alignment and decision framing</li>
+      </ul>
+    </article>
 
-    <div class="card">
+    <article class="offer">
       <small>02</small>
-      <h2>AI Transformation</h2>
+      <h3>Creative systems</h3>
       <p>
-        Practical AI adoption for creative and marketing teams. Not random tool demos. Real workflows, useful systems, and better ways to get work made.
+        AI enhanced creative workflows that help teams see, test, and shape ideas before production spend.
       </p>
-    </div>
+      <ul class="list">
+        <li>AI previsualization for campaigns and concepts</li>
+        <li>Creative operating systems and workflow design</li>
+        <li>Rapid concept development and visual exploration</li>
+        <li>Agency style systems for better creative judgment</li>
+      </ul>
+    </article>
 
-    <div class="card">
+    <article class="offer">
       <small>03</small>
-      <h2>Creative Systems</h2>
+      <h3>AI transformation</h3>
       <p>
-        Repeatable systems for research, strategy, copy, design, video, and production. Built to improve quality, speed, and alignment.
+        Practical adoption programs that move teams beyond tool demos and into new working behaviors.
       </p>
-    </div>
+      <ul class="list">
+        <li>Executive AI briefings and workshops</li>
+        <li>Team adoption roadmaps</li>
+        <li>Custom GPT and workflow development</li>
+        <li>AI governance, fluency, and operating rhythm</li>
+      </ul>
+    </article>
 
-    <div class="card">
+    <article class="offer">
       <small>04</small>
-      <h2>Workshops + Advisory</h2>
+      <h3>Advisory and ventures</h3>
       <p>
-        Leadership sessions, team workshops, AI readiness programs, and advisory support for companies trying to move from curiosity to control.
+        Strategic support for founders, leadership teams, agencies, and partners building something new.
+      </p>
+      <ul class="list">
+        <li>Product and offer positioning</li>
+        <li>Go to market strategy and narrative</li>
+        <li>Partnership and pitch development</li>
+        <li>Fractional strategy leadership</li>
+      </ul>
+    </article>
+
+  </div>
+
+</section>
+
+<section class="section reveal delayTwo">
+
+  <div class="sectionHeader">
+    <div>
+      <div class="kicker">Built with partners</div>
+      <h2>Two connected engines.</h2>
+    </div>
+
+    <p>
+      My work is connected to two platforms for turning strategy into execution: XTRABOLD AI and THE MACHINE™.
+    </p>
+  </div>
+
+  <div class="productBand">
+
+    <a class="productPanel" href="https://xtrabold.ai" target="_blank" rel="noopener noreferrer">
+      <small>Creative partner</small>
+      <h3>XTRABOLD AI</h3>
+      <p>
+        A next generation creative partner built to make ideas visible before teams commit to them.
+      </p>
+      <span class="btn">Visit XTRABOLD AI</span>
+    </a>
+
+    <a class="productPanel" href="https://xtrabold.agency/machine/" target="_blank" rel="noopener noreferrer">
+      <small>AI workflow system</small>
+      <h3>THE MACHINE™</h3>
+      <p>
+        A connected system for strategy, copy, design, video, and execution. Built to replace fragmented tools with a more coherent creative workflow.
+      </p>
+      <span class="btn">Explore THE MACHINE™</span>
+    </a>
+
+  </div>
+
+</section>
+
+<section class="section reveal">
+
+  <div class="sectionHeader">
+    <div>
+      <div class="kicker">How engagements work</div>
+      <h2>Clear, practical, built to move.</h2>
+    </div>
+
+    <p>
+      The goal is not a big theoretical deck. The goal is a sharper system, a clearer decision, or a team that can work differently immediately.
+    </p>
+  </div>
+
+  <div class="processStrip">
+
+    <div class="step">
+      <span>Step 01</span>
+      <h3>Frame the problem</h3>
+      <p>
+        We define what is actually blocking progress: strategy, creative alignment, workflow, adoption, or execution.
       </p>
     </div>
 
-  </section>
+    <div class="step">
+      <span>Step 02</span>
+      <h3>Build the system</h3>
+      <p>
+        We create the strategic, creative, or AI enabled structure needed to move work forward.
+      </p>
+    </div>
 
-  <section class="feature">
+    <div class="step">
+      <span>Step 03</span>
+      <h3>Make it usable</h3>
+      <p>
+        The output is designed for real people, real teams, and real decisions.
+      </p>
+    </div>
 
-    <small>
-      Engagement principle
-    </small>
+    <div class="step">
+      <span>Step 04</span>
+      <h3>Move to action</h3>
+      <p>
+        The work should lead directly to briefs, concepts, systems, training, pilots, or implementation.
+      </p>
+    </div>
 
+  </div>
+
+</section>
+
+<section class="section reveal">
+
+  <div class="ctaBox">
     <h2>
-      The work starts when the problem matters.
+      Bring me the hard problem.
     </h2>
 
     <p>
-      Some engagements become strategy projects. Some become workshops. Some become AI systems. Some become new ventures. The common thread is clarity: define the problem, find the leverage, and build the path forward.
+      If you are working through strategy, creative transformation, AI adoption, a new venture, or a workflow that needs to get smarter, we should talk.
     </p>
 
-    <div class="signalGrid">
-
-      <div class="signal">
-        <h3>For brands</h3>
-        <p>
-          Better strategy, clearer creative direction, and practical AI enabled workflows.
-        </p>
-      </div>
-
-      <div class="signal">
-        <h3>For agencies</h3>
-        <p>
-          Systems that help teams standardize how great thinking happens without flattening creativity.
-        </p>
-      </div>
-
-      <div class="signal">
-        <h3>For founders</h3>
-        <p>
-          Positioning, storytelling, product narrative, and go to market clarity for ambitious ideas.
-        </p>
-      </div>
-
+    <div class="ctaRow" style="justify-content:center;">
+      <a class="btn" href="contact.html">Start the conversation</a>
+      <a class="btn btnSecondary" href="index.html">Back to workspace</a>
     </div>
+  </div>
 
-    <div class="links">
-      <a class="buttonPrimary" href="contact.html">
-        Start the conversation
-      </a>
+</section>
 
-      <a class="buttonSecondary" href="https://xtrabold.agency/" target="_blank" rel="noopener noreferrer">
-        Visit XTRABOLD AI
-      </a>
+<footer class="siteFooter reveal">
 
-      <a class="buttonSecondary" href="https://xtrabold.agency/machine/" target="_blank" rel="noopener noreferrer">
-        Explore THE MACHINE™
-      </a>
-    </div>
+  <div class="footerBrand">
+    <small>Dan Kohler</small>
+    <strong>Strategy. Creative Systems. AI Transformation.</strong>
+    <p>
+      Built around clarity, creative intelligence, practical AI adoption, and the belief that great thinking still matters.
+    </p>
+  </div>
 
-  </section>
+  <nav class="footerLinks" aria-label="Footer navigation">
+    <a href="index.html">Workspace</a>
+    <a href="about.html">About</a>
+    <a href="process.html">Process</a>
+    <a href="contact.html">Contact</a>
+    <a href="dogs.html">Dolly and Belle</a>
+    <a href="https://xtrabold.ai" target="_blank" rel="noopener noreferrer">XTRABOLD AI</a>
+    <a href="https://xtrabold.agency/machine/" target="_blank" rel="noopener noreferrer">THE MACHINE™</a>
+    <a href="https://www.linkedin.com/in/kohlerdan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </nav>
+
+  <div class="footerBottom">
+    © 2026 Dan Kohler. Built as a personal creative workspace.
+  </div>
+
+</footer>
 
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("page-loaded");
+});
+
+const revealItems = document.querySelectorAll(".reveal");
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+}, {
+  threshold: 0.12
+});
+
+revealItems.forEach((item) => {
+  revealObserver.observe(item);
+});
+
+window.addEventListener("pointermove", (event) => {
+  document.body.classList.add("hasMouse");
+  document.body.style.setProperty("--mouse-x", event.clientX + "px");
+  document.body.style.setProperty("--mouse-y", event.clientY + "px");
+});
+
+document.querySelectorAll("a").forEach((link) => {
+  const url = link.getAttribute("href");
+  const target = link.getAttribute("target");
+
+  if (!url || url.startsWith("#") || url.startsWith("http") || target === "_blank") {
+    return;
+  }
+
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    document.body.classList.remove("page-loaded");
+    document.body.classList.add("page-exit");
+
+    setTimeout(() => {
+      window.location.href = url;
+    }, 300);
+  });
+});
+</script>
+
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
 
 </body>
 </html>
