@@ -13,21 +13,21 @@
 <link rel="mask-icon" href="/favicon.svg" color="#000000">
 
 <meta property="og:title" content="Dan Kohler | Strategy, Creative Systems, AI Transformation" />
-<meta property="og:description" content="A cinematic personal workspace for strategy, creative systems, AI transformation, XTRABOLD AI, and THE MACHINE™." />
+<meta property="og:description" content="Strategy, creative systems, AI transformation, XTRABOLD AI, and THE MACHINE™." />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://dkohler.com/" />
 <meta property="og:image" content="https://dkohler.com/social_preview.jpg" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Dan Kohler | Strategy, Creative Systems, AI Transformation" />
-<meta name="twitter:description" content="A cinematic personal workspace for strategy, creative systems, AI transformation, XTRABOLD AI, and THE MACHINE™." />
+<meta name="twitter:description" content="Strategy, creative systems, AI transformation, XTRABOLD AI, and THE MACHINE™." />
 <meta name="twitter:image" content="https://dkohler.com/social_preview.jpg" />
 
 <style>
 :root {
   --bg: #0d0d0d;
   --white: #ffffff;
-  --gray: rgba(255,255,255,0.68);
+  --gray: rgba(255,255,255,0.72);
   --line: rgba(255,255,255,0.14);
   --pink: #ff2f92;
 }
@@ -191,6 +191,9 @@ h1 {
   line-height: 0.92;
   letter-spacing: -0.07em;
   font-weight: 950;
+  text-shadow:
+    0 4px 30px rgba(0,0,0,0.45),
+    0 20px 80px rgba(0,0,0,0.35);
 }
 
 .subhead {
@@ -198,7 +201,8 @@ h1 {
   margin: 24px auto 0;
   font-size: 22px;
   line-height: 1.55;
-  color: var(--gray);
+  color: rgba(255,255,255,0.76);
+  text-shadow: 0 8px 36px rgba(0,0,0,0.32);
 }
 
 .ctaRow {
@@ -255,12 +259,37 @@ h1 {
   overflow: hidden;
 }
 
+.sceneWrap::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(0,0,0,0.55), rgba(0,0,0,0.10) 45%, rgba(0,0,0,0.30)),
+    linear-gradient(180deg, rgba(0,0,0,0.30), transparent 35%, rgba(0,0,0,0.45));
+  opacity: 0.85;
+}
+
+.sceneWrap::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 50% 38%, transparent 20%, rgba(0,0,0,0.18) 75%),
+    linear-gradient(180deg, transparent 58%, rgba(0,0,0,0.32));
+  opacity: 0.74;
+}
+
 .sceneImage {
   width: 100%;
   height: 100%;
   object-fit: cover;
   display: block;
   will-change: transform;
+  transform: scale(1.01);
   transition: transform 1.2s ease, filter 1.2s ease;
 }
 
@@ -270,6 +299,7 @@ h1 {
 
 .hotspot {
   position: absolute;
+  z-index: 4;
   border-radius: 20px;
   border: 2px solid transparent;
   background: rgba(255,255,255,0);
@@ -279,9 +309,12 @@ h1 {
 }
 
 .hotspot:hover {
-  border-color: rgba(255,255,255,0.72);
-  background: rgba(255,255,255,0.07);
-  box-shadow: 0 0 44px rgba(255,255,255,0.18), 0 0 48px rgba(255,47,146,0.18);
+  border-color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.08);
+  box-shadow:
+    0 0 60px rgba(255,255,255,0.25),
+    0 0 80px rgba(255,47,146,0.22);
+  transform: scale(1.02);
 }
 
 .hotspot::after {
@@ -767,12 +800,16 @@ h1 {
 </header>
 
 <section class="hero reveal delayOne">
-  <div class="kicker">Strategy, creative, and AI systems</div>
+  <div class="kicker">Dan Kohler</div>
 
-  <h1>I help companies see better ideas before they commit to them.</h1>
+  <h1>
+    Strategy.<br>
+    Creative Systems.<br>
+    AI Transformation.
+  </h1>
 
   <p class="subhead">
-    Strategy. Creative. AI systems. Connected into one flow that improves how work actually gets done.
+    XTRABOLD AI and THE MACHINE™ connect strategy, creative intelligence, and AI systems into one flow.
   </p>
 
   <div class="ctaRow">
@@ -785,7 +822,7 @@ h1 {
 
   <div class="sceneWrap">
 
-    <img class="sceneImage" src="workspace.jpg" alt="Dan Kohler workspace">
+    <img class="sceneImage" src="workspace.jpg?v=5" alt="Dan Kohler workspace">
 
     <a class="hotspot pinboardZone" href="https://xtrabold.ai" target="_blank" rel="noopener noreferrer" aria-label="XTRABOLD AI" data-label="XTRABOLD AI"></a>
 
@@ -963,18 +1000,42 @@ window.addEventListener("pointermove", (event) => {
 const sceneImage = document.querySelector(".sceneImage");
 const sceneWrap = document.querySelector(".sceneWrap");
 
+let pointerX = 0;
+let pointerY = 0;
+let scrollLift = 0;
+
+function updateSceneTransform() {
+  if (!sceneImage) return;
+  sceneImage.style.transform = `scale(1.026) translate(${pointerX}px, ${pointerY + scrollLift}px)`;
+}
+
 if (sceneImage && sceneWrap) {
   sceneWrap.addEventListener("pointermove", (event) => {
     const rect = sceneWrap.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width - 0.5;
     const y = (event.clientY - rect.top) / rect.height - 0.5;
 
-    sceneImage.style.transform = `scale(1.018) translate(${x * 10}px, ${y * 8}px)`;
+    pointerX = x * 10;
+    pointerY = y * 8;
+
+    updateSceneTransform();
   });
 
   sceneWrap.addEventListener("pointerleave", () => {
-    sceneImage.style.transform = "scale(1)";
+    pointerX = 0;
+    pointerY = 0;
+    updateSceneTransform();
   });
+
+  window.addEventListener("scroll", () => {
+    const rect = sceneWrap.getBoundingClientRect();
+    const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+    const progress = Math.min(Math.max((viewportHeight - rect.top) / (viewportHeight + rect.height), 0), 1);
+
+    scrollLift = (progress - 0.5) * -10;
+
+    updateSceneTransform();
+  }, { passive: true });
 }
 
 document.querySelectorAll("a").forEach((link) => {
