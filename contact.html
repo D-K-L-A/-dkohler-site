@@ -5,15 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>Contact | Dan Kohler</title>
-<meta name="description" content="Contact Dan Kohler for strategy, creative systems, AI transformation, advisory, workshops, and new ventures." />
+<meta name="description" content="Contact Dan Kohler for brand strategy, creative systems, AI transformation, workshops, advisory, XTRABOLD AI, and THE MACHINE™." />
+
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.png" sizes="180x180">
+<link rel="mask-icon" href="/favicon.svg" color="#000000">
+
+<meta property="og:title" content="Contact Dan Kohler" />
+<meta property="og:description" content="Bring the hard problem. Strategy, creative systems, AI transformation, and modern workflow design." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://dkohler.com/contact.html" />
+<meta property="og:image" content="https://dkohler.com/social_preview.jpg" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Contact Dan Kohler" />
+<meta name="twitter:description" content="Bring the hard problem. Strategy, creative systems, AI transformation, and modern workflow design." />
+<meta name="twitter:image" content="https://dkohler.com/social_preview.jpg" />
 
 <style>
 :root {
   --bg: #0d0d0d;
   --white: #ffffff;
-  --gray: rgba(255,255,255,0.72);
+  --gray: rgba(255,255,255,0.68);
   --soft: rgba(255,255,255,0.48);
-  --line: rgba(255,255,255,0.12);
+  --line: rgba(255,255,255,0.14);
   --pink: #ff2f92;
 }
 
@@ -33,19 +49,37 @@ body {
     var(--bg);
   color: var(--white);
   font-family: Arial, Helvetica, sans-serif;
-  animation: pageFade 0.75s ease both;
+  overflow-x: hidden;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 420ms ease, transform 420ms ease;
 }
 
-@keyframes pageFade {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
+body.page-loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+body.page-exit {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 20%), rgba(255,255,255,0.08), transparent 18%),
+    radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 20%), rgba(255,47,146,0.09), transparent 28%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+body.hasMouse::before {
+  opacity: 1;
 }
 
 a {
@@ -54,95 +88,230 @@ a {
 }
 
 .page {
-  max-width: 1120px;
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 56px 40px 100px;
+  padding: 44px 40px 96px;
 }
 
-.back {
-  margin-bottom: 54px;
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 86px;
 }
 
-.back a {
-  color: rgba(255,255,255,0.62);
-  font-size: 14px;
-  letter-spacing: 0.12em;
+.brand small {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
   font-weight: 900;
-  transition: 0.2s ease;
 }
 
-.back a:hover {
-  color: white;
+.brand strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 950;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  padding: 11px 16px;
+  font-size: 14px;
+  font-weight: 800;
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.84);
+  transition: 0.28s ease;
+}
+
+.nav a:hover,
+.nav a.active {
+  background: white;
+  color: black;
+  transform: translateY(-2px);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delayOne {
+  transition-delay: 0.12s;
+}
+
+.delayTwo {
+  transition-delay: 0.24s;
 }
 
 .kicker {
   display: inline-block;
-  border: 1px solid var(--line);
   border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
   padding: 10px 16px;
-  color: rgba(255,255,255,0.65);
   font-size: 13px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+  color: rgba(255,255,255,0.74);
   font-weight: 900;
   background: rgba(255,255,255,0.04);
 }
 
+.hero {
+  max-width: 1080px;
+}
+
 h1 {
-  margin: 24px 0 0;
-  font-size: clamp(58px, 8vw, 112px);
+  margin: 28px 0 0;
+  font-size: clamp(56px, 8vw, 112px);
   line-height: 0.9;
   letter-spacing: -0.075em;
+  font-weight: 950;
 }
 
-.intro {
-  margin-top: 30px;
+.heroText {
   max-width: 820px;
-  font-size: 27px;
-  line-height: 1.48;
+  margin-top: 30px;
+  font-size: 25px;
+  line-height: 1.52;
   color: var(--gray);
 }
 
-.card {
-  margin-top: 76px;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
-  border: 1px solid var(--line);
-  border-radius: 34px;
-  padding: 42px;
-  box-shadow: 0 34px 100px rgba(0,0,0,0.28);
+.section {
+  margin-top: 90px;
 }
 
-.card h2 {
+.problemGrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+
+.problemCard {
+  border-radius: 22px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.04);
+  padding: 20px;
+  min-height: 150px;
+  transition: 0.28s ease;
+}
+
+.problemCard:hover {
+  transform: translateY(-4px);
+  background: rgba(255,255,255,0.065);
+  border-color: rgba(255,255,255,0.25);
+}
+
+.problemCard span {
+  display: block;
+  color: var(--soft);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.problemCard strong {
+  display: block;
+  margin-top: 16px;
+  font-size: 22px;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.contactShell {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.contextBox,
+.formBox {
+  border-radius: 34px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.065), rgba(255,255,255,0.025));
+  padding: 40px;
+}
+
+.contextBox h2,
+.formBox h2 {
   margin: 0;
   font-size: clamp(38px, 5vw, 72px);
-  line-height: 0.95;
-  letter-spacing: -0.06em;
+  line-height: 0.94;
+  letter-spacing: -0.065em;
 }
 
-.card p {
-  max-width: 820px;
+.contextBox p,
+.formBox p {
+  margin: 22px 0 0;
   color: var(--gray);
-  font-size: 22px;
+  font-size: 20px;
   line-height: 1.62;
-  margin: 24px 0 0;
 }
 
-form {
+.contextList {
+  margin: 28px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 14px;
+}
+
+.contextList li {
+  color: rgba(255,255,255,0.72);
+  font-size: 17px;
+  line-height: 1.5;
+  padding-left: 20px;
+  position: relative;
+}
+
+.contextList li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.56);
+}
+
+.form {
+  margin-top: 30px;
   display: grid;
   gap: 18px;
-  margin-top: 38px;
 }
 
 .field {
   display: grid;
-  gap: 10px;
+  gap: 8px;
 }
 
 label {
-  font-size: 13px;
-  letter-spacing: 0.12em;
+  font-size: 12px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.58);
   font-weight: 900;
@@ -151,22 +320,15 @@ label {
 input,
 textarea {
   width: 100%;
-  border: 1px solid var(--line);
-  border-radius: 20px;
+  border-radius: 18px;
+  border: 1px solid rgba(255,255,255,0.14);
   background: rgba(255,255,255,0.06);
   color: white;
-  padding: 17px;
+  padding: 17px 18px;
   font-size: 18px;
   font-family: Arial, Helvetica, sans-serif;
   outline: none;
-  transition: 0.2s ease;
-}
-
-input:focus,
-textarea:focus {
-  border-color: rgba(255,255,255,0.36);
-  background: rgba(255,255,255,0.085);
-  box-shadow: 0 0 0 4px rgba(255,47,146,0.10);
+  transition: 0.24s ease;
 }
 
 textarea {
@@ -174,98 +336,209 @@ textarea {
   resize: vertical;
 }
 
+input:focus,
+textarea:focus {
+  border-color: rgba(255,255,255,0.34);
+  background: rgba(255,255,255,0.08);
+  box-shadow: 0 0 0 4px rgba(255,255,255,0.04);
+}
+
 button {
   width: fit-content;
-  border: none;
+  border: 0;
   border-radius: 999px;
   padding: 15px 24px;
-  background: white;
-  color: black;
   font-size: 16px;
   font-weight: 900;
+  background: white;
+  color: black;
   cursor: pointer;
-  transition: 0.2s ease;
+  transition: 0.28s ease;
 }
 
 button:hover {
-  transform: translateY(-2px);
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(255,255,255,0.14);
 }
 
-button:disabled {
-  opacity: 0.55;
-  cursor: wait;
-  transform: none;
+.formNote {
+  margin-top: 12px;
+  color: rgba(255,255,255,0.54);
+  font-size: 15px;
+  line-height: 1.55;
 }
 
-.status {
-  color: rgba(255,255,255,0.72);
-  font-size: 16px;
-  min-height: 24px;
+.emailNote {
+  margin-top: 18px;
+  color: rgba(255,255,255,0.64);
+  font-size: 17px;
+  line-height: 1.55;
 }
 
-.links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 14px;
-  margin-top: 30px;
-}
-
-.buttonSecondary {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: 14px 22px;
-  border-radius: 999px;
-  background: rgba(255,255,255,0.07);
+.emailNote a {
   color: white;
-  text-decoration: none;
   font-weight: 900;
-  border: 1px solid var(--line);
-  transition: 0.2s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.35);
 }
 
-.buttonSecondary:hover {
-  transform: translateY(-2px);
-  border-color: rgba(255,255,255,0.28);
+.siteFooter {
+  margin-top: 96px;
+  padding-top: 34px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 28px;
+  color: rgba(255,255,255,0.58);
 }
 
-.emailText {
-  margin-top: 26px;
-  color: rgba(255,255,255,0.62);
-  font-size: 18px;
+.footerBrand small {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  font-weight: 900;
+}
+
+.footerBrand strong {
+  display: block;
+  margin-top: 8px;
+  color: white;
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.footerBrand p {
+  margin: 16px 0 0;
+  max-width: 520px;
+  color: rgba(255,255,255,0.58);
+  font-size: 17px;
   line-height: 1.6;
 }
 
-.emailText strong {
-  color: white;
+.footerLinks {
+  display: flex;
+  justify-content: flex-end;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
-.note {
-  margin-top: 70px;
-  padding-top: 42px;
-  border-top: 1px solid var(--line);
-  max-width: 820px;
-  color: var(--gray);
-  font-size: 22px;
-  line-height: 1.62;
+.footerLinks a {
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 999px;
+  padding: 10px 14px;
+  color: rgba(255,255,255,0.76);
+  background: rgba(255,255,255,0.035);
+  font-size: 14px;
+  font-weight: 800;
+  transition: 0.2s ease;
 }
 
-@media (max-width: 800px) {
+.footerLinks a:hover {
+  background: white;
+  color: black;
+  transform: translateY(-1px);
+}
+
+.footerBottom {
+  grid-column: 1 / -1;
+  color: rgba(255,255,255,0.38);
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media(max-width:1000px) {
+
+  body::before {
+    display: none;
+  }
+
   .page {
-    padding: 40px 24px 82px;
+    padding: 28px 18px 76px;
   }
 
-  .intro {
-    font-size: 22px;
+  .topbar,
+  .contactShell,
+  .siteFooter {
+    grid-template-columns: 1fr;
   }
 
-  .card {
-    padding: 30px;
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 56px;
   }
 
-  .card p,
-  .note {
-    font-size: 20px;
+  .nav {
+    width: 100%;
+  }
+
+  .nav a {
+    flex: 1;
+    text-align: center;
+    min-width: 110px;
+  }
+
+  h1 {
+    font-size: 52px;
+  }
+
+  .heroText {
+    font-size: 21px;
+  }
+
+  .problemGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footerLinks {
+    justify-content: flex-start;
+  }
+}
+
+@media(max-width:640px) {
+
+  .kicker {
+    font-size: 11px;
+    padding: 9px 13px;
+  }
+
+  h1 {
+    font-size: 44px;
+    line-height: 0.95;
+  }
+
+  .heroText {
+    font-size: 18px;
+  }
+
+  .section {
+    margin-top: 70px;
+  }
+
+  .problemGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .contextBox,
+  .formBox {
+    padding: 26px;
+  }
+
+  .contextBox h2,
+  .formBox h2 {
+    font-size: 40px;
+  }
+
+  .contextBox p,
+  .formBox p {
+    font-size: 18px;
+  }
+
+  button {
+    width: 100%;
   }
 }
 
@@ -275,6 +548,11 @@ button:disabled {
     transition: none !important;
     scroll-behavior: auto !important;
   }
+
+  body {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 </style>
 </head>
@@ -283,116 +561,223 @@ button:disabled {
 
 <div class="page">
 
-  <div class="back">
-    <a href="index.html">Back to Workspace</a>
+<header class="topbar reveal">
+  <a class="brand" href="index.html" aria-label="Back to workspace">
+    <small>Dan Kohler</small>
+    <strong>Contact</strong>
+  </a>
+
+  <nav class="nav">
+    <a href="index.html">Workspace</a>
+    <a href="work.html">Work with me</a>
+    <a href="about.html">About</a>
+    <a class="active" href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero reveal delayOne">
+
+  <div class="kicker">Contact</div>
+
+  <h1>
+    Start the conversation.
+  </h1>
+
+  <p class="heroText">
+    I work with brands, agencies, founders, and leadership teams navigating strategy, creativity, and AI transformation.
+  </p>
+
+</section>
+
+<section class="section reveal delayTwo">
+
+  <div class="kicker">What are you working on?</div>
+
+  <div class="problemGrid" style="margin-top:24px;">
+
+    <div class="problemCard">
+      <span>01</span>
+      <strong>Brand strategy or positioning</strong>
+    </div>
+
+    <div class="problemCard">
+      <span>02</span>
+      <strong>Creative direction or concepting</strong>
+    </div>
+
+    <div class="problemCard">
+      <span>03</span>
+      <strong>AI adoption or workflow design</strong>
+    </div>
+
+    <div class="problemCard">
+      <span>04</span>
+      <strong>Building something new</strong>
+    </div>
+
+    <div class="problemCard">
+      <span>05</span>
+      <strong>Not sure yet</strong>
+    </div>
+
   </div>
 
-  <section class="hero">
+</section>
 
-    <div class="kicker">
-      Contact
-    </div>
+<section class="section reveal">
 
-    <h1>
-      Start the conversation.
-    </h1>
+  <div class="contactShell">
 
-    <div class="intro">
-      I work with brands, agencies, founders, and leadership teams navigating strategy, creativity, and AI transformation.
-    </div>
+    <aside class="contextBox">
+      <h2>
+        Bring me the hard problem.
+      </h2>
 
-  </section>
+      <p>
+        Tell me what is unclear, stuck, or not working yet.
+      </p>
 
-  <section class="card">
+      <p>
+        I typically work with teams navigating:
+      </p>
 
-    <h2>
-      Bring me the hard problem.
-    </h2>
+      <ul class="contextList">
+        <li>Unclear positioning</li>
+        <li>Fragmented creative workflows</li>
+        <li>AI without a system</li>
+        <li>New ventures that need sharper framing</li>
+        <li>Leadership teams trying to move faster without losing judgment</li>
+      </ul>
 
+      <div class="emailNote">
+        Prefer email? <a href="mailto:kohdan@gmail.com">kohdan@gmail.com</a>
+      </div>
+    </aside>
+
+    <section class="formBox">
+      <h2>
+        Send a note.
+      </h2>
+
+      <p>
+        Give me enough context to understand what you are building, what is broken, or what everyone else may be missing.
+      </p>
+
+      <form class="form" action="mailto:kohdan@gmail.com" method="post" enctype="text/plain">
+
+        <div class="field">
+          <label for="name">Name</label>
+          <input id="name" name="name" type="text" autocomplete="name">
+        </div>
+
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email">
+        </div>
+
+        <div class="field">
+          <label for="company">Company or project optional</label>
+          <input id="company" name="company" type="text">
+        </div>
+
+        <div class="field">
+          <label for="problem">What are you trying to solve?</label>
+          <textarea id="problem" name="problem"></textarea>
+        </div>
+
+        <button type="submit">Send message</button>
+
+      </form>
+
+      <div class="formNote">
+        I read every message. If there is a strong fit, I will respond directly.
+      </div>
+
+    </section>
+
+  </div>
+
+</section>
+
+<footer class="siteFooter reveal">
+
+  <div class="footerBrand">
+    <small>Dan Kohler</small>
+    <strong>Strategy. Creative Systems. AI Transformation.</strong>
     <p>
-      Tell me what you are building, what is broken, or what everyone else is missing.
+      Built around clarity, creative intelligence, practical AI adoption, and the belief that great thinking still matters.
     </p>
+  </div>
 
-    <form id="contactForm" action="https://formspree.io/f/mbdqnknv" method="POST">
+  <nav class="footerLinks" aria-label="Footer navigation">
+    <a href="index.html">Workspace</a>
+    <a href="work.html">Work</a>
+    <a href="about.html">About</a>
+    <a href="process.html">Process</a>
+    <a href="dogs.html">Dolly and Belle</a>
+    <a href="https://xtrabold.ai" target="_blank" rel="noopener noreferrer">XTRABOLD AI</a>
+    <a href="https://xtrabold.agency/machine/" target="_blank" rel="noopener noreferrer">THE MACHINE™</a>
+    <a href="https://www.linkedin.com/in/kohlerdan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </nav>
 
-      <div class="field">
-        <label for="name">Name</label>
-        <input id="name" name="name" type="text" autocomplete="name" required>
-      </div>
+  <div class="footerBottom">
+    © 2026 Dan Kohler. Built as a personal creative workspace.
+  </div>
 
-      <div class="field">
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" autocomplete="email" required>
-      </div>
-
-      <div class="field">
-        <label for="message">What problem are you trying to solve?</label>
-        <textarea id="message" name="message" required></textarea>
-      </div>
-
-      <button id="submitButton" type="submit">
-        Send message
-      </button>
-
-      <div id="formStatus" class="status" aria-live="polite"></div>
-
-    </form>
-
-    <div class="links">
-      <a class="buttonSecondary" href="https://www.linkedin.com/in/kohlerdan/" target="_blank" rel="noopener noreferrer">
-        LinkedIn
-      </a>
-    </div>
-
-    <div class="emailText">
-      Or email me directly at <strong>kohdan@gmail.com</strong>
-    </div>
-
-  </section>
-
-  <section class="note">
-    The best conversations usually start before the brief is fully formed.
-  </section>
+</footer>
 
 </div>
 
 <script>
-const form = document.getElementById("contactForm");
-const button = document.getElementById("submitButton");
-const status = document.getElementById("formStatus");
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("page-loaded");
+});
 
-form.addEventListener("submit", async function(event) {
-  event.preventDefault();
+const revealItems = document.querySelectorAll(".reveal");
 
-  button.disabled = true;
-  button.textContent = "Sending...";
-  status.textContent = "Sending your message.";
-
-  const formData = new FormData(form);
-
-  try {
-    const response = await fetch(form.action, {
-      method: "POST",
-      body: formData,
-      headers: {
-        "Accept": "application/json"
-      }
-    });
-
-    if (response.ok) {
-      window.location.href = "thanks.html";
-    } else {
-      button.disabled = false;
-      button.textContent = "Send message";
-      status.textContent = "Something went wrong. Please try again.";
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
     }
-  } catch (error) {
-    button.disabled = false;
-    button.textContent = "Send message";
-    status.textContent = "Something went wrong. Please try again.";
+  });
+}, {
+  threshold: 0.12
+});
+
+revealItems.forEach((item) => {
+  revealObserver.observe(item);
+});
+
+window.addEventListener("pointermove", (event) => {
+  document.body.classList.add("hasMouse");
+  document.body.style.setProperty("--mouse-x", event.clientX + "px");
+  document.body.style.setProperty("--mouse-y", event.clientY + "px");
+});
+
+document.querySelectorAll("a").forEach((link) => {
+  const url = link.getAttribute("href");
+  const target = link.getAttribute("target");
+
+  if (!url || url.startsWith("#") || url.startsWith("http") || url.startsWith("mailto:") || target === "_blank") {
+    return;
   }
+
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    document.body.classList.remove("page-loaded");
+    document.body.classList.add("page-exit");
+
+    setTimeout(() => {
+      window.location.href = url;
+    }, 300);
+  });
 });
 </script>
+
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
 
 </body>
 </html>
