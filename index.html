@@ -10,7 +10,6 @@
 <link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/favicon.png" sizes="180x180">
-
 <link rel="mask-icon" href="/favicon.svg" color="#000000">
 
 <meta property="og:title" content="Dan Kohler | Strategy, Creative Systems, AI Transformation" />
@@ -50,6 +49,19 @@ body {
   color: var(--white);
   font-family: Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 420ms ease, transform 420ms ease;
+}
+
+body.page-loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+body.page-exit {
+  opacity: 0;
+  transform: translateY(6px);
 }
 
 body::before {
@@ -727,6 +739,11 @@ h1 {
     transition: none !important;
     scroll-behavior: auto !important;
   }
+
+  body {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 </style>
 </head>
@@ -770,7 +787,7 @@ h1 {
 
     <img class="sceneImage" src="workspace.jpg" alt="Dan Kohler workspace">
 
-    <a class="hotspot pinboardZone" href="https://xtrabold.agency/" target="_blank" rel="noopener noreferrer" aria-label="XTRABOLD AI" data-label="XTRABOLD AI"></a>
+    <a class="hotspot pinboardZone" href="https://xtrabold.ai" target="_blank" rel="noopener noreferrer" aria-label="XTRABOLD AI" data-label="XTRABOLD AI"></a>
 
     <a class="hotspot machineZone" href="https://xtrabold.agency/machine/" target="_blank" rel="noopener noreferrer" aria-label="THE MACHINE™" data-label="THE MACHINE™"></a>
 
@@ -794,7 +811,7 @@ h1 {
 
   <section class="panelGrid">
 
-    <a class="panel panelLink" href="https://xtrabold.agency/" target="_blank" rel="noopener noreferrer">
+    <a class="panel panelLink" href="https://xtrabold.ai" target="_blank" rel="noopener noreferrer">
       <small>Agency</small>
       <h2>XTRABOLD AI</h2>
       <p>
@@ -903,7 +920,7 @@ h1 {
     <a href="work.html">Work</a>
     <a href="contact.html">Contact</a>
     <a href="dogs.html">Dolly and Belle</a>
-    <a href="https://xtrabold.agency/" target="_blank" rel="noopener noreferrer">XTRABOLD AI</a>
+    <a href="https://xtrabold.ai" target="_blank" rel="noopener noreferrer">XTRABOLD AI</a>
     <a href="https://xtrabold.agency/machine/" target="_blank" rel="noopener noreferrer">THE MACHINE™</a>
     <a href="https://www.linkedin.com/in/kohlerdan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
   </nav>
@@ -917,6 +934,10 @@ h1 {
 </div>
 
 <script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("page-loaded");
+});
+
 const revealItems = document.querySelectorAll(".reveal");
 
 const revealObserver = new IntersectionObserver((entries) => {
@@ -955,8 +976,30 @@ if (sceneImage && sceneWrap) {
     sceneImage.style.transform = "scale(1)";
   });
 }
+
+document.querySelectorAll("a").forEach((link) => {
+  const url = link.getAttribute("href");
+  const target = link.getAttribute("target");
+
+  if (!url || url.startsWith("#") || url.startsWith("http") || target === "_blank") {
+    return;
+  }
+
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    document.body.classList.remove("page-loaded");
+    document.body.classList.add("page-exit");
+
+    setTimeout(() => {
+      window.location.href = url;
+    }, 300);
+  });
+});
 </script>
+
 <script defer src="/_vercel/insights/script.js"></script>
 <script defer src="/_vercel/speed-insights/script.js"></script>
+
 </body>
 </html>
