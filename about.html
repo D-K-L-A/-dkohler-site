@@ -4,29 +4,32 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<title>About | Dan Kohler</title>
-<meta name="description" content="Learn more about Dan Kohler, cofounder of XTRABOLD AI and THE MACHINE™, strategist, educator, and AI transformation advisor." />
+<title>About Dan Kohler | Strategy, Creative Systems, AI Transformation</title>
+<meta name="description" content="Dan Kohler is a strategist, educator, and cofounder working across brand strategy, creative systems, AI transformation, XTRABOLD AI, and THE MACHINE™." />
 
-<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.png" sizes="180x180">
+<link rel="mask-icon" href="/favicon.svg" color="#000000">
 
-<meta property="og:title" content="About | Dan Kohler" />
+<meta property="og:title" content="About Dan Kohler | Strategy, Creative Systems, AI Transformation" />
 <meta property="og:description" content="Strategy, creative systems, AI transformation, teaching, and modern workflow thinking." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://dkohler-site.vercel.app/about.html" />
-<meta property="og:image" content="https://dkohler-site.vercel.app/social_preview.jpg" />
+<meta property="og:url" content="https://dkohler.com/about.html" />
+<meta property="og:image" content="https://dkohler.com/social_preview.jpg" />
 
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="About | Dan Kohler" />
+<meta name="twitter:title" content="About Dan Kohler | Strategy, Creative Systems, AI Transformation" />
 <meta name="twitter:description" content="Strategy, creative systems, AI transformation, teaching, and modern workflow thinking." />
-<meta name="twitter:image" content="https://dkohler-site.vercel.app/social_preview.jpg" />
+<meta name="twitter:image" content="https://dkohler.com/social_preview.jpg" />
 
 <style>
 :root {
   --bg: #0d0d0d;
   --white: #ffffff;
-  --gray: rgba(255,255,255,0.72);
+  --gray: rgba(255,255,255,0.68);
   --soft: rgba(255,255,255,0.48);
-  --line: rgba(255,255,255,0.12);
+  --line: rgba(255,255,255,0.14);
   --pink: #ff2f92;
 }
 
@@ -41,24 +44,42 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at 15% 8%, rgba(255,47,146,0.12), transparent 32%),
-    radial-gradient(circle at 85% 12%, rgba(255,255,255,0.07), transparent 30%),
+    radial-gradient(circle at 18% 8%, rgba(255,47,146,0.13), transparent 32%),
+    radial-gradient(circle at 82% 12%, rgba(255,255,255,0.07), transparent 30%),
     var(--bg);
   color: var(--white);
   font-family: Arial, Helvetica, sans-serif;
-  animation: pageFade 0.75s ease both;
+  overflow-x: hidden;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 420ms ease, transform 420ms ease;
 }
 
-@keyframes pageFade {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
+body.page-loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+body.page-exit {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 20%), rgba(255,255,255,0.08), transparent 18%),
+    radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 20%), rgba(255,47,146,0.09), transparent 28%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+body.hasMouse::before {
+  opacity: 1;
 }
 
 a {
@@ -67,161 +88,487 @@ a {
 }
 
 .page {
-  max-width: 1200px;
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 56px 40px 100px;
+  padding: 44px 40px 96px;
 }
 
-.back {
-  margin-bottom: 54px;
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 86px;
 }
 
-.back a {
-  color: rgba(255,255,255,0.62);
-  font-size: 14px;
-  letter-spacing: 0.12em;
+.brand small {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
   font-weight: 900;
-  transition: 0.2s ease;
 }
 
-.back a:hover {
-  color: white;
+.brand strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 950;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  padding: 11px 16px;
+  font-size: 14px;
+  font-weight: 800;
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.84);
+  transition: 0.28s ease;
+}
+
+.nav a:hover,
+.nav a.active {
+  background: white;
+  color: black;
+  transform: translateY(-2px);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delayOne {
+  transition-delay: 0.12s;
+}
+
+.delayTwo {
+  transition-delay: 0.24s;
 }
 
 .kicker {
   display: inline-block;
-  border: 1px solid var(--line);
   border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
   padding: 10px 16px;
-  color: rgba(255,255,255,0.65);
   font-size: 13px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+  color: rgba(255,255,255,0.74);
   font-weight: 900;
   background: rgba(255,255,255,0.04);
+}
+
+.hero {
+  max-width: 1080px;
 }
 
 h1 {
-  margin: 24px 0 0;
-  font-size: clamp(58px, 8vw, 112px);
+  margin: 28px 0 0;
+  font-size: clamp(56px, 8vw, 112px);
   line-height: 0.9;
   letter-spacing: -0.075em;
+  font-weight: 950;
 }
 
-.intro {
+.heroText {
+  max-width: 860px;
   margin-top: 30px;
-  max-width: 820px;
-  font-size: 27px;
-  line-height: 1.48;
+  font-size: 25px;
+  line-height: 1.52;
   color: var(--gray);
 }
 
-.grid {
+.section {
+  margin-top: 104px;
+}
+
+.storyGrid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px;
-  margin-top: 76px;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 34px;
+  align-items: start;
 }
 
 .card {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--line);
   border-radius: 30px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.065), rgba(255,255,255,0.025));
   padding: 34px;
-  min-height: 280px;
-  transition: 0.24s ease;
+  transition: 0.28s ease;
 }
 
 .card:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255,255,255,0.26);
-  box-shadow: 0 22px 70px rgba(0,0,0,0.28);
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.25);
 }
 
 .card small {
-  display: block;
-  color: var(--soft);
+  display: inline-flex;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 999px;
+  padding: 8px 12px;
   font-size: 12px;
-  letter-spacing: 0.16em;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
+  color: rgba(255,255,255,0.62);
   font-weight: 900;
-  margin-bottom: 18px;
 }
 
 .card h2 {
-  margin: 0;
-  font-size: 36px;
+  margin: 22px 0 0;
+  font-size: clamp(36px, 4.8vw, 70px);
+  line-height: 0.94;
+  letter-spacing: -0.06em;
+}
+
+.card p {
+  margin: 20px 0 0;
+  color: var(--gray);
+  font-size: 20px;
+  line-height: 1.64;
+}
+
+.textBlock {
+  border-top: 1px solid var(--line);
+  padding-top: 32px;
+}
+
+.textBlock p {
+  color: var(--gray);
+  font-size: 22px;
+  line-height: 1.72;
+  margin: 0 0 24px;
+}
+
+.principles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+}
+
+.principle {
+  border-radius: 26px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.035);
+  padding: 28px;
+  min-height: 260px;
+  transition: 0.28s ease;
+}
+
+.principle:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.24);
+}
+
+.principle span {
+  color: var(--soft);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.principle h3 {
+  margin: 20px 0 0;
+  font-size: 30px;
   line-height: 1;
   letter-spacing: -0.04em;
 }
 
-.card p {
-  margin: 18px 0 0;
+.principle p {
+  margin: 16px 0 0;
   color: var(--gray);
-  font-size: 19px;
-  line-height: 1.72;
+  font-size: 18px;
+  line-height: 1.6;
 }
 
-.quote {
-  margin-top: 96px;
-  padding-top: 54px;
-  border-top: 1px solid var(--line);
-  max-width: 920px;
+.credentialBand {
+  border-radius: 34px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 15% 20%, rgba(255,47,146,0.12), transparent 30%),
+    linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025));
+  padding: 42px;
 }
 
-.quote p {
-  margin: 0;
-  font-size: clamp(34px, 5vw, 64px);
-  line-height: 1.03;
-  letter-spacing: -0.06em;
+.credentialGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
 }
 
-.footer {
-  margin-top: 56px;
+.credential {
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.16);
+  padding: 24px;
+}
+
+.credential small {
+  display: block;
+  color: var(--soft);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.credential strong {
+  display: block;
+  margin-top: 12px;
+  font-size: 25px;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+}
+
+.credential p {
+  margin: 12px 0 0;
+  color: var(--gray);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+.ctaBox {
+  border-radius: 34px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.1), transparent 38%),
+    rgba(255,255,255,0.04);
+  padding: 56px 34px;
+  text-align: center;
+}
+
+.ctaBox h2 {
+  margin: 0 auto;
+  max-width: 860px;
+  font-size: clamp(44px, 6vw, 86px);
+  line-height: 0.92;
+  letter-spacing: -0.07em;
+}
+
+.ctaBox p {
+  margin: 24px auto 0;
+  max-width: 760px;
+  color: var(--gray);
+  font-size: 21px;
+  line-height: 1.58;
+}
+
+.ctaRow {
   display: flex;
-  flex-wrap: wrap;
   gap: 14px;
+  margin-top: 34px;
+  flex-wrap: wrap;
 }
 
-.buttonPrimary,
-.buttonSecondary {
+.ctaBox .ctaRow {
+  justify-content: center;
+}
+
+.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 999px;
   padding: 14px 22px;
   font-weight: 900;
+  background: var(--white);
+  color: #000;
+  transition: 0.28s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(255,255,255,0.14);
+}
+
+.btnSecondary {
+  background: rgba(255,255,255,0.06);
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.16);
+}
+
+.siteFooter {
+  margin-top: 96px;
+  padding-top: 34px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 28px;
+  color: rgba(255,255,255,0.58);
+}
+
+.footerBrand small {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  font-weight: 900;
+}
+
+.footerBrand strong {
+  display: block;
+  margin-top: 8px;
+  color: white;
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.footerBrand p {
+  margin: 16px 0 0;
+  max-width: 520px;
+  color: rgba(255,255,255,0.58);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: flex-end;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footerLinks a {
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 999px;
+  padding: 10px 14px;
+  color: rgba(255,255,255,0.76);
+  background: rgba(255,255,255,0.035);
+  font-size: 14px;
+  font-weight: 800;
   transition: 0.2s ease;
 }
 
-.buttonPrimary {
+.footerLinks a:hover {
   background: white;
   color: black;
+  transform: translateY(-1px);
 }
 
-.buttonSecondary {
-  background: rgba(255,255,255,0.07);
-  border: 1px solid var(--line);
-  color: white;
+.footerBottom {
+  grid-column: 1 / -1;
+  color: rgba(255,255,255,0.38);
+  font-size: 14px;
+  line-height: 1.6;
 }
 
-.buttonPrimary:hover,
-.buttonSecondary:hover {
-  transform: translateY(-2px);
-}
+@media(max-width:960px) {
 
-@media (max-width: 900px) {
-  .page {
-    padding: 40px 24px 82px;
+  body::before {
+    display: none;
   }
 
-  .grid {
+  .page {
+    padding: 28px 18px 76px;
+  }
+
+  .topbar,
+  .storyGrid,
+  .siteFooter {
     grid-template-columns: 1fr;
   }
 
-  .intro {
-    font-size: 22px;
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 56px;
+  }
+
+  .nav {
+    width: 100%;
+  }
+
+  .nav a {
+    flex: 1;
+    text-align: center;
+    min-width: 110px;
+  }
+
+  h1 {
+    font-size: 52px;
+  }
+
+  .heroText {
+    font-size: 21px;
+  }
+
+  .principles,
+  .credentialGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .footerLinks {
+    justify-content: flex-start;
+  }
+}
+
+@media(max-width:640px) {
+
+  .kicker {
+    font-size: 11px;
+    padding: 9px 13px;
+  }
+
+  h1 {
+    font-size: 44px;
+    line-height: 0.95;
+  }
+
+  .heroText {
+    font-size: 18px;
+  }
+
+  .section {
+    margin-top: 76px;
+  }
+
+  .card,
+  .credentialBand,
+  .principle {
+    padding: 24px;
+  }
+
+  .card h2,
+  .ctaBox h2 {
+    font-size: 40px;
+  }
+
+  .textBlock p,
+  .ctaBox p {
+    font-size: 18px;
+  }
+
+  .ctaRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    width: 100%;
   }
 }
 
@@ -231,6 +578,11 @@ h1 {
     transition: none !important;
     scroll-behavior: auto !important;
   }
+
+  body {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 </style>
 </head>
@@ -239,79 +591,245 @@ h1 {
 
 <div class="page">
 
-  <div class="back">
-    <a href="index.html">Back to Workspace</a>
+<header class="topbar reveal">
+  <a class="brand" href="index.html" aria-label="Back to workspace">
+    <small>Dan Kohler</small>
+    <strong>About</strong>
+  </a>
+
+  <nav class="nav">
+    <a href="index.html">Workspace</a>
+    <a href="work.html">Work with me</a>
+    <a class="active" href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero reveal delayOne">
+
+  <div class="kicker">About</div>
+
+  <h1>
+    I work where strategy, creativity, and systems meet.
+  </h1>
+
+  <p class="heroText">
+    My work sits at the intersection of brand strategy, creative development, AI adoption, and the operating systems that help teams turn better thinking into better output.
+  </p>
+
+  <div class="ctaRow">
+    <a class="btn" href="work.html">See how I work</a>
+    <a class="btn btnSecondary" href="contact.html">Start a conversation</a>
   </div>
 
-  <section class="hero">
+</section>
 
-    <div class="kicker">
-      About
-    </div>
+<section class="section reveal">
 
-    <h1>
-      Bring me the hard problem.
-    </h1>
+  <div class="storyGrid">
 
-    <div class="intro">
-      I’ve spent my career helping brands find clarity before momentum takes over.
-    </div>
-
-  </section>
-
-  <section class="grid">
-
-    <div class="card">
-      <small>01</small>
-      <h2>Strategy</h2>
+    <article class="card">
+      <small>Background</small>
+      <h2>
+        Strategy with creative consequences.
+      </h2>
       <p>
-        My background spans global marketing leadership, agency strategy, brand development, and creative systems thinking. I help teams simplify complexity so stronger ideas can emerge faster.
+        I’ve spent my career helping companies clarify what they stand for, what they should say, how they should show up, and how teams can make better decisions before they spend money making the wrong thing.
+      </p>
+    </article>
+
+    <div class="textBlock">
+      <p>
+        I come from the client side, the agency side, and the classroom. That combination matters. It means I care about business reality, creative quality, and whether people can actually use the system after the meeting ends.
+      </p>
+
+      <p>
+        Today, most teams do not have an ideas problem. They have a clarity problem, a workflow problem, and increasingly, an AI orchestration problem. The tools are powerful. The system around them is usually not.
+      </p>
+
+      <p>
+        That is the space I work in: helping teams find the strategy, shape the creative, and build the modern workflows required to move with more confidence.
       </p>
     </div>
 
-    <div class="card">
-      <small>02</small>
-      <h2>AI + Creativity</h2>
+  </div>
+
+</section>
+
+<section class="section reveal delayTwo">
+
+  <div class="principles">
+
+    <div class="principle">
+      <span>01</span>
+      <h3>Clarity comes first</h3>
       <p>
-        I co founded XTRABOLD AI and THE MACHINE™ to help companies modernize how strategy, copy, design, video, and execution work together in one intelligent flow.
+        Speed only matters when teams know what they are moving toward. Strategy should make the next decision easier.
       </p>
     </div>
 
-    <div class="card">
-      <small>03</small>
-      <h2>Teaching</h2>
+    <div class="principle">
+      <span>02</span>
+      <h3>Creativity needs judgment</h3>
       <p>
-        I teach graduate level courses in storytelling, copywriting, strategy, and modern creative systems at the Academy of Art University in San Francisco.
+        AI can generate options. People still decide what matters, what is true, and what deserves to be made.
       </p>
     </div>
 
-    <div class="card">
-      <small>04</small>
-      <h2>Philosophy</h2>
+    <div class="principle">
+      <span>03</span>
+      <h3>Systems beat tool chaos</h3>
       <p>
-        The tools changed. The need for great thinking did not. AI should accelerate clarity, originality, and execution. Not replace judgment.
+        The advantage is not having more tools. The advantage is creating a smarter way for research, strategy, creative, and execution to connect.
       </p>
     </div>
 
-  </section>
+  </div>
 
-  <section class="quote">
+</section>
+
+<section class="section reveal">
+
+  <div class="credentialBand">
+
+    <div class="credentialGrid">
+
+      <div class="credential">
+        <small>Strategy</small>
+        <strong>Brand and business clarity</strong>
+        <p>
+          Positioning, architecture, briefs, narrative, and decision frameworks for teams that need sharper direction.
+        </p>
+      </div>
+
+      <div class="credential">
+        <small>Creative</small>
+        <strong>Agency level thinking</strong>
+        <p>
+          Creative systems, concept development, AI previsualization, and stronger paths from insight to execution.
+        </p>
+      </div>
+
+      <div class="credential">
+        <small>Teaching</small>
+        <strong>Graduate level education</strong>
+        <p>
+          I teach strategy, storytelling, copywriting, and modern creative systems at the Academy of Art University.
+        </p>
+      </div>
+
+      <div class="credential">
+        <small>Building</small>
+        <strong>XTRABOLD AI and THE MACHINE™</strong>
+        <p>
+          Cofounder of systems built to modernize how strategy, creative, and AI enabled execution work together.
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section reveal">
+
+  <div class="ctaBox">
+    <h2>
+      The useful question is usually hiding beneath the obvious one.
+    </h2>
+
     <p>
-      The future belongs to teams that can think clearly and move decisively.
+      That is where the work gets interesting: the place where strategy, creativity, technology, and human judgment all have to meet.
     </p>
-  </section>
 
-  <div class="footer">
-    <a class="buttonPrimary" href="contact.html">
-      Start the conversation
-    </a>
-
-    <a class="buttonSecondary" href="process.html">
-      See how I work
-    </a>
+    <div class="ctaRow">
+      <a class="btn" href="contact.html">Start a conversation</a>
+      <a class="btn btnSecondary" href="work.html">See ways to work together</a>
+    </div>
   </div>
+
+</section>
+
+<footer class="siteFooter reveal">
+
+  <div class="footerBrand">
+    <small>Dan Kohler</small>
+    <strong>Strategy. Creative Systems. AI Transformation.</strong>
+    <p>
+      Built around clarity, creative intelligence, practical AI adoption, and the belief that great thinking still matters.
+    </p>
+  </div>
+
+  <nav class="footerLinks" aria-label="Footer navigation">
+    <a href="index.html">Workspace</a>
+    <a href="work.html">Work</a>
+    <a href="process.html">Process</a>
+    <a href="contact.html">Contact</a>
+    <a href="dogs.html">Dolly and Belle</a>
+    <a href="https://xtrabold.ai" target="_blank" rel="noopener noreferrer">XTRABOLD AI</a>
+    <a href="https://xtrabold.agency/machine/" target="_blank" rel="noopener noreferrer">THE MACHINE™</a>
+    <a href="https://www.linkedin.com/in/kohlerdan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </nav>
+
+  <div class="footerBottom">
+    © 2026 Dan Kohler. Built as a personal creative workspace.
+  </div>
+
+</footer>
 
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("page-loaded");
+});
+
+const revealItems = document.querySelectorAll(".reveal");
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+}, {
+  threshold: 0.12
+});
+
+revealItems.forEach((item) => {
+  revealObserver.observe(item);
+});
+
+window.addEventListener("pointermove", (event) => {
+  document.body.classList.add("hasMouse");
+  document.body.style.setProperty("--mouse-x", event.clientX + "px");
+  document.body.style.setProperty("--mouse-y", event.clientY + "px");
+});
+
+document.querySelectorAll("a").forEach((link) => {
+  const url = link.getAttribute("href");
+  const target = link.getAttribute("target");
+
+  if (!url || url.startsWith("#") || url.startsWith("http") || target === "_blank") {
+    return;
+  }
+
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    document.body.classList.remove("page-loaded");
+    document.body.classList.add("page-exit");
+
+    setTimeout(() => {
+      window.location.href = url;
+    }, 300);
+  });
+});
+</script>
+
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
 
 </body>
 </html>
