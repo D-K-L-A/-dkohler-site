@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+<title>Enter | Dan Kohler</title>
+
+<style>
+body {
+  margin: 0;
+  background: #0d0d0d;
+  color: white;
+  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.wrap {
+  max-width: 900px;
+  width: 100%;
+  padding: 40px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.card {
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 24px;
+  padding: 30px;
+  background: rgba(255,255,255,0.03);
+  transition: 0.25s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.3);
+}
+
+.card small {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.6);
+  font-weight: 900;
+}
+
+.card h2 {
+  margin: 14px 0 0;
+  font-size: 32px;
+}
+
+.card p {
+  margin: 14px 0 0;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.5;
+}
+
+.skip {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+}
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <div class="grid">
+
+    <div class="card" onclick="go('machine')">
+      <small>Platform</small>
+      <h2>THE MACHINE™</h2>
+      <p>
+        A connected system that unifies strategy, copy, design, video, and execution into one workflow.
+      </p>
+    </div>
+
+    <div class="card" onclick="go('xtra')">
+      <small>Agency</small>
+      <h2>XTRABOLD AI</h2>
+      <p>
+        A creative partner built to help teams see and align on better ideas before they commit.
+      </p>
+    </div>
+
+  </div>
+
+  <div class="skip">
+    Or go directly where you intended
+  </div>
+
+</div>
+
+<script>
+function go(target) {
+  if (target === 'machine') {
+    window.location.href = "https://xtrabold.agency/machine/";
+  }
+  if (target === 'xtra') {
+    window.location.href = "https://xtrabold.ai";
+  }
+}
+</script>
+
+</body>
+</html>
