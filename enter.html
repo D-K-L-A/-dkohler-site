@@ -39,6 +39,11 @@ body {
   cursor: pointer;
 }
 
+.card.active {
+  border-color: white;
+  background: rgba(255,255,255,0.08);
+}
+
 .card:hover {
   transform: translateY(-4px);
   border-color: rgba(255,255,255,0.3);
@@ -65,7 +70,7 @@ body {
 }
 
 .skip {
-  margin-top: 20px;
+  margin-top: 24px;
   text-align: center;
   font-size: 14px;
   color: rgba(255,255,255,0.5);
@@ -79,36 +84,49 @@ body {
 
   <div class="grid">
 
-    <div class="card" onclick="go('machine')">
+    <div id="machineCard" class="card" onclick="go('machine')">
       <small>Platform</small>
       <h2>THE MACHINE™</h2>
       <p>
-        A connected system that unifies strategy, copy, design, video, and execution into one workflow.
+        A connected system that unifies strategy, copy, design, video, and execution.
       </p>
     </div>
 
-    <div class="card" onclick="go('xtra')">
+    <div id="xtraCard" class="card" onclick="go('xtra')">
       <small>Agency</small>
       <h2>XTRABOLD AI</h2>
       <p>
-        A creative partner built to help teams see and align on better ideas before they commit.
+        A creative partner built to help teams align on better ideas before they commit.
       </p>
     </div>
 
   </div>
 
   <div class="skip">
-    Or go directly where you intended
+    Continue to your destination
   </div>
 
 </div>
 
 <script>
+const params = new URLSearchParams(window.location.search);
+const dest = params.get("dest");
+
+if (dest === "machine") {
+  document.getElementById("machineCard").classList.add("active");
+  setTimeout(() => go("machine"), 600);
+}
+
+if (dest === "xtra") {
+  document.getElementById("xtraCard").classList.add("active");
+  setTimeout(() => go("xtra"), 600);
+}
+
 function go(target) {
-  if (target === 'machine') {
+  if (target === "machine") {
     window.location.href = "https://xtrabold.agency/machine/";
   }
-  if (target === 'xtra') {
+  if (target === "xtra") {
     window.location.href = "https://xtrabold.ai";
   }
 }
