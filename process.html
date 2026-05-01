@@ -5,28 +5,31 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
 <title>Process | Dan Kohler</title>
-<meta name="description" content="Dan Kohler's working method: Problem, Insight, Execution. A strategy and AI systems approach for clearer creative work." />
+<meta name="description" content="Dan Kohler turns fragmented information into clear strategy and executable creative systems." />
 
-<link rel="icon" type="image/png" href="favicon.png" />
+<link rel="icon" href="/favicon.png" type="image/png" sizes="32x32">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/favicon.png" sizes="180x180">
+<link rel="mask-icon" href="/favicon.svg" color="#000000">
 
 <meta property="og:title" content="Process | Dan Kohler" />
-<meta property="og:description" content="Problem. Insight. Execution. A working method for strategy, creative systems, and AI transformation." />
+<meta property="og:description" content="Information, pattern, strategy, insight, and execution. A system for turning complexity into creative advantage." />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://dkohler-site.vercel.app/process.html" />
-<meta property="og:image" content="https://dkohler-site.vercel.app/social_preview.jpg" />
+<meta property="og:url" content="https://dkohler.com/process.html" />
+<meta property="og:image" content="https://dkohler.com/social_preview.jpg" />
 
 <meta name="twitter:card" content="summary_large_image" />
 <meta name="twitter:title" content="Process | Dan Kohler" />
-<meta name="twitter:description" content="Problem. Insight. Execution. A working method for strategy, creative systems, and AI transformation." />
-<meta name="twitter:image" content="https://dkohler-site.vercel.app/social_preview.jpg" />
+<meta name="twitter:description" content="Information, pattern, strategy, insight, and execution. A system for turning complexity into creative advantage." />
+<meta name="twitter:image" content="https://dkohler.com/social_preview.jpg" />
 
 <style>
 :root {
   --bg: #0d0d0d;
   --white: #ffffff;
-  --gray: rgba(255,255,255,0.72);
+  --gray: rgba(255,255,255,0.68);
   --soft: rgba(255,255,255,0.48);
-  --line: rgba(255,255,255,0.12);
+  --line: rgba(255,255,255,0.14);
   --pink: #ff2f92;
 }
 
@@ -41,24 +44,42 @@ html {
 body {
   margin: 0;
   background:
-    radial-gradient(circle at 18% 10%, rgba(255,47,146,0.12), transparent 32%),
+    radial-gradient(circle at 18% 8%, rgba(255,47,146,0.13), transparent 32%),
     radial-gradient(circle at 82% 12%, rgba(255,255,255,0.07), transparent 30%),
     var(--bg);
   color: var(--white);
   font-family: Arial, Helvetica, sans-serif;
-  animation: pageFade 0.75s ease both;
+  overflow-x: hidden;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 420ms ease, transform 420ms ease;
 }
 
-@keyframes pageFade {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
+body.page-loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+body.page-exit {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 20%), rgba(255,255,255,0.08), transparent 18%),
+    radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 20%), rgba(255,47,146,0.09), transparent 28%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+body.hasMouse::before {
+  opacity: 1;
 }
 
 a {
@@ -67,218 +88,585 @@ a {
 }
 
 .page {
-  max-width: 1200px;
+  position: relative;
+  z-index: 1;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 56px 40px 100px;
+  padding: 44px 40px 96px;
 }
 
-.back {
-  margin-bottom: 54px;
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 22px;
+  margin-bottom: 86px;
 }
 
-.back a {
-  color: rgba(255,255,255,0.62);
-  font-size: 14px;
-  letter-spacing: 0.12em;
+.brand small {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+  color: rgba(255,255,255,0.55);
   font-weight: 900;
-  transition: 0.2s ease;
 }
 
-.back a:hover {
-  color: white;
+.brand strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 34px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 950;
+}
+
+.nav {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  border: 1px solid rgba(255,255,255,0.18);
+  border-radius: 999px;
+  padding: 11px 16px;
+  font-size: 14px;
+  font-weight: 800;
+  background: rgba(255,255,255,0.04);
+  color: rgba(255,255,255,0.84);
+  transition: 0.28s ease;
+}
+
+.nav a:hover,
+.nav a.active {
+  background: white;
+  color: black;
+  transform: translateY(-2px);
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delayOne {
+  transition-delay: 0.12s;
+}
+
+.delayTwo {
+  transition-delay: 0.24s;
 }
 
 .kicker {
   display: inline-block;
-  border: 1px solid var(--line);
   border-radius: 999px;
+  border: 1px solid rgba(255,255,255,0.18);
   padding: 10px 16px;
-  color: rgba(255,255,255,0.65);
   font-size: 13px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+  color: rgba(255,255,255,0.74);
   font-weight: 900;
   background: rgba(255,255,255,0.04);
+}
+
+.hero {
+  max-width: 1080px;
 }
 
 h1 {
-  margin: 24px 0 0;
-  font-size: clamp(58px, 8vw, 112px);
+  margin: 28px 0 0;
+  font-size: clamp(56px, 8vw, 112px);
   line-height: 0.9;
   letter-spacing: -0.075em;
-}
-
-.intro {
-  margin-top: 30px;
-  max-width: 860px;
-  font-size: 27px;
-  line-height: 1.48;
-  color: var(--gray);
-}
-
-.flow {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
-  margin-top: 76px;
-  position: relative;
-}
-
-.step {
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--line);
-  border-radius: 30px;
-  padding: 34px;
-  min-height: 360px;
-  transition: 0.24s ease;
-}
-
-.step:hover {
-  transform: translateY(-3px);
-  border-color: rgba(255,255,255,0.26);
-  box-shadow: 0 22px 70px rgba(0,0,0,0.28);
-}
-
-.number {
-  width: 48px;
-  height: 48px;
-  border-radius: 999px;
-  background: white;
-  color: black;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-weight: 950;
-  margin-bottom: 28px;
 }
 
-.step h2 {
-  margin: 0;
-  font-size: 40px;
-  line-height: 0.95;
-  letter-spacing: -0.05em;
-}
-
-.step p {
-  margin: 20px 0 0;
-  color: var(--gray);
-  font-size: 19px;
-  line-height: 1.72;
-}
-
-.system {
-  margin-top: 96px;
-  padding: 42px;
-  border: 1px solid var(--line);
-  border-radius: 34px;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,0.06), rgba(255,255,255,0.025));
-}
-
-.system small {
-  display: block;
-  color: var(--soft);
-  font-size: 13px;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-  font-weight: 900;
-  margin-bottom: 18px;
-}
-
-.system h2 {
-  margin: 0;
-  max-width: 900px;
-  font-size: clamp(38px, 5vw, 72px);
-  line-height: 0.95;
-  letter-spacing: -0.06em;
-}
-
-.system p {
+.heroText {
   max-width: 860px;
-  margin: 26px 0 0;
+  margin-top: 30px;
+  font-size: 25px;
+  line-height: 1.52;
   color: var(--gray);
-  font-size: 22px;
-  line-height: 1.62;
 }
 
-.principles {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 18px;
-  margin-top: 42px;
-}
-
-.principle {
-  border: 1px solid var(--line);
-  border-radius: 24px;
-  padding: 24px;
-  background: rgba(255,255,255,0.035);
-}
-
-.principle h3 {
-  margin: 0;
-  font-size: 24px;
-  letter-spacing: -0.03em;
-}
-
-.principle p {
-  margin: 12px 0 0;
-  color: var(--gray);
-  font-size: 18px;
-  line-height: 1.6;
-}
-
-.footer {
-  margin-top: 56px;
+.ctaRow {
   display: flex;
-  flex-wrap: wrap;
   gap: 14px;
+  margin-top: 34px;
+  flex-wrap: wrap;
 }
 
-.buttonPrimary,
-.buttonSecondary {
+.btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   border-radius: 999px;
   padding: 14px 22px;
   font-weight: 900;
+  background: var(--white);
+  color: #000;
+  transition: 0.28s ease;
+}
+
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 40px rgba(255,255,255,0.14);
+}
+
+.btnSecondary {
+  background: rgba(255,255,255,0.06);
+  color: var(--white);
+  border: 1px solid rgba(255,255,255,0.16);
+}
+
+.section {
+  margin-top: 104px;
+}
+
+.sectionHeader {
+  display: grid;
+  grid-template-columns: 0.72fr 1.28fr;
+  gap: 34px;
+  align-items: end;
+  margin-bottom: 30px;
+}
+
+.sectionHeader h2 {
+  margin: 16px 0 0;
+  font-size: clamp(42px, 5.4vw, 78px);
+  line-height: 0.92;
+  letter-spacing: -0.065em;
+}
+
+.sectionHeader p {
+  margin: 0;
+  color: var(--gray);
+  font-size: 21px;
+  line-height: 1.6;
+}
+
+.flowBand {
+  border-radius: 34px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 12% 20%, rgba(255,47,146,0.12), transparent 30%),
+    linear-gradient(135deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025));
+  padding: 42px;
+}
+
+.flowLine {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 14px;
+}
+
+.flowItem {
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 24px;
+  padding: 24px;
+  background: rgba(0,0,0,0.16);
+  min-height: 170px;
+  transition: 0.28s ease;
+}
+
+.flowItem:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.25);
+}
+
+.flowItem small {
+  display: block;
+  color: var(--soft);
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.flowItem strong {
+  display: block;
+  margin-top: 14px;
+  font-size: 27px;
+  line-height: 1.02;
+  letter-spacing: -0.04em;
+}
+
+.flowItem p {
+  margin: 14px 0 0;
+  color: var(--gray);
+  font-size: 16px;
+  line-height: 1.52;
+}
+
+.lensGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.lens {
+  border-radius: 26px;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,0.035);
+  padding: 28px;
+  min-height: 250px;
+  transition: 0.28s ease;
+}
+
+.lens:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255,255,255,0.24);
+}
+
+.lens span {
+  color: var(--soft);
+  font-size: 13px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 900;
+}
+
+.lens h3 {
+  margin: 20px 0 0;
+  font-size: 31px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.lens p {
+  margin: 16px 0 0;
+  color: var(--gray);
+  font-size: 18px;
+  line-height: 1.6;
+}
+
+.systemGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.systemCard {
+  border-radius: 30px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.065), rgba(255,255,255,0.025));
+  padding: 34px;
+  min-height: 330px;
+  transition: 0.32s ease;
+}
+
+.systemCard:hover {
+  transform: translateY(-5px);
+  border-color: rgba(255,255,255,0.26);
+  box-shadow: 0 30px 90px rgba(0,0,0,0.28);
+}
+
+.systemCard small {
+  display: inline-flex;
+  border: 1px solid rgba(255,255,255,0.14);
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 12px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.62);
+  font-weight: 900;
+}
+
+.systemCard h3 {
+  margin: 22px 0 0;
+  font-size: clamp(34px, 4vw, 56px);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.systemCard p {
+  margin: 18px 0 0;
+  color: var(--gray);
+  font-size: 19px;
+  line-height: 1.62;
+  max-width: 620px;
+}
+
+.list {
+  margin: 26px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 12px;
+}
+
+.list li {
+  color: rgba(255,255,255,0.7);
+  font-size: 16px;
+  line-height: 1.5;
+  padding-left: 18px;
+  position: relative;
+}
+
+.list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.65em;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.56);
+}
+
+.exampleBand {
+  border-radius: 34px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 15% 15%, rgba(255,255,255,0.08), transparent 34%),
+    rgba(255,255,255,0.04);
+  padding: 42px;
+  display: grid;
+  grid-template-columns: 0.8fr 1.2fr;
+  gap: 34px;
+}
+
+.exampleBand h2 {
+  margin: 0;
+  font-size: clamp(42px, 5.6vw, 84px);
+  line-height: 0.92;
+  letter-spacing: -0.07em;
+}
+
+.exampleText p {
+  margin: 0 0 22px;
+  color: var(--gray);
+  font-size: 21px;
+  line-height: 1.62;
+}
+
+.resultBox {
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.16);
+  padding: 24px;
+  margin-top: 8px;
+}
+
+.resultBox strong {
+  display: block;
+  color: white;
+  font-size: 24px;
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+}
+
+.resultBox p {
+  margin: 12px 0 0;
+  color: var(--gray);
+  font-size: 18px;
+  line-height: 1.58;
+}
+
+.ctaBox {
+  border-radius: 34px;
+  border: 1px solid var(--line);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255,255,255,0.1), transparent 38%),
+    rgba(255,255,255,0.04);
+  padding: 56px 34px;
+  text-align: center;
+}
+
+.ctaBox h2 {
+  margin: 0 auto;
+  max-width: 900px;
+  font-size: clamp(44px, 6vw, 86px);
+  line-height: 0.92;
+  letter-spacing: -0.07em;
+}
+
+.ctaBox p {
+  margin: 24px auto 0;
+  max-width: 760px;
+  color: var(--gray);
+  font-size: 21px;
+  line-height: 1.58;
+}
+
+.siteFooter {
+  margin-top: 96px;
+  padding-top: 34px;
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 28px;
+  color: rgba(255,255,255,0.58);
+}
+
+.footerBrand small {
+  display: block;
+  font-size: 12px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  font-weight: 900;
+}
+
+.footerBrand strong {
+  display: block;
+  margin-top: 8px;
+  color: white;
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+}
+
+.footerBrand p {
+  margin: 16px 0 0;
+  max-width: 520px;
+  color: rgba(255,255,255,0.58);
+  font-size: 17px;
+  line-height: 1.6;
+}
+
+.footerLinks {
+  display: flex;
+  justify-content: flex-end;
+  align-content: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.footerLinks a {
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 999px;
+  padding: 10px 14px;
+  color: rgba(255,255,255,0.76);
+  background: rgba(255,255,255,0.035);
+  font-size: 14px;
+  font-weight: 800;
   transition: 0.2s ease;
 }
 
-.buttonPrimary {
+.footerLinks a:hover {
   background: white;
   color: black;
+  transform: translateY(-1px);
 }
 
-.buttonSecondary {
-  background: rgba(255,255,255,0.07);
-  border: 1px solid var(--line);
-  color: white;
+.footerBottom {
+  grid-column: 1 / -1;
+  color: rgba(255,255,255,0.38);
+  font-size: 14px;
+  line-height: 1.6;
 }
 
-.buttonPrimary:hover,
-.buttonSecondary:hover {
-  transform: translateY(-2px);
-}
+@media(max-width:1000px) {
 
-@media (max-width: 900px) {
-  .page {
-    padding: 40px 24px 82px;
+  body::before {
+    display: none;
   }
 
-  .flow,
-  .principles {
+  .page {
+    padding: 28px 18px 76px;
+  }
+
+  .topbar,
+  .sectionHeader,
+  .exampleBand,
+  .siteFooter {
     grid-template-columns: 1fr;
   }
 
-  .intro {
-    font-size: 22px;
+  .topbar {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-bottom: 56px;
   }
 
-  .system {
-    padding: 30px;
+  .nav {
+    width: 100%;
+  }
+
+  .nav a {
+    flex: 1;
+    text-align: center;
+    min-width: 110px;
+  }
+
+  h1 {
+    font-size: 52px;
+  }
+
+  .heroText {
+    font-size: 21px;
+  }
+
+  .flowLine,
+  .lensGrid,
+  .systemGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .footerLinks {
+    justify-content: flex-start;
+  }
+}
+
+@media(max-width:640px) {
+
+  .kicker {
+    font-size: 11px;
+    padding: 9px 13px;
+  }
+
+  h1 {
+    font-size: 44px;
+    line-height: 0.95;
+  }
+
+  .heroText {
+    font-size: 18px;
+  }
+
+  .section {
+    margin-top: 76px;
+  }
+
+  .flowBand,
+  .exampleBand,
+  .ctaBox,
+  .systemCard,
+  .lens {
+    padding: 24px;
+  }
+
+  .sectionHeader h2,
+  .exampleBand h2,
+  .ctaBox h2 {
+    font-size: 40px;
+  }
+
+  .sectionHeader p,
+  .exampleText p,
+  .ctaBox p {
+    font-size: 18px;
+  }
+
+  .ctaRow {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .btn {
+    width: 100%;
   }
 }
 
@@ -288,6 +676,11 @@ h1 {
     transition: none !important;
     scroll-behavior: auto !important;
   }
+
+  body {
+    opacity: 1 !important;
+    transform: none !important;
+  }
 }
 </style>
 </head>
@@ -296,119 +689,321 @@ h1 {
 
 <div class="page">
 
-  <div class="back">
-    <a href="index.html">Back to Workspace</a>
+<header class="topbar reveal">
+  <a class="brand" href="index.html" aria-label="Back to workspace">
+    <small>Dan Kohler</small>
+    <strong>Process</strong>
+  </a>
+
+  <nav class="nav">
+    <a href="index.html">Workspace</a>
+    <a href="work.html">Work with me</a>
+    <a href="about.html">About</a>
+    <a class="active" href="process.html">Process</a>
+    <a href="contact.html">Contact</a>
+  </nav>
+</header>
+
+<section class="hero reveal delayOne">
+
+  <div class="kicker">How I work</div>
+
+  <h1>
+    I turn fragmented information into clear strategy and executable creative systems.
+  </h1>
+
+  <p class="heroText">
+    Most teams are not short on ideas. They are short on clarity, alignment, and a system that turns thinking into useful creative action.
+  </p>
+
+  <div class="ctaRow">
+    <a class="btn" href="contact.html">Start a conversation</a>
+    <a class="btn btnSecondary" href="work.html">See ways to work together</a>
   </div>
 
-  <section class="hero">
+</section>
 
-    <div class="kicker">
-      How I Work
+<section class="section reveal">
+
+  <div class="sectionHeader">
+    <div>
+      <div class="kicker">The system</div>
+      <h2>From signal to execution.</h2>
     </div>
 
-    <h1>
-      Problem. Insight. Execution.
-    </h1>
+    <p>
+      The work moves through five connected stages. Each stage reduces ambiguity and creates a stronger path from research to strategy to creative output.
+    </p>
+  </div>
 
-    <div class="intro">
-      Most teams move too quickly into execution. The better path is to understand the real problem, find the insight underneath it, and build work that can actually move.
+  <div class="flowBand">
+    <div class="flowLine">
+
+      <div class="flowItem">
+        <small>01</small>
+        <strong>Information</strong>
+        <p>Gather the right inputs across the category, culture, consumer, and brand.</p>
+      </div>
+
+      <div class="flowItem">
+        <small>02</small>
+        <strong>Pattern</strong>
+        <p>Find what is really happening beneath the surface data and obvious assumptions.</p>
+      </div>
+
+      <div class="flowItem">
+        <small>03</small>
+        <strong>Strategy</strong>
+        <p>Define positioning, architecture, opportunity spaces, and decision logic.</p>
+      </div>
+
+      <div class="flowItem">
+        <small>04</small>
+        <strong>Insight</strong>
+        <p>Find the perspective that creates tension, relevance, and creative momentum.</p>
+      </div>
+
+      <div class="flowItem">
+        <small>05</small>
+        <strong>Execution</strong>
+        <p>Turn strategy into briefs, platforms, workflows, and creative systems that scale.</p>
+      </div>
+
+    </div>
+  </div>
+
+</section>
+
+<section class="section reveal delayTwo">
+
+  <div class="sectionHeader">
+    <div>
+      <div class="kicker">The lenses</div>
+      <h2>Four inputs. One sharper picture.</h2>
     </div>
 
-  </section>
+    <p>
+      I use four research lenses to turn scattered inputs into something usable. The value comes from how the lenses overlap, not from any single data point.
+    </p>
+  </div>
 
-  <section class="flow">
+  <div class="lensGrid">
 
-    <div class="step">
-      <div class="number">1</div>
-
-      <h2>Problem</h2>
-
+    <div class="lens">
+      <span>Category</span>
+      <h3>Where the market is moving</h3>
       <p>
-        What is actually happening beneath the surface? What friction, behavior, contradiction, or business tension is being ignored? Great work starts by naming the real problem.
+        The competitive dynamics, conventions, white space, and category behavior that shape what is possible.
       </p>
     </div>
 
-    <div class="step">
-      <div class="number">2</div>
-
-      <h2>Insight</h2>
-
+    <div class="lens">
+      <span>Culture</span>
+      <h3>What people are starting to notice</h3>
       <p>
-        Insight is where strategy becomes emotionally true. It connects brand, audience, culture, and category into a simple idea people can feel.
+        The broader signals, tensions, language, behaviors, and expectations influencing how the work will land.
       </p>
     </div>
 
-    <div class="step">
-      <div class="number">3</div>
-
-      <h2>Execution</h2>
-
+    <div class="lens">
+      <span>Consumer</span>
+      <h3>What the audience actually needs</h3>
       <p>
-        Execution turns thinking into reality. Creative. Operational. Technical. The best ideas need systems strong enough to carry them into the world.
+        The practical and emotional drivers that reveal why people care, what they avoid, and what they are ready to believe.
       </p>
     </div>
 
-  </section>
+    <div class="lens">
+      <span>Brand</span>
+      <h3>What the brand can own</h3>
+      <p>
+        The equities, proof points, voice, history, and capabilities that create permission to show up differently.
+      </p>
+    </div>
 
-  <section class="system">
+  </div>
 
-    <small>
-      Operating principle
-    </small>
+</section>
 
+<section class="section reveal">
+
+  <div class="sectionHeader">
+    <div>
+      <div class="kicker">What makes it different</div>
+      <h2>Most processes end in a deck.</h2>
+    </div>
+
+    <p>
+      Mine continues into a system. Strategy is only useful when it changes decisions, workflows, creative direction, and what teams can actually make.
+    </p>
+  </div>
+
+  <div class="systemGrid">
+
+    <article class="systemCard">
+      <small>Strategy layer</small>
+      <h3>Clarity that makes decisions easier.</h3>
+      <p>
+        The first job is to define what matters, what does not, and what the team should do next.
+      </p>
+      <ul class="list">
+        <li>Positioning and brand architecture</li>
+        <li>Opportunity spaces and strategic narratives</li>
+        <li>Insight development and creative briefs</li>
+        <li>Leadership alignment and decision framing</li>
+      </ul>
+    </article>
+
+    <article class="systemCard">
+      <small>Execution layer</small>
+      <h3>Systems that make the thinking usable.</h3>
+      <p>
+        I use THE MACHINE™ to connect strategy directly to copy, design, video, iteration, and implementation.
+      </p>
+      <ul class="list">
+        <li>AI enabled creative workflows</li>
+        <li>Campaign and content systems</li>
+        <li>Rapid previsualization and concept exploration</li>
+        <li>Repeatable processes for better output</li>
+      </ul>
+    </article>
+
+  </div>
+
+</section>
+
+<section class="section reveal">
+
+  <div class="exampleBand">
+
+    <div>
+      <div class="kicker">Example</div>
+      <h2>A stronger path from complexity to action.</h2>
+    </div>
+
+    <div class="exampleText">
+      <p>
+        A national brand needed to increase relevance in a crowded category. The issue was not a lack of ideas. The issue was that the team needed a clearer way to connect market signals, audience behavior, brand strengths, and creative direction.
+      </p>
+
+      <p>
+        We mapped category, culture, consumer, and brand signals across hundreds of inputs. Then we identified a gap between functional messaging and emotional demand, clarified the opportunity, and reframed the work around a sharper strategic insight.
+      </p>
+
+      <p>
+        From there, the strategy became a system: briefs, campaign territories, creative variations, and AI enabled workflows that made the thinking easier to use and scale.
+      </p>
+
+      <div class="resultBox">
+        <strong>Result</strong>
+        <p>
+          Faster decision making, clearer creative direction, less wasted effort, and a stronger path from strategy to work in market.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<section class="section reveal">
+
+  <div class="ctaBox">
     <h2>
-      AI should accelerate thinking. Not replace it.
+      Good strategy creates clarity. Great systems make it usable.
     </h2>
 
     <p>
-      The strongest AI systems do not remove human judgment. They give better thinkers more leverage. They make research sharper, strategy clearer, creative development faster, and execution more connected.
+      That is the difference between a smart deck and a working advantage.
     </p>
 
-    <div class="principles">
-
-      <div class="principle">
-        <h3>Clarity before speed</h3>
-        <p>
-          Moving faster only matters when the team is moving toward the right thing.
-        </p>
-      </div>
-
-      <div class="principle">
-        <h3>Systems before tools</h3>
-        <p>
-          Tools change constantly. The real advantage comes from designing better workflows.
-        </p>
-      </div>
-
-      <div class="principle">
-        <h3>Judgment stays human</h3>
-        <p>
-          AI can generate options. Humans still decide what matters, what is true, and what is worth making.
-        </p>
-      </div>
-
-      <div class="principle">
-        <h3>Ideas need infrastructure</h3>
-        <p>
-          Great thinking needs a path into execution or it disappears into the deck.
-        </p>
-      </div>
-
+    <div class="ctaRow" style="justify-content:center;">
+      <a class="btn" href="contact.html">Start a conversation</a>
+      <a class="btn btnSecondary" href="work.html">See ways to work together</a>
     </div>
-
-  </section>
-
-  <div class="footer">
-    <a class="buttonPrimary" href="work.html">
-      See ways to work together
-    </a>
-
-    <a class="buttonSecondary" href="contact.html">
-      Start the conversation
-    </a>
   </div>
 
+</section>
+
+<footer class="siteFooter reveal">
+
+  <div class="footerBrand">
+    <small>Dan Kohler</small>
+    <strong>Strategy. Creative Systems. AI Transformation.</strong>
+    <p>
+      Built around clarity, creative intelligence, practical AI adoption, and the belief that great thinking still matters.
+    </p>
+  </div>
+
+  <nav class="footerLinks" aria-label="Footer navigation">
+    <a href="index.html">Workspace</a>
+    <a href="work.html">Work</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact</a>
+    <a href="dogs.html">Dolly and Belle</a>
+    <a href="https://xtrabold.ai" target="_blank" rel="noopener noreferrer">XTRABOLD AI</a>
+    <a href="https://xtrabold.agency/machine/" target="_blank" rel="noopener noreferrer">THE MACHINE™</a>
+    <a href="https://www.linkedin.com/in/kohlerdan/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+  </nav>
+
+  <div class="footerBottom">
+    © 2026 Dan Kohler. Built as a personal creative workspace.
+  </div>
+
+</footer>
+
 </div>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  document.body.classList.add("page-loaded");
+});
+
+const revealItems = document.querySelectorAll(".reveal");
+
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry) => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add("visible");
+    }
+  });
+}, {
+  threshold: 0.12
+});
+
+revealItems.forEach((item) => {
+  revealObserver.observe(item);
+});
+
+window.addEventListener("pointermove", (event) => {
+  document.body.classList.add("hasMouse");
+  document.body.style.setProperty("--mouse-x", event.clientX + "px");
+  document.body.style.setProperty("--mouse-y", event.clientY + "px");
+});
+
+document.querySelectorAll("a").forEach((link) => {
+  const url = link.getAttribute("href");
+  const target = link.getAttribute("target");
+
+  if (!url || url.startsWith("#") || url.startsWith("http") || target === "_blank") {
+    return;
+  }
+
+  link.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    document.body.classList.remove("page-loaded");
+    document.body.classList.add("page-exit");
+
+    setTimeout(() => {
+      window.location.href = url;
+    }, 300);
+  });
+});
+</script>
+
+<script defer src="/_vercel/insights/script.js"></script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
 
 </body>
 </html>
