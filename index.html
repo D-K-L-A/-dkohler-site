@@ -824,9 +824,9 @@ h1 {
 
     <img class="sceneImage" src="workspace.jpg?v=5" alt="Dan Kohler workspace">
 
-    <a class="hotspot pinboardZone" href="enter.html?dest=xtra" aria-label="XTRABOLD AI" data-label="XTRABOLD AI"></a>
+    <a class="hotspot pinboardZone" href="https://xtrabold.ai" target="_blank" rel="noopener noreferrer" aria-label="XTRABOLD AI" data-label="XTRABOLD AI"></a>
 
-    <a class="hotspot machineZone" href="enter.html?dest=machine" aria-label="THE MACHINE™" data-label="THE MACHINE™"></a>
+    <a class="hotspot machineZone" href="https://xtrabold.agency/machine/" target="_blank" rel="noopener noreferrer" aria-label="THE MACHINE™" data-label="THE MACHINE™"></a>
 
     <a class="hotspot aboutZone" href="about.html" aria-label="About Dan" data-label="About"></a>
 
@@ -1063,106 +1063,4 @@ document.querySelectorAll("a").forEach((link) => {
 <script defer src="/_vercel/speed-insights/script.js"></script>
 
 </body>
-<div id="transitionOverlay" class="overlay">
-  <div class="overlayInner">
-
-    <div class="option" onclick="go('machine')">
-      <small>Platform</small>
-      <h2>THE MACHINE™</h2>
-    </div>
-
-    <div class="option" onclick="go('xtra')">
-      <small>Agency</small>
-      <h2>XTRABOLD AI</h2>
-    </div>
-
-  </div>
-</div>
-
-<style>
-.overlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.85);
-  backdrop-filter: blur(20px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.4s ease;
-  z-index: 9999;
-}
-
-.overlay.active {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.overlayInner {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
-  max-width: 700px;
-  width: 100%;
-  padding: 40px;
-}
-
-.option {
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 20px;
-  padding: 30px;
-  text-align: center;
-  cursor: pointer;
-  transition: 0.25s ease;
-}
-
-.option:hover {
-  transform: translateY(-6px);
-  border-color: white;
-}
-
-.option small {
-  display: block;
-  font-size: 12px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  opacity: 0.6;
-}
-
-.option h2 {
-  margin-top: 10px;
-  font-size: 28px;
-}
-</style>
-
-<script>
-const overlay = document.getElementById("transitionOverlay");
-
-document.querySelectorAll('a').forEach(link => {
-  const href = link.getAttribute('href');
-
-  if (href === "enter.html?dest=xtra" || href === "enter.html?dest=machine") {
-    link.addEventListener("click", (e) => {
-      e.preventDefault();
-      overlay.classList.add("active");
-
-      const dest = href.includes("machine") ? "machine" : "xtra";
-
-      setTimeout(() => {
-        go(dest);
-      }, 700);
-    });
-  }
-});
-
-function go(target) {
-  if (target === "machine") {
-    window.location.href = "https://xtrabold.agency/machine/";
-  }
-  if (target === "xtra") {
-    window.location.href = "https://xtrabold.ai";
-  }
-}
-</script>  
 </html>
