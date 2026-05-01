@@ -259,6 +259,26 @@ h1 {
   overflow: hidden;
 }
 
+.sceneLight {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  pointer-events: none;
+  background:
+    radial-gradient(
+      circle at var(--scene-x, 50%) var(--scene-y, 50%),
+      rgba(255,255,255,0.10),
+      rgba(255,255,255,0.035) 14%,
+      transparent 34%
+    );
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.sceneWrap:hover .sceneLight {
+  opacity: 1;
+}
+  
 .sceneWrap::before {
   content: "";
   position: absolute;
@@ -811,6 +831,7 @@ h1 {
   <div class="sceneWrap">
 
     <img class="sceneImage" src="workspace.jpg?v=5" alt="Dan Kohler workspace">
+    <div class="sceneLight"></div>
 
     <a class="hotspot pinboardZone" href="https://xtrabold.ai" target="_blank" rel="noopener noreferrer" aria-label="XTRABOLD AI" data-label="XTRABOLD AI"></a>
 
@@ -1045,6 +1066,20 @@ document.querySelectorAll("a").forEach((link) => {
     }, 300);
   });
 });
+const sceneWrap = document.querySelector(".sceneWrap");
+
+if (sceneWrap) {
+  sceneWrap.addEventListener("pointermove", (event) => {
+    const rect = sceneWrap.getBoundingClientRect();
+
+    const x = (event.clientX - rect.left) / rect.width;
+    const y = (event.clientY - rect.top) / rect.height;
+
+    sceneWrap.style.setProperty("--scene-x", (x * 100) + "%");
+    sceneWrap.style.setProperty("--scene-y", (y * 100) + "%");
+  });
+}
+}
 </script>
 
 <script defer src="/_vercel/insights/script.js"></script>
