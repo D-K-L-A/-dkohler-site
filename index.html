@@ -754,6 +754,26 @@ h1 {
   }
 }
 
+@media (max-width: 768px) {
+  .sceneLight {
+    display: none !important;
+  }
+
+  .sceneImage {
+    filter: none !important;
+    transform: none !important;
+  }
+
+  .sceneWrap::before,
+  .sceneWrap::after {
+    opacity: 0 !important;
+  }
+
+  * {
+    backdrop-filter: none !important;
+  }
+}
+  
 @media (prefers-reduced-motion: reduce) {
   * {
     animation: none !important;
